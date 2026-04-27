@@ -1,0 +1,94 @@
+---
+import { site } from "../config/site";
+import { mainNav } from "../config/navigation";
+---
+
+<header id="site-header" aria-label="Site header">
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
+    <a href="/" class="site-name text-sm font-semibold tracking-tight transition-colors">
+      {site.name}
+    </a>
+
+    <nav aria-label="Main navigation">
+      <ul class="flex items-center gap-1">
+        {
+          mainNav.map((item) => (
+            <li>
+              <a href={item.href} class="nav-link px-3 py-1.5 text-sm rounded-md transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li class="ml-3 pl-3 lang-divider border-l transition-colors">
+          <a
+            href="/fr/"
+            class="lang-link px-2 py-1 text-xs font-medium uppercase tracking-widest transition-colors rounded"
+            lang="fr"
+            hreflang="fr"
+            aria-label="Version française"
+          >
+            FR
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  #site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+
+    /*
+      Default: transparent over the light hero.
+      Text is dark because the hero is now light.
+    */
+    --hdr-name:       #0F172A;
+    --hdr-link:       #4B5563;
+    --hdr-link-hover: rgba(15, 23, 42, 0.05);
+    --hdr-fr:         #9CA3AF;
+    --hdr-divider:    #E5EAF0;
+  }
+
+  /*
+    Scrolled: add white background + border.
+    Text colors stay the same — no dramatic flip needed on a light design.
+  */
+  #site-header.is-scrolled {
+    background-color: #FFFFFF;
+    border-bottom-color: #E5EAF0;
+    --hdr-link-hover: #F3F6FA;
+  }
+
+  .site-name { color: var(--hdr-name); }
+  .site-name:hover { color: var(--hdr-name); opacity: 0.65; }
+
+  .nav-link { color: var(--hdr-link); }
+  .nav-link:hover { background-color: var(--hdr-link-hover); color: var(--hdr-name); }
+
+  .lang-link { color: var(--hdr-fr); }
+  .lang-link:hover { color: var(--hdr-link); }
+
+  .lang-divider { border-color: var(--hdr-divider); }
+</style>
+
+<script>
+  const header = document.getElementById("site-header");
+
+  const update = () => {
+    header?.classList.toggle("is-scrolled", window.scrollY > 40);
+  };
+
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+</script>

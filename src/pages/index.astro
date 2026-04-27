@@ -1,11 +1,14 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HomeHero from "../components/HomeHero.astro";
+import FeaturedSection from "../components/FeaturedSection.astro";
+import BioSection from "../components/BioSection.astro";
+import { homeContent } from "../config/home";
+import { site } from "../config/site";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title={site.title} description={site.description}>
+  <HomeHero hero={homeContent.hero} />
+  <FeaturedSection featured={homeContent.featured} />
+  <BioSection bio={homeContent.bio} />
+</BaseLayout>

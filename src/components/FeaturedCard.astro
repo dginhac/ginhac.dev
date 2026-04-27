@@ -1,0 +1,48 @@
+---
+import type { FeaturedItem } from "../config/home";
+
+type Props = FeaturedItem;
+
+const { type, title, description, href } = Astro.props;
+
+/* Text-only label colors — no colored backgrounds */
+const labelColor: Record<string, string> = {
+  RESEARCH:    "var(--color-label-research)",
+  ARTICLE:     "var(--color-label-article)",
+  TEACHING:    "var(--color-label-teaching)",
+  PUBLICATION: "var(--color-label-publication)",
+};
+
+const color = labelColor[type] ?? "var(--color-text-secondary)";
+---
+
+<a
+  href={href}
+  class="group flex flex-col p-6 bg-white rounded-xl border border-border hover:shadow-[0_2px_12px_rgba(15,23,42,0.06)] transition-shadow"
+>
+  <!-- Label: Inter 11px / semibold / 0.08em / uppercase -->
+  <span
+    class="self-start text-[11px] font-semibold uppercase tracking-[0.08em] px-2 py-0.5 rounded bg-section-alt mb-4 leading-none"
+    style={`color: ${color};`}
+  >
+    {type}
+  </span>
+
+  <!-- Card title: Manrope 16px / semibold / -0.015em -->
+  <h3 class="font-heading text-base font-semibold tracking-[-0.015em] text-text-primary leading-[1.25] mb-2 group-hover:text-accent transition-colors">
+    {title}
+  </h3>
+
+  <!-- Body: Inter 14px / normal / 1.65 -->
+  <p class="text-sm text-text-secondary leading-[1.65] flex-1">
+    {description}
+  </p>
+
+  <!-- Link: Inter 12px / medium -->
+  <span
+    class="mt-4 text-xs font-medium text-accent group-hover:opacity-75 transition-opacity"
+    aria-hidden="true"
+  >
+    Read more →
+  </span>
+</a>

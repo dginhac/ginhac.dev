@@ -1,0 +1,52 @@
+---
+import type { homeContent } from "../config/home";
+import FeaturedCard from "./FeaturedCard.astro";
+
+interface Props {
+    featured: typeof homeContent.featured;
+}
+
+const { featured } = Astro.props;
+---
+
+<!-- Alternate background for visual rhythm -->
+<section
+    class="bg-section-alt py-16 md:py-20"
+    aria-labelledby="featured-heading"
+>
+    <div class="max-w-5xl mx-auto px-6">
+        <!-- Section header -->
+        <div
+            class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-10"
+        >
+            <div>
+                <!-- Manrope 24/30px / bold / -0.02em -->
+                <h2
+                    id="featured-heading"
+                    class="font-heading text-2xl md:text-[1.875rem] font-bold tracking-[-0.02em] leading-[1.2] text-text-primary"
+                >
+                    <span class="text-accent-soft font-extrabold">/</span>
+                    {featured.title}
+                </h2>
+                <!-- Inter 14px / normal -->
+                <p
+                    class="text-sm text-text-secondary mt-2 max-w-lg leading-[1.65]"
+                >
+                    {featured.description}
+                </p>
+            </div>
+            <!-- Inter 14px / medium -->
+            <a
+                href={featured.articlesHref}
+                class="shrink-0 text-sm font-medium text-accent hover:opacity-75 transition-opacity"
+            >
+                {featured.articlesLinkLabel} →
+            </a>
+        </div>
+
+        <!-- Cards grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+            {featured.items.map((item) => <FeaturedCard {...item} />)}
+        </div>
+    </div>
+</section>

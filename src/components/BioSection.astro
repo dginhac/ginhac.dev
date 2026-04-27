@@ -1,0 +1,77 @@
+---
+import type { homeContent } from "../config/home";
+import { links } from "../config/links";
+
+interface Props {
+    bio: typeof homeContent.bio;
+}
+
+const { bio } = Astro.props;
+---
+
+<!-- Main site background — seamless with body -->
+<section class="bg-site-bg py-16 md:py-20" aria-labelledby="bio-heading">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <!-- Profile text — spans 2 of 3 columns -->
+            <div class="md:col-span-2">
+                <!-- Manrope 24/30px / bold / -0.02em -->
+                <h2
+                    id="bio-heading"
+                    class="font-heading text-2xl md:text-[1.875rem] font-bold tracking-[-0.02em] leading-[1.2] text-text-primary mb-5"
+                >
+                    <span class="text-accent-soft font-extrabold">/</span>
+                    {bio.title}
+                </h2>
+                <!-- Inter 16px / normal / 1.7 -->
+                <p class="text-base text-text-secondary leading-[1.7] mb-7">
+                    {bio.text}
+                </p>
+                <!-- Inter 14px / medium links -->
+                <div class="flex flex-wrap gap-5">
+                    <a
+                        href={links.scholar}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-sm font-medium text-accent hover:opacity-75 transition-opacity"
+                    >
+                        Google Scholar ↗
+                    </a>
+                    <a
+                        href={links.cv}
+                        class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
+                    >
+                        CV (PDF)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Currently -->
+            <div>
+                <!-- Inter 13px / medium / 0.08em / uppercase -->
+                <p
+                    class="text-[13px] font-medium uppercase tracking-[0.08em] text-text-secondary mb-4"
+                >
+                    {bio.currentTitle}
+                </p>
+                <!-- Inter 14px / normal / 1.65 -->
+                <p class="text-sm text-text-secondary leading-[1.65] mb-5">
+                    {bio.currentIntro}
+                </p>
+                <ul class="space-y-3">
+                    {
+                        bio.currentItems.map((item) => (
+                            <li class="flex gap-3 text-sm text-text-secondary leading-[1.65]">
+                                <span
+                                    class="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-accent"
+                                    aria-hidden="true"
+                                />
+                                {item}
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

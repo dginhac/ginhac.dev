@@ -1,0 +1,99 @@
+---
+import type { homeContent } from "../config/home";
+import { Image } from "astro:assets";
+import portrait from "../assets/hero-portrait.jpg";
+
+interface Props {
+    hero: typeof homeContent.hero;
+}
+
+const { hero } = Astro.props;
+---
+
+<!--
+  Light hero. pt-28/pt-36 absorbs the fixed header height.
+  border-b creates a gentle boundary toward the Featured section.
+-->
+<section
+    class="bg-hero-bg border-b border-border pt-28 pb-20 md:pt-36 md:pb-28"
+>
+    <div class="max-w-5xl mx-auto px-6">
+        <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center"
+        >
+            <!-- Text column -->
+            <div class="order-2 md:order-1">
+                <!-- Eyebrow: Inter 14px / medium / 0.08em -->
+                <p
+                    class="text-sm font-medium uppercase tracking-[0.08em] text-hero-muted mb-5"
+                >
+                    {hero.eyebrow}
+                </p>
+
+                <!--
+                  Manrope heading. Base weight is font-light so the lastname recedes.
+                  <strong> carries font-bold for the firstname.
+                  tracking-[-0.03em] and leading-[1.07] per typographic spec.
+                -->
+                <h1
+                    class="font-heading text-4xl md:text-5xl font-light tracking-[-0.03em] text-hero-text leading-[1.07] mb-6"
+                >
+                    <span class="text-accent-soft font-extrabold">/</span>
+                    <strong class="font-bold">{hero.firstName}</strong>{" "}{
+                        hero.lastName
+                    }
+                </h1>
+
+                <!-- Subtitle: Inter 16/18px / normal / 1.65 -->
+                <p
+                    class="text-base md:text-lg text-hero-muted leading-[1.65] mb-10 max-w-prose"
+                >
+                    {hero.subtitle}
+                </p>
+
+                <!-- CTAs: primary button + text links -->
+                <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+                    <a
+                        href="/publications"
+                        class="inline-flex items-center px-5 py-2.5 bg-accent text-white text-sm font-medium rounded-md hover:opacity-90 transition-opacity"
+                    >
+                        Publications
+                    </a>
+                    <a
+                        href="/research"
+                        class="text-sm font-medium text-hero-muted hover:text-hero-text transition-colors underline-offset-4 hover:underline"
+                    >
+                        Research
+                    </a>
+                    <a
+                        href="/teaching"
+                        class="text-sm font-medium text-hero-muted hover:text-hero-text transition-colors underline-offset-4 hover:underline"
+                    >
+                        Teaching
+                    </a>
+                </div>
+            </div>
+
+            <!-- Portrait column -->
+            <div class="order-1 md:order-2 flex justify-center md:justify-end">
+                <div class="relative w-60 h-72 md:w-68 md:h-[20rem]">
+                    <!-- Soft accent dot — decorative only -->
+                    <div
+                        class="absolute z-11 -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-accent-soft"
+                        aria-hidden="true"
+                    >
+                    </div>
+                    <!-- Portrait -->
+                    <Image
+                        src={portrait}
+                        alt="Portrait de Dominique Ginhac"
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                        class="relative z-10 w-full h-full object-cover"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

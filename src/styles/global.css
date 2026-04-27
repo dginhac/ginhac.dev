@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/* Self-hosted variable fonts — bundled by Vite, no external requests */
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/manrope";
+
+@theme {
+  /* ── Fonts ───────────────────────────────────────────── */
+  --font-sans:    "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Manrope Variable", "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Hero (light) ─────────────────────────────────────── */
+  --color-hero-bg:    #FBFCFF;
+  --color-hero-text:  #0F172A;
+  --color-hero-muted: #6B7280;
+
+  /* ── Page backgrounds ─────────────────────────────────── */
+  --color-site-bg:     #FBFCFF;
+  --color-section-alt: #F3F6FA;
+  --color-footer-bg:   #EEF3F8;
+
+  /* ── Text ─────────────────────────────────────────────── */
+  --color-text-primary:   #1F2937;
+  --color-text-secondary: #6B7280;
+
+  /* ── Accent ───────────────────────────────────────────── */
+  --color-accent:      #2563EB;
+  --color-accent-soft: #7BAFD4;
+
+  /* ── Structure ────────────────────────────────────────── */
+  --color-border: #E5EAF0;
+
+  /* ── Type label colors ────────────────────────────────── */
+  --color-label-research:    #2563EB;
+  --color-label-publication: #7C3AED;
+  --color-label-teaching:    #059669;
+  --color-label-article:     #374151;
+}
+
+/* Base */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-site-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.65;
+}
+
+/* Focus ring — consistent across the site */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}

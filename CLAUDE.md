@@ -15,7 +15,7 @@ No test runner or linter is configured.
 
 ## Architecture
 
-Astro 6 static site with Tailwind CSS v4 (via `@tailwindcss/vite`). TypeScript strict mode. No UI framework (React/Vue/etc.) — pure `.astro` components only.
+Astro 6 static site with Tailwind CSS v4 (via `@tailwindcss/vite`) and MDX (via `@astrojs/mdx`). TypeScript strict mode. No UI framework (React/Vue/etc.) — pure `.astro` components only.
 
 ### Configuration-driven content
 
@@ -27,23 +27,55 @@ All site content lives in `src/config/`:
 
 Update these files to change content; no component edits needed for copy changes.
 
+### Articles (MDX)
+
+Articles are written in MDX and live in `src/content/articles/`. The content collection is declared in `src/content.config.ts` using Astro 6's Content Layer API (`glob` loader).
+
+**To add a new article:** create a `.mdx` file in `src/content/articles/`. It is automatically routed to `/articles/<filename>/` via the dynamic page at `src/pages/articles/[slug].astro`. No other file needs to change.
+
+**Article frontmatter schema:**
+```yaml
+title: string          # required
+description: string    # required
+date: YYYY-MM-DD       # required
+type: string           # optional — e.g. "article", "tutorial"
+tags: [string]         # optional
+lang: string           # optional, default "en"
+featured: boolean      # optional, default false
+readingTime: string    # optional — e.g. "8 min read"
+```
+
+**Available article components** (import from `../../components/article/` within MDX):
+- `Figure` — responsive image with caption; supports `align` (left/right/center/full) and `width` (third/half/two-thirds/full); left/right variants float on desktop, full-width on mobile
+- `KeyPoint` — callout box with a titled highlight; soft left-border style
+- `ResourceList` — clean list of links with descriptions; auto-detects external URLs
+- `Bibliography` — numbered academic citation list
+
 ### Component structure
 
 - `layouts/BaseLayout.astro` — root HTML shell, imports `src/styles/global.css` (Tailwind entry), wraps Header + Footer + slot
+- `layouts/ArticleLayout.astro` — article page shell; editorial header card (title, description, date, tags, type label) + prose body column; used by `pages/articles/[slug].astro`
 - `components/Header.astro` — fixed top bar, transparent over hero → white on scroll; site name + nav + FR language link
 - `components/Footer.astro` — three-column footer with nav, external links, obfuscated email
 - `components/HomeHero.astro` — two-column hero (text + portrait with geometric frame)
 - `components/FeaturedSection.astro` — section wrapper; renders FeaturedCard grid
 - `components/FeaturedCard.astro` — single card with type label (RESEARCH/ARTICLE/TEACHING/PUBLICATION)
 - `components/BioSection.astro` — profile text + Scholar/CV links + "Currently" subsection
+- `components/article/Figure.astro` — article figure with float/align support
+- `components/article/KeyPoint.astro` — article callout block
+- `components/article/ResourceList.astro` — article resource links
+- `components/article/Bibliography.astro` — article reference list
 
 ### Pages
 
 - `pages/index.astro` — homepage; composes HomeHero + FeaturedSection + BioSection
+- `pages/articles/[slug].astro` — dynamic article route; renders any entry from `src/content/articles/` using `ArticleLayout`
 
 ### Styling
 
 Tailwind v4 with utility classes directly in `.astro` files. No `tailwind.config.*` — v4 uses CSS-first config. Global entry point: `src/styles/global.css`, which imports Tailwind and declares all design tokens via `@theme`. Max-width container: `max-w-5xl mx-auto px-6`.
+
+Article prose styles (headings, paragraphs, lists, links, code, etc.) are declared as `.article-body` CSS selectors at the bottom of `global.css` — do not use `@tailwindcss/typography`.
 
 #### Color system
 
@@ -55,7 +87,7 @@ All tokens are defined in `src/styles/global.css` under `@theme` and generate Ta
 | `--color-hero-text` | `#0F172A` | `text-hero-text` | Hero title (deep navy) |
 | `--color-hero-muted` | `#6B7280` | `text-hero-muted` | Hero eyebrow / subtitle |
 | `--color-site-bg` | `#FBFCFF` | `bg-site-bg` | Body / bio section background |
-| `--color-section-alt` | `#F3F6FA` | `bg-section-alt` | Featured section, card label pills |
+| `--color-section-alt` | `#F3F6FA` | `bg-section-alt` | Featured section, card label pills, article header card |
 | `--color-footer-bg` | `#EEF3F8` | `bg-footer-bg` | Footer (one step deeper than section-alt) |
 | `--color-text-primary` | `#1F2937` | `text-text-primary` | Headings, strong labels |
 | `--color-text-secondary` | `#6B7280` | `text-text-secondary` | Body text, nav, meta |
@@ -97,6 +129,10 @@ Typographic scale in use:
 | "Currently" label | Inter | 13px | 500 | `0.08em` | — |
 | Nav / links | Inter | 14px | 500 | — | — |
 | Footer | Inter | 14px | 400 | — | `1.5` |
+| Article `h1` | Manrope | 30→36px | 700 | `-0.03em` | `1.1` |
+| Article `h2` | Manrope | 22px | 700 | `-0.02em` | `1.25` |
+| Article `h3` | Manrope | 18px | 600 | `-0.01em` | `1.35` |
+| Article body | Inter | 16px | 400 | — | `1.75` |
 
 #### Design rules to preserve
 
@@ -106,6 +142,7 @@ Typographic scale in use:
 - **No colored card or section backgrounds** — cards are always white; sections step through `site-bg` → `section-alt` → `footer-bg`.
 - **Shadows**: `rgba(15,23,42,0.06)` only, on hover, never static.
 - **Header**: `position: fixed`, transparent over the light hero with dark text (no color flip needed on scroll — just adds white background + border). Transition controlled via JS `.is-scrolled` class and CSS custom properties (`--hdr-*`) to avoid Tailwind purge issues.
+- **Article prose**: styled via `.article-body` selectors in `global.css`, not via `@tailwindcss/typography`. Article headings use `--color-hero-text` (`#0F172A`), not `--color-text-primary`.
 
 ### Internationalisation
 
@@ -113,4 +150,6 @@ English is the default at `/`. The header includes a placeholder `FR` link to `/
 
 ### Assets
 
-Portrait: `public/images/portrait.jpg` (not committed — add the actual image here). Favicon: `public/favicon.svg`.
+Portrait: `src/assets/hero-portrait.jpg`  
+Favicon: `public/favicon.svg`. 
+Article images: `public/images/articles/`.

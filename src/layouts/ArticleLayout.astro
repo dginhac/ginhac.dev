@@ -5,11 +5,12 @@ interface Props {
   title: string;
   description: string;
   date: Date;
+  type?: string;
   tags?: string[];
   readingTime?: string;
 }
 
-const { title, description, date, tags = [], readingTime } = Astro.props;
+const { title, description, date, type, tags = [], readingTime } = Astro.props;
 
 const formattedDate = date.toLocaleDateString('en-US', {
   year: 'numeric',
@@ -18,64 +19,107 @@ const formattedDate = date.toLocaleDateString('en-US', {
 });
 
 const isoDate = date.toISOString().split('T')[0];
+
+const typeLabelColor: Record<string, string> = {
+  RESEARCH:    '#2563EB',
+  PUBLICATION: '#7C3AED',
+  TEACHING:    '#059669',
+  ARTICLE:     '#6B7280',
+};
+const typeLabel = type?.toUpperCase();
+const labelColor = (typeLabel && typeLabelColor[typeLabel]) ?? '#6B7280';
 ---
 
 <BaseLayout title={title} description={description}>
   <article>
-    <header class="pt-20 pb-12 border-b border-border" style="background-color: var(--color-hero-bg);">
-      <div class="max-w-2xl mx-auto px-6">
+
+    <!-- Page wrapper — site background, clears fixed header -->
+    <div class="pt-24 pb-10 px-6" style="background-color: var(--color-site-bg);">
+      <div class="max-w-2xl mx-auto">
+
+        <!-- Back link -->
         <a
           href="/"
-          class="inline-flex items-center gap-1.5 text-sm mb-8 transition-colors"
+          class="inline-flex items-center gap-1.5 text-sm mb-5 transition-colors hover:opacity-80"
           style="color: var(--color-text-secondary);"
         >
           <span aria-hidden="true">←</span>
           Home
         </a>
 
-        <h1
-          class="font-heading text-[2rem] md:text-[2.5rem] font-bold tracking-[-0.03em] leading-[1.1] mb-4"
-          style="color: var(--color-hero-text);"
-        >
-          {title}
-        </h1>
-
-        <p class="text-lg leading-relaxed mb-6" style="color: var(--color-text-secondary);">
-          {description}
-        </p>
-
+        <!-- Editorial header card -->
         <div
-          class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm"
-          style="color: var(--color-text-secondary);"
+          class="rounded-xl border px-8 py-9 md:px-10 md:py-10"
+          style="background-color: var(--color-section-alt); border-color: var(--color-border);"
         >
-          <time datetime={isoDate}>{formattedDate}</time>
-          {readingTime && (
-            <>
-              <span aria-hidden="true">·</span>
-              <span>{readingTime}</span>
-            </>
+
+          <!-- Type label -->
+          {typeLabel && (
+            <p
+              class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-4"
+              style={`color: ${labelColor};`}
+            >
+              {typeLabel}
+            </p>
           )}
-        </div>
 
-        {tags.length > 0 && (
-          <div class="flex flex-wrap gap-2 mt-4">
-            {tags.map(tag => (
-              <span
-                class="text-xs font-medium tracking-wide px-3 py-1 rounded-full border"
-                style="color: var(--color-text-secondary); background-color: var(--color-section-alt); border-color: var(--color-border);"
-              >
-                {tag}
-              </span>
-            ))}
+          <!-- Title -->
+          <h1
+            class="font-heading text-[1.875rem] md:text-[2.25rem] font-bold tracking-[-0.03em] leading-[1.1] mb-4"
+            style="color: var(--color-hero-text);"
+          >
+            {title}
+          </h1>
+
+          <!-- Description -->
+          <p
+            class="text-[1.0625rem] leading-[1.7] mb-6"
+            style="color: #475569;"
+          >
+            {description}
+          </p>
+
+          <!-- Subtle divider -->
+          <div class="h-px mb-5" style="background-color: var(--color-border);"></div>
+
+          <!-- Meta: date · reading time -->
+          <div
+            class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm mb-4"
+            style="color: var(--color-text-secondary);"
+          >
+            <time datetime={isoDate}>{formattedDate}</time>
+            {readingTime && (
+              <>
+                <span aria-hidden="true" class="opacity-40">·</span>
+                <span>{readingTime}</span>
+              </>
+            )}
           </div>
-        )}
-      </div>
-    </header>
 
-    <div class="py-14 px-6">
+          <!-- Tags -->
+          {tags.length > 0 && (
+            <div class="flex flex-wrap gap-2">
+              {tags.map(tag => (
+                <span
+                  class="text-xs font-medium px-2.5 py-0.5 rounded-full border"
+                  style="color: #2563EB; background-color: #EAF3FB; border-color: #C7DEF0;"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Article body -->
+    <div class="pb-20 px-6">
       <div class="max-w-2xl mx-auto article-body">
         <slot />
       </div>
     </div>
+
   </article>
 </BaseLayout>

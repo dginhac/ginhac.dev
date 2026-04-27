@@ -68,9 +68,9 @@ body {
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.25;
-  color: var(--color-text-primary);
-  margin-top: 3rem;
-  margin-bottom: 1rem;
+  color: var(--color-hero-text);
+  margin-top: 3.5rem;
+  margin-bottom: 0.875rem;
 }
 
 .article-body h3 {
@@ -79,17 +79,17 @@ body {
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.35;
-  color: var(--color-text-primary);
-  margin-top: 2.25rem;
-  margin-bottom: 0.75rem;
+  color: var(--color-hero-text);
+  margin-top: 2.5rem;
+  margin-bottom: 0.625rem;
 }
 
 .article-body h4 {
   font-family: var(--font-heading);
   font-size: 1rem;
   font-weight: 600;
-  color: var(--color-text-primary);
-  margin-top: 1.75rem;
+  color: var(--color-hero-text);
+  margin-top: 2rem;
   margin-bottom: 0.5rem;
 }
 

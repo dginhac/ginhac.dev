@@ -10,30 +10,50 @@ interface Props {
 const { src, alt, caption, align = 'center', width = 'full' } = Astro.props;
 
 const mdWidth: Record<string, string> = {
-  third: 'md:w-1/3',
-  half: 'md:w-1/2',
-  'two-thirds': 'md:w-2/3',
-  full: '',
+  third:       'md:w-1/3',
+  half:        'md:w-1/2',
+  'two-thirds':'md:w-2/3',
+  full:        '',
 };
 const mw = mdWidth[width] ?? 'md:w-1/3';
 
+const isFull   = align === 'full';
+const isFloat  = align === 'left' || align === 'right';
+
 const figClass =
-  align === 'right' ? `w-full mb-6 md:mb-2 md:float-right md:ml-8 ${mw}` :
-  align === 'left'  ? `w-full mb-6 md:mb-2 md:float-left md:mr-8 ${mw}` :
-  align === 'full'  ? 'w-full my-10 clear-both' :
-  /* center */        `mx-auto my-8 ${mw}`.trim();
+  align === 'right' ? `w-full mb-8 md:mb-1 md:float-right md:ml-8 ${mw}` :
+  align === 'left'  ? `w-full mb-8 md:mb-1 md:float-left  md:mr-8 ${mw}` :
+  align === 'full'  ? 'w-full my-12 clear-both' :
+  /* center */        `mx-auto my-10 ${mw}`.trim();
 ---
 
 <figure class={figClass}>
-  <img
-    src={src}
-    alt={alt}
-    class="w-full rounded object-cover"
-    loading="lazy"
-  />
+  <div
+    class="overflow-hidden rounded-lg border"
+    style={
+      isFull
+        ? "border-color: var(--color-border); box-shadow: 0 2px 12px rgba(15,23,42,0.06);"
+        : "border-color: var(--color-border);"
+    }
+  >
+    <img
+      src={src}
+      alt={alt}
+      class="w-full block object-cover"
+      loading="lazy"
+    />
+  </div>
+
   {caption && (
-    <figcaption class="mt-2.5 text-sm leading-snug italic" style="color: var(--color-text-secondary);">
-      {caption}
+    <figcaption
+      class="mt-2 text-[0.8125rem] leading-[1.6]"
+      style="color: var(--color-text-secondary);"
+    >
+      <span
+        class="font-medium"
+        style="color: var(--color-accent-soft);"
+        aria-hidden="true"
+      >Figure —</span>{' '}{caption}
     </figcaption>
   )}
 </figure>

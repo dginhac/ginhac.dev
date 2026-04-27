@@ -1,44 +1,62 @@
 ---
 interface ResourceItem {
-  label: string;
-  href: string;
-  description?: string;
+    label: string;
+    href: string;
+    description?: string;
 }
 
 interface Props {
-  items: ResourceItem[];
+    items: ResourceItem[];
 }
 
 const { items } = Astro.props;
 
 function isExternal(href: string) {
-  return href.startsWith('http://') || href.startsWith('https://');
+    return href.startsWith("http://") || href.startsWith("https://");
 }
 ---
 
-<ul class="my-6 space-y-4">
-  {items.map((item) => {
-    const external = isExternal(item.href);
-    return (
-      <li class="flex flex-col gap-0.5">
-        <a
-          href={item.href}
-          target={external ? '_blank' : undefined}
-          rel={external ? 'noopener noreferrer' : undefined}
-          class="inline-flex items-center gap-1 text-sm font-medium"
-          style="color: var(--color-accent);"
-        >
-          {item.label}
-          {external && (
-            <span aria-hidden="true" class="text-xs opacity-60">↗</span>
-          )}
-        </a>
-        {item.description && (
-          <span class="text-sm leading-snug" style="color: var(--color-text-secondary);">
-            {item.description}
-          </span>
-        )}
-      </li>
-    );
-  })}
+<ul class="my-8 divide-y" style="border-color: #F0F4F8;">
+    {
+        items.map((item) => {
+            const external = isExternal(item.href);
+            return (
+                <li class="py-2.5 first:pt-0 last:pb-0">
+                    <a
+                        href={item.href}
+                        target={external ? "_blank" : undefined}
+                        rel={external ? "noopener noreferrer" : undefined}
+                        class="article-resource-link inline-flex items-baseline gap-1.5 font-semibold text-[0.9375rem] leading-snug mb-1"
+                        style="color: var(--color-accent);"
+                    >
+                        {item.label}
+                        {external && (
+                            <span
+                                aria-hidden="true"
+                                class="text-[0.7rem] translate-y-[-1px] opacity-70"
+                            >
+                                ↗
+                            </span>
+                        )}
+                    </a>
+                    {item.description && (
+                        <p
+                            class="text-sm leading-relaxed"
+                            style="color: var(--color-text-secondary); margin-bottom: 0;"
+                        >
+                            {item.description}
+                        </p>
+                    )}
+                </li>
+            );
+        })
+    }
 </ul>
+
+<style>
+    .article-resource-link:hover {
+        text-decoration: underline;
+        text-decoration-color: var(--color-accent);
+        text-underline-offset: 3px;
+    }
+</style>

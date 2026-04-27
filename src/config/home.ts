@@ -40,7 +40,7 @@ export const homeContent = {
         title: "Understanding HDR Imaging",
         description:
           "A long-form article on classical and recent approaches to high dynamic range image reconstruction.",
-        href: "/posts/understanding-hdr-imaging",
+        href: "/articles/understanding-hdr-imaging",
       },
       {
         type: "TEACHING" as FeaturedItemType,

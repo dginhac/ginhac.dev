@@ -1,0 +1,44 @@
+---
+interface ResourceItem {
+  label: string;
+  href: string;
+  description?: string;
+}
+
+interface Props {
+  items: ResourceItem[];
+}
+
+const { items } = Astro.props;
+
+function isExternal(href: string) {
+  return href.startsWith('http://') || href.startsWith('https://');
+}
+---
+
+<ul class="my-6 space-y-4">
+  {items.map((item) => {
+    const external = isExternal(item.href);
+    return (
+      <li class="flex flex-col gap-0.5">
+        <a
+          href={item.href}
+          target={external ? '_blank' : undefined}
+          rel={external ? 'noopener noreferrer' : undefined}
+          class="inline-flex items-center gap-1 text-sm font-medium"
+          style="color: var(--color-accent);"
+        >
+          {item.label}
+          {external && (
+            <span aria-hidden="true" class="text-xs opacity-60">↗</span>
+          )}
+        </a>
+        {item.description && (
+          <span class="text-sm leading-snug" style="color: var(--color-text-secondary);">
+            {item.description}
+          </span>
+        )}
+      </li>
+    );
+  })}
+</ul>

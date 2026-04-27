@@ -1,0 +1,35 @@
+---
+interface BibEntry {
+  authors: string;
+  title: string;
+  venue: string;
+  year: string;
+}
+
+interface Props {
+  items: BibEntry[];
+}
+
+const { items } = Astro.props;
+---
+
+<ol class="my-6 space-y-3 text-sm">
+  {items.map((item, i) => (
+    <li class="flex gap-3 leading-relaxed">
+      <span
+        class="font-medium tabular-nums shrink-0 select-none"
+        style="color: var(--color-text-secondary);"
+      >
+        [{i + 1}]
+      </span>
+      <div style="color: var(--color-text-secondary);">
+        {item.authors}.{' '}
+        <span class="font-medium" style="color: var(--color-text-primary);">
+          &ldquo;{item.title}&rdquo;
+        </span>.{' '}
+        <span class="italic">{item.venue}</span>,{' '}
+        {item.year}.
+      </div>
+    </li>
+  ))}
+</ol>

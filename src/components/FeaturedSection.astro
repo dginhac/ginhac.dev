@@ -16,10 +16,8 @@ const { featured } = Astro.props;
 >
     <div class="max-w-5xl mx-auto px-6">
         <!-- Section header -->
-        <div
-            class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-10"
-        >
-            <div>
+        <div class="flex flex-col sm:flex-row sm:items-end gap-3 mb-10">
+            <div class="sm:w-3/4">
                 <!-- Manrope 24/30px / bold / UPPERCASE / -0.02em -->
                 <h2
                     id="featured-heading"
@@ -29,16 +27,14 @@ const { featured } = Astro.props;
                     {featured.title}
                 </h2>
                 <!-- Inter 16px / normal -->
-                <p
-                    class="text-base text-text-secondary mt-2 max-w-lg leading-[1.65]"
-                >
+                <p class="text-base text-text-secondary mt-2 leading-[1.65]">
                     {featured.description}
                 </p>
             </div>
             <!-- Inter 14px / medium -->
             <a
                 href={featured.articlesHref}
-                class="shrink-0 text-sm font-medium text-accent hover:opacity-75 transition-opacity"
+                class="sm:w-1/4 sm:text-right text-sm font-medium text-accent hover:opacity-75 transition-opacity"
             >
                 {featured.articlesLinkLabel} →
             </a>

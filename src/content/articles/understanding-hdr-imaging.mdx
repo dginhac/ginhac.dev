@@ -14,6 +14,10 @@ import KeyPoint from "../../components/article/KeyPoint.astro";
 import ResourceList from "../../components/article/ResourceList.astro";
 import Bibliography from "../../components/article/Bibliography.astro";
 
+import hdrExposures from "../../assets/articles/understanding-hdr-imaging/LDR-images.png";
+import hdrPipeline from "../../assets/articles/understanding-hdr-imaging/hdr-pipeline.jpg";
+
+
 High Dynamic Range (HDR) imaging addresses one of the most fundamental limitations of digital imaging systems: the inability of a single exposure to capture the full range of luminance present in real-world scenes.
 
 From bright outdoor environments to dim indoor settings, natural scenes often span several orders of magnitude in intensity. Yet, most imaging sensors operate within a limited dynamic range, forcing a trade-off between preserving highlights and retaining details in shadows.
@@ -23,7 +27,7 @@ From bright outdoor environments to dim indoor settings, natural scenes often sp
 When capturing a scene, a camera must choose an exposure time. This choice directly determines which parts of the scene will be correctly recorded.
 
 <Figure
-  src="https://placehold.co/600x400"
+  src={hdrExposures}
   alt="Different exposures of the same scene"
   caption="Short and long exposures capture complementary information: highlights are preserved in short exposures, while shadows are revealed in long exposures."
   align="right"
@@ -64,7 +68,7 @@ A typical pipeline involves:
 * reconstruction of an HDR output.
 
 <Figure
-  src="https://placehold.co/900x450"
+  src={hdrPipeline}
   alt="Learning-based HDR pipeline"
   caption="A simplified pipeline for learning-based HDR imaging, combining multiple exposures into a unified representation."
   align="full"

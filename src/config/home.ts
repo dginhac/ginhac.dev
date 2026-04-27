@@ -1,6 +1,6 @@
 export type FeaturedItemType =
   | "RESEARCH"
-  | "ARTICLE"
+  | "INSIGHT"
   | "TEACHING"
   | "PUBLICATION";
 
@@ -24,7 +24,7 @@ export const homeContent = {
   featured: {
     title: "Featured",
     description:
-      "A curated selection of research projects, articles, publications, and teaching resources.",
+      "A curated selection of research projects, insights, publications, and teaching resources.",
     articlesLinkLabel: "View articles",
     articlesHref: "/posts",
     items: [
@@ -36,11 +36,11 @@ export const homeContent = {
         href: "/research/lumen",
       },
       {
-        type: "ARTICLE" as FeaturedItemType,
+        type: "INSIGHT" as FeaturedItemType,
         title: "Understanding HDR Imaging",
         description:
           "A long-form article on classical and recent approaches to high dynamic range image reconstruction.",
-        href: "/articles/understanding-hdr-imaging",
+        href: "/posts/understanding-hdr-imaging",
       },
       {
         type: "TEACHING" as FeaturedItemType,

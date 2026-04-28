@@ -41,16 +41,22 @@ const formattedDate = date.toLocaleDateString("en-US", {
 const isoDate = date.toISOString().split("T")[0];
 
 const typeLabel = type?.toUpperCase();
+
+// When TOC is shown, use the same outer container as the body so the left edge
+// aligns with the article column, while the header still spans the full width.
+const headerInnerClass = showToc
+    ? "max-w-5xl mx-auto"
+    : "max-w-[52rem] mx-auto";
 ---
 
 <BaseLayout title={title} description={description}>
-    <article>
+    <article id="top">
         <!-- Full-width editorial header -->
         <div
             class="pt-28 pb-14 md:pt-32 md:pb-18 px-6"
             style="background-color: var(--color-section-alt);"
         >
-            <div class="max-w-[52rem] mx-auto">
+            <div class={headerInnerClass}>
                 <!-- Back link -->
                 <a
                     href="/posts"
@@ -80,7 +86,7 @@ const typeLabel = type?.toUpperCase();
 
                 <!-- Description -->
                 <p
-                    class="text-[1.0625rem] md:text-lg leading-[1.7] mb-8 max-w-[44rem]"
+                    class="text-[1.0625rem] md:text-lg leading-[1.7] mb-8"
                     style="color: #475569;"
                 >
                     {description}
@@ -123,9 +129,9 @@ const typeLabel = type?.toUpperCase();
             </div>
         </div>
 
-        <!-- Lead image (opt-in via showFeaturedImage: true) -->
+        <!-- Lead image — only in single-column layout (aligns with max-w-[52rem] header) -->
         {
-            featuredImageSrc && (
+            !showToc && featuredImageSrc && (
                 <div
                     class="px-6 py-10"
                     style="background-color: var(--color-site-bg);"
@@ -151,12 +157,28 @@ const typeLabel = type?.toUpperCase();
         <!-- Post body -->
         <div
             class="px-6 pb-24"
-            style={featuredImageSrc ? "" : "padding-top: 3.5rem;"}
+            style={!showToc && featuredImageSrc ? "" : "padding-top: 3.5rem;"}
         >
             {showToc ? (
                 <div class="max-w-5xl mx-auto flex gap-14">
-                    <div class="min-w-0 flex-1 post-body">
-                        <slot />
+                    <div class="min-w-0 flex-1">
+                        {featuredImageSrc && (
+                            <div
+                                class="mb-10 rounded-xl overflow-hidden border aspect-[16/9]"
+                                style="border-color: var(--color-border);"
+                            >
+                                <Image
+                                    src={featuredImageSrc}
+                                    alt={featuredImageAlt ?? ""}
+                                    class="w-full h-full object-cover"
+                                    widths={[800, 1200]}
+                                    sizes="(min-width: 900px) 700px, 100vw"
+                                />
+                            </div>
+                        )}
+                        <div class="post-body">
+                            <slot />
+                        </div>
                     </div>
                     <aside class="hidden xl:block w-[220px] shrink-0 pt-1">
                         <TableOfContents headings={tocHeadings} />

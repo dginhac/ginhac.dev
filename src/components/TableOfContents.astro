@@ -6,22 +6,45 @@ interface Props {
 }
 
 const { headings } = Astro.props;
+
+const END_SECTIONS = new Set([
+    "resources",
+    "bibliography",
+    "references",
+    "related posts",
+    "further reading",
+    "notes",
+    "see also",
+]);
+
+const firstEndIdx = headings.findIndex((h) =>
+    END_SECTIONS.has(h.text.toLowerCase())
+);
 ---
 
 <nav aria-label="Table of contents" class="toc">
     <p class="toc-title">Contents</p>
+    <a href="#top" class="toc-top">↑ Top</a>
+    <hr class="toc-divider" />
     <ul>
         {
-            headings.map((h) => (
-                <li>
-                    <a
-                        href={`#${h.slug}`}
-                        class:list={["toc-link", { "toc-h3": h.depth === 3 }]}
-                        data-toc-heading={h.slug}
-                    >
-                        {h.text}
-                    </a>
-                </li>
+            headings.map((h, i) => (
+                <Fragment>
+                    {i === firstEndIdx && firstEndIdx > 0 && (
+                        <li aria-hidden="true" class="toc-section-sep">
+                            <hr />
+                        </li>
+                    )}
+                    <li>
+                        <a
+                            href={`#${h.slug}`}
+                            class:list={["toc-link", { "toc-h3": h.depth === 3 }]}
+                            data-toc-heading={h.slug}
+                        >
+                            {h.text}
+                        </a>
+                    </li>
+                </Fragment>
             ))
         }
     </ul>
@@ -47,6 +70,27 @@ const { headings } = Astro.props;
         margin-bottom: 0.875rem;
     }
 
+    .toc-top {
+        display: block;
+        font-size: 0.8125rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        opacity: 0.55;
+        transition: color 0.15s, opacity 0.15s;
+        margin-bottom: 0.625rem;
+    }
+
+    .toc-top:hover {
+        color: var(--color-accent);
+        opacity: 1;
+    }
+
+    .toc-divider {
+        border: none;
+        border-top: 1px solid var(--color-border);
+        margin-bottom: 0.75rem;
+    }
+
     .toc ul {
         list-style: none;
         padding: 0;
@@ -54,6 +98,16 @@ const { headings } = Astro.props;
         display: flex;
         flex-direction: column;
         gap: 0.125rem;
+    }
+
+    .toc-section-sep {
+        list-style: none;
+        padding: 0.375rem 0;
+    }
+
+    .toc-section-sep hr {
+        border: none;
+        border-top: 1px solid var(--color-border);
     }
 
     .toc-link {

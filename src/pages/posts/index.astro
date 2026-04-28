@@ -1,10 +1,27 @@
 ---
 import { getCollection } from "astro:content";
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
+const postImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/posts/**/*.{webp,jpg,jpeg,png}"
+);
+
 const allPosts = await getCollection("posts");
-const posts = allPosts.sort(
-  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+const posts = await Promise.all(
+  allPosts
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+    .map(async (post) => {
+      let thumbnail: ImageMetadata | undefined;
+      if (post.data.featuredImage) {
+        const key = `/src/assets/posts/${post.id}/${post.data.featuredImage}`;
+        if (postImages[key]) {
+          thumbnail = (await postImages[key]()).default;
+        }
+      }
+      return { post, thumbnail };
+    })
 );
 
 const typeColors: Record<string, string> = {
@@ -15,54 +32,74 @@ const typeColors: Record<string, string> = {
 };
 ---
 
-<BaseLayout title="All posts" description="All articles, research notes, teaching resources, and publications.">
+<BaseLayout title="All content" description="All articles, research notes, teaching resources, and publications.">
   <div class="max-w-5xl mx-auto px-6 py-16">
     <h1 class="font-heading text-3xl font-bold text-hero-text tracking-tight mb-2">All content</h1>
     <p class="text-text-secondary text-base mb-12">
       {posts.length} items — articles, research notes, teaching resources, and publications.
     </p>
 
-    <ul class="space-y-8">
-      {posts.map((post) => {
+    <ul class="space-y-0">
+      {posts.map(({ post, thumbnail }) => {
         const typeKey = (post.data.type ?? "").toLowerCase();
         const color = typeColors[typeKey] ?? "#374151";
         return (
-          <li class="border-b border-border pb-8 last:border-0 last:pb-0">
-            <div class="flex items-center gap-3 mb-2">
-              <span
-                class="text-[11px] font-semibold tracking-widest uppercase"
-                style={`color: ${color}`}
-              >
-                {post.data.type ?? "POST"}
-              </span>
-              {post.data.date && (
-                <span class="text-text-secondary text-sm">
-                  {new Date(post.data.date).toLocaleDateString("en-GB", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </span>
+          <li class="border-b border-border py-7 first:pt-0 last:border-0 last:pb-0">
+            <a href={`/posts/${post.id}`} class="group flex gap-5 sm:gap-6 items-start">
+
+              {thumbnail && (
+                <div class="hidden sm:block flex-shrink-0 w-[152px] rounded-lg overflow-hidden border border-border">
+                  <div class="aspect-[4/3]">
+                    <Image
+                      src={thumbnail}
+                      alt={post.data.featuredImageAlt ?? ""}
+                      class="w-full h-full object-cover"
+                      widths={[304]}
+                      sizes="152px"
+                    />
+                  </div>
+                </div>
               )}
-              {post.data.readingTime && (
-                <span class="text-text-secondary text-sm">&middot; {post.data.readingTime}</span>
-              )}
-            </div>
-            <a href={`/posts/${post.id}`} class="group">
-              <h2 class="font-heading text-xl font-semibold text-text-primary tracking-tight mb-1 group-hover:text-accent transition-colors">
-                {post.data.title}
-              </h2>
-              <p class="text-text-secondary text-base leading-relaxed">{post.data.description}</p>
-            </a>
-            {post.data.tags.length > 0 && (
-              <div class="flex flex-wrap gap-2 mt-3">
-                {post.data.tags.map((tag) => (
-                  <span class="text-xs text-text-secondary bg-section-alt border border-border rounded px-2 py-0.5">
-                    {tag}
+
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2">
+                  <span
+                    class="text-[11px] font-semibold tracking-[0.08em] uppercase"
+                    style={`color: ${color}`}
+                  >
+                    {post.data.type ?? "POST"}
                   </span>
-                ))}
+                  {post.data.date && (
+                    <span class="text-text-secondary text-sm">
+                      {new Date(post.data.date).toLocaleDateString("en-GB", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </span>
+                  )}
+                  {post.data.readingTime && (
+                    <span class="text-text-secondary text-sm">&middot; {post.data.readingTime}</span>
+                  )}
+                </div>
+
+                <h2 class="font-heading text-xl font-semibold text-text-primary tracking-tight mb-1 group-hover:text-accent transition-colors">
+                  {post.data.title}
+                </h2>
+                <p class="text-text-secondary text-base leading-relaxed">{post.data.description}</p>
+
+                {post.data.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-2 mt-3">
+                    {post.data.tags.map((tag) => (
+                      <span class="text-xs text-text-secondary bg-section-alt border border-border rounded px-2 py-0.5">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
-            )}
+
+            </a>
           </li>
         );
       })}

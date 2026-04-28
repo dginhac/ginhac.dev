@@ -59,12 +59,17 @@ readingTime: string    # optional — e.g. "8 min read"
 - `components/Footer.astro` — three-column footer with nav, external links, obfuscated email
 - `components/HomeHero.astro` — two-column hero (text + portrait with geometric frame)
 - `components/FeaturedSection.astro` — section wrapper; renders FeaturedCard grid
-- `components/FeaturedCard.astro` — single card with type label (RESEARCH/INSIGHT/TEACHING/PUBLICATION)
-- `components/BioSection.astro` — profile text + Scholar/CV links + "Currently" subsection
+- `components/FeaturedCard.astro` — single card with type badge; card hover triggers "Read more →" opacity + underline
+- `components/TypeBadge.astro` — shared type badge with per-category tinted pill (color/bg/border); used in FeaturedCard, PostLayout, and posts/index
+- `components/BioSection.astro` — profile text + Scholar/CV links + "Currently" subsection; bio text rendered via `renderMarkdown`
 - `components/post/Figure.astro` — post figure with float/align support
 - `components/post/KeyPoint.astro` — post callout block
 - `components/post/ResourceList.astro` — post resource links
 - `components/post/Bibliography.astro` — post reference list
+
+### Utilities
+
+- `src/utils/markdown.ts` — `renderMarkdown(source)` wraps `marked` with a custom renderer that auto-detects external vs. internal links and adds the appropriate class (`link-external` opens in new tab; `link-internal` stays in tab). Use this for any config prose that contains Markdown links.
 
 ### Pages
 
@@ -76,6 +81,10 @@ readingTime: string    # optional — e.g. "8 min read"
 Tailwind v4 with utility classes directly in `.astro` files. No `tailwind.config.*` — v4 uses CSS-first config. Global entry point: `src/styles/global.css`, which imports Tailwind and declares all design tokens via `@theme`. Max-width container: `max-w-5xl mx-auto px-6`.
 
 Post prose styles (headings, paragraphs, lists, links, code, etc.) are declared as `.post-body` CSS selectors at the bottom of `global.css` — do not use `@tailwindcss/typography`.
+
+**Content links** use the `.link` utility class (defined in `global.css`): accent color, no underline at rest, underline + opacity-75 on hover. Apply `.link` to any non-nav/footer anchor. The classes `.link-external` and `.link-internal` share the same styles and are emitted automatically by `renderMarkdown`. Do not replicate hover styles inline; always use `.link` or let the markdown renderer handle it.
+
+**Prose text in config files** (`src/config/home.ts` etc.) should use Markdown syntax for links, not raw HTML. Pass the string through `renderMarkdown` before `set:html`.
 
 #### Color system
 
@@ -95,14 +104,16 @@ All tokens are defined in `src/styles/global.css` under `@theme` and generate Ta
 | `--color-accent-soft` | `#7BAFD4` | `bg-accent-soft` | Decorative only (portrait corner dot) — never interactive |
 | `--color-border` | `#E5EAF0` | `border-border` | All borders and dividers (blue-gray tint) |
 
-#### Type label colors (inline `style=` only — no Tailwind utilities)
+#### Type label colors
 
-| Label | Color |
-|---|---|
-| RESEARCH | `#2563EB` (`--color-label-research`) |
-| PUBLICATION | `#7C3AED` (`--color-label-publication`) |
-| TEACHING | `#059669` (`--color-label-teaching`) |
-| INSIGHT | `#374151` (`--color-label-insight`) |
+Handled by `components/TypeBadge.astro` — do not replicate color logic elsewhere. The palette (inline `style=` only, no Tailwind utilities) is:
+
+| Label | Text | Background | Border |
+|---|---|---|---|
+| RESEARCH | `#2563EB` | `#EAF3FB` | `#BFDBFE` |
+| PUBLICATION | `#7C3AED` | `#F3E8FF` | `#D8B4FE` |
+| TEACHING | `#059669` | `#ECFDF5` | `#A7F3D0` |
+| INSIGHT | `#374151` | `#F3F4F6` | `#D1D5DB` |
 
 #### Typography
 

@@ -1,3 +1,5 @@
+import portrait from "../assets/hero-portrait.jpg";
+
 export type FeaturedItemType =
   | "RESEARCH"
   | "INSIGHT"
@@ -15,11 +17,13 @@ export interface FeaturedItem {
 
 export const homeContent = {
   hero: {
-    eyebrow: "AI · Computer Vision · Digital Systems",
+    eyebrow: "AI · Computer Vision · Digital Imaging Systems",
     firstName: "Dominique",
     lastName: "Ginhac",
     subtitle:
-      "Professor in Computer Science, I work at the intersection of artificial intelligence, computer vision, and digital systems, with a particular interest in visual representations, imaging, and efficient architectures.",
+      "Professor in Computer Science, I work at the intersection of artificial intelligence, computer vision, and imaging systems, with a particular interest in low-level vision, computational imaging, and efficient software/hardware architectures.",
+    portrait,
+    portraitAlt: "Portrait of Dominique Ginhac",
   },
 
   featured: {
@@ -33,7 +37,7 @@ export const homeContent = {
 
   bio: {
     title: "Profile",
-    text: "I am a Professor in Computer Science at Université Bourgogne Europe, affiliated with the ICB laboratory. My work spans computer vision, artificial intelligence, digital systems, and engineering education, with a focus on the links between fundamental research, applications, and teaching.",
+    text: "I am a Full Professor in Computer Science at <a href='https://www.ube.fr'>Université Bourgogne Europe</a>, affiliated with the ICB laboratory. My work spans computer vision, artificial intelligence, digital imaging systems, and engineering education, with a focus on the links between fundamental research, applications, and teaching.",
     currentIntro:
       "Currently, my work is structured around several research and teaching directions.",
     currentTitle: "Currently",

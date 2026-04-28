@@ -21,7 +21,7 @@ export const homeContent = {
     firstName: "Dominique",
     lastName: "Ginhac",
     subtitle:
-      "Professor in Computer Science, I work at the intersection of artificial intelligence, computer vision, and imaging systems, with a particular interest in low-level vision, computational imaging, and efficient software/hardware architectures.",
+      "Professor in Computer Science, I work at the intersection of artificial intelligence, computer vision, and imaging systems, with a particular interest in low-level vision, computational imaging, and efficient IA-based software/hardware architectures.",
     portrait,
     portraitAlt: "Portrait of Dominique Ginhac",
   },
@@ -37,7 +37,7 @@ export const homeContent = {
 
   bio: {
     title: "Profile",
-    text: "I am a Full Professor in Computer Science at <a href='https://www.ube.fr'>Université Bourgogne Europe</a>, affiliated with the ICB laboratory. My work spans computer vision, artificial intelligence, digital imaging systems, and engineering education, with a focus on the links between fundamental research, applications, and teaching.",
+    text: "I am a Full Professor in Computer Science at <a href='https://www.ube.fr/en/home' target=_new>Université Bourgogne Europe</a>, affiliated with the <a href='https://icb.cnrs.fr/en/icb-home/' target=_new>ICB laboratory</a>. My work spans computer vision, artificial intelligence, digital imaging systems, and engineering education, with a focus on the links between fundamental research, applications, and teaching.",
     currentIntro:
       "Currently, my work is structured around several research and teaching directions.",
     currentTitle: "Currently",

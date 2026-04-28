@@ -88,6 +88,14 @@ body {
     margin-bottom: 0.875rem;
 }
 
+/* End-of-article sections: divider above only, no divider below */
+.post-body h2#resources,
+.post-body h2#bibliography {
+    margin-top: 4rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--color-border);
+}
+
 .post-body h3 {
     font-family: var(--font-heading);
     font-size: 1.125rem;

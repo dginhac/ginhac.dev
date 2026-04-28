@@ -2,16 +2,18 @@
 import { getCollection, render } from "astro:content";
 import type { ImageMetadata } from "astro";
 import PostLayout from "../../layouts/PostLayout.astro";
+import { getRelatedPosts } from "../../utils/relatedPosts";
 
 export async function getStaticPaths() {
     const posts = await getCollection("posts");
     return posts.map((entry) => ({
         params: { slug: entry.id },
-        props: { entry },
+        props: { entry, allPosts: posts },
     }));
 }
 
-const { entry } = Astro.props;
+const { entry, allPosts } = Astro.props;
+const relatedPosts = getRelatedPosts(entry, allPosts);
 const { Content, headings } = await render(entry);
 
 let featuredImageSrc: ImageMetadata | undefined;
@@ -36,6 +38,7 @@ if (entry.data.showFeaturedImage && entry.data.featuredImage) {
     featuredImageSrc={featuredImageSrc}
     featuredImageAlt={entry.data.featuredImageAlt}
     headings={headings}
+    relatedPosts={relatedPosts}
 >
     <Content />
 </PostLayout>

@@ -16,6 +16,7 @@ const posts = defineCollection({
     featuredImage: z.string().optional(),
     featuredImageAlt: z.string().optional(),
     showFeaturedImage: z.boolean().optional(),
+    relatedPosts: z.array(z.string()).optional(),
   }),
 });
 

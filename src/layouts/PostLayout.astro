@@ -4,6 +4,8 @@ import type { ImageMetadata, MarkdownHeading } from "astro";
 import { Image } from "astro:assets";
 import TypeBadge from "../components/TypeBadge.astro";
 import TableOfContents from "../components/TableOfContents.astro";
+import RelatedPosts from "../components/RelatedPosts.astro";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
     title: string;
@@ -15,6 +17,7 @@ interface Props {
     featuredImageSrc?: ImageMetadata;
     featuredImageAlt?: string;
     headings?: MarkdownHeading[];
+    relatedPosts?: CollectionEntry<"posts">[];
 }
 
 const {
@@ -27,10 +30,20 @@ const {
     featuredImageSrc,
     featuredImageAlt,
     headings = [],
+    relatedPosts = [],
 } = Astro.props;
 
 const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
 const showToc = tocHeadings.length >= 3;
+
+// Inject a synthetic "Related posts" heading into the TOC when the section exists.
+// The TableOfContents END_SECTIONS set will automatically place the divider before it.
+const allTocHeadings: MarkdownHeading[] = [
+    ...tocHeadings,
+    ...(relatedPosts.length > 0
+        ? [{ depth: 2, slug: "related-posts", text: "Related posts" }]
+        : []),
+];
 
 const formattedDate = date.toLocaleDateString("en-US", {
     year: "numeric",
@@ -179,14 +192,18 @@ const headerInnerClass = showToc
                         <div class="post-body">
                             <slot />
                         </div>
+                        <RelatedPosts posts={relatedPosts} />
                     </div>
                     <aside class="hidden xl:block w-[220px] shrink-0 pt-1">
-                        <TableOfContents headings={tocHeadings} />
+                        <TableOfContents headings={allTocHeadings} />
                     </aside>
                 </div>
             ) : (
-                <div class="max-w-2xl mx-auto post-body">
-                    <slot />
+                <div class="max-w-2xl mx-auto">
+                    <div class="post-body">
+                        <slot />
+                    </div>
+                    <RelatedPosts posts={relatedPosts} />
                 </div>
             )}
         </div>

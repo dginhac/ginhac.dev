@@ -1,0 +1,103 @@
+---
+import type { CollectionEntry } from "astro:content";
+import TypeBadge from "./TypeBadge.astro";
+
+interface Props {
+    posts: CollectionEntry<"posts">[];
+}
+
+const { posts } = Astro.props;
+---
+
+{
+    posts.length > 0 && (
+        <section id="related-posts" class="related">
+            <h2 class="related-heading">Related posts</h2>
+            <ul class="related-list">
+                {posts.map((post) => (
+                    <li>
+                        <a href={`/posts/${post.id}/`} class="related-item">
+                            {post.data.type && (
+                                <div class="related-badge">
+                                    <TypeBadge
+                                        type={post.data.type.toUpperCase()}
+                                    />
+                                </div>
+                            )}
+                            <p class="related-title">{post.data.title}</p>
+                            {post.data.description && (
+                                <p class="related-desc">
+                                    {post.data.description}
+                                </p>
+                            )}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </section>
+    )
+}
+
+<style>
+    .related {
+        margin-top: 4rem;
+        padding-top: 1.75rem;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .related-heading {
+        font-family: var(--font-heading);
+        font-size: 1.375rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.25;
+        color: var(--color-hero-text);
+        margin-bottom: 0.875rem;
+    }
+
+    .related-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .related-item {
+        display: block;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--color-border);
+        text-decoration: none;
+        transition: opacity 0.15s;
+    }
+
+    .related-item:hover {
+        opacity: 0.75;
+    }
+
+    .related-badge {
+        margin-bottom: 0.5rem;
+    }
+
+    .related-title {
+        font-family: var(--font-heading);
+        font-size: 0.9375rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        line-height: 1.3;
+        color: var(--color-text-primary);
+        margin: 0 0 0.375rem;
+    }
+
+    .related-desc {
+        font-size: 0.8125rem;
+        line-height: 1.55;
+        color: var(--color-text-secondary);
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>

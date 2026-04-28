@@ -9,6 +9,8 @@ export interface FeaturedItem {
   title: string;
   description: string;
   href: string;
+  featuredImage?: import("astro").ImageMetadata;
+  featuredImageAlt?: string;
 }
 
 export const homeContent = {

@@ -1,9 +1,10 @@
 ---
 import type { FeaturedItem } from "../config/home";
+import { Image } from "astro:assets";
 
 type Props = FeaturedItem;
 
-const { type, title, description, href } = Astro.props;
+const { type, title, description, href, featuredImage, featuredImageAlt } = Astro.props;
 
 /* Text-only label colors — no colored backgrounds */
 const labelColor: Record<string, string> = {
@@ -18,33 +19,47 @@ const color = labelColor[type] ?? "var(--color-text-secondary)";
 
 <a
     href={href}
-    class="group flex flex-col p-6 bg-white rounded-xl border border-border hover:shadow-[0_2px_12px_rgba(15,23,42,0.06)] transition-shadow"
+    class="group flex flex-col bg-white rounded-xl border border-border hover:shadow-[0_2px_12px_rgba(15,23,42,0.06)] transition-shadow overflow-hidden"
 >
-    <!-- Label: Inter 11px / semibold / 0.08em / uppercase -->
-    <span
-        class="self-start text-[11px] font-semibold uppercase tracking-[0.08em] px-2 py-0.5 rounded bg-section-alt mb-4 leading-none"
-        style={`color: ${color};`}
-    >
-        {type}
-    </span>
+    {featuredImage && (
+        <div class="aspect-[3/2] overflow-hidden">
+            <Image
+                src={featuredImage}
+                alt={featuredImageAlt ?? ""}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                widths={[480, 800]}
+                sizes="(min-width: 1024px) 480px, (min-width: 640px) 50vw, 100vw"
+            />
+        </div>
+    )}
 
-    <!-- Card title: Manrope 16px / semibold / -0.015em -->
-    <h3
-        class="font-heading text-base font-semibold tracking-[-0.015em] text-text-primary leading-[1.25] mb-2 group-hover:text-accent transition-colors"
-    >
-        {title}
-    </h3>
+    <div class="flex flex-col flex-1 p-6">
+        <!-- Label: Inter 11px / semibold / 0.08em / uppercase -->
+        <span
+            class="self-start text-[11px] font-semibold uppercase tracking-[0.08em] px-2 py-0.5 rounded bg-section-alt mb-4 leading-none"
+            style={`color: ${color};`}
+        >
+            {type}
+        </span>
 
-    <!-- Body: Inter 14px / normal / 1.65 -->
-    <p class="text-sm text-text-secondary leading-[1.65] flex-1">
-        {description}
-    </p>
+        <!-- Card title: Manrope 16px / semibold / -0.015em -->
+        <h3
+            class="font-heading text-base font-semibold tracking-[-0.015em] text-text-primary leading-[1.25] mb-2 group-hover:text-accent transition-colors"
+        >
+            {title}
+        </h3>
 
-    <!-- Link: Inter 12px / medium -->
-    <span
-        class="mt-4 text-xs font-medium text-accent group-hover:opacity-75 transition-opacity"
-        aria-hidden="true"
-    >
-        Read more →
-    </span>
+        <!-- Body: Inter 14px / normal / 1.65 -->
+        <p class="text-sm text-text-secondary leading-[1.65] flex-1">
+            {description}
+        </p>
+
+        <!-- Link: Inter 12px / medium -->
+        <span
+            class="mt-4 text-xs font-medium text-accent group-hover:opacity-75 transition-opacity"
+            aria-hidden="true"
+        >
+            Read more →
+        </span>
+    </div>
 </a>

@@ -13,6 +13,8 @@ const posts = defineCollection({
     featured: z.boolean().default(false),
     readingTime: z.string().optional(),
     draft: z.boolean().default(false),
+    featuredImage: z.string().optional(),
+    featuredImageAlt: z.string().optional(),
   }),
 });
 

@@ -24,9 +24,7 @@ const { bio } = Astro.props;
                     {bio.title}
                 </h2>
                 <!-- Inter 16px / normal / 1.7 -->
-                <p class="text-base text-text-secondary leading-[1.7] mb-7">
-                    {bio.text}
-                </p>
+                <p class="text-base text-text-secondary leading-[1.7] mb-7" set:html={bio.text} />
                 <!-- Inter 14px / medium links -->
                 <div class="flex flex-wrap gap-5">
                     <a

@@ -59,6 +59,18 @@ body {
     border-radius: 3px;
 }
 
+/* Inline links inside paragraphs — site-wide */
+p a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+}
+
+p a:hover {
+    text-decoration-color: var(--color-accent);
+}
+
 /* ── Post prose ─────────────────────────────────────── */
 .post-body {
     display: flow-root; /* contain floated figures */

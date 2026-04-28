@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 
 interface Props {
     title: string;
@@ -8,9 +10,11 @@ interface Props {
     type?: string;
     tags?: string[];
     readingTime?: string;
+    featuredImageSrc?: ImageMetadata;
+    featuredImageAlt?: string;
 }
 
-const { title, description, date, type, tags = [], readingTime } = Astro.props;
+const { title, description, date, type, tags = [], readingTime, featuredImageSrc, featuredImageAlt } = Astro.props;
 
 const formattedDate = date.toLocaleDateString("en-US", {
     year: "numeric",
@@ -124,6 +128,23 @@ const labelColor = (typeLabel && typeLabelColor[typeLabel]) ?? "#6B7280";
                 </div>
             </div>
         </div>
+
+        <!-- Lead image (opt-in via showFeaturedImage: true) -->
+        {featuredImageSrc && (
+            <div class="px-6 pb-8">
+                <div class="max-w-2xl mx-auto">
+                    <div class="rounded-xl overflow-hidden border aspect-[16/9]" style="border-color: var(--color-border);">
+                        <Image
+                            src={featuredImageSrc}
+                            alt={featuredImageAlt ?? ""}
+                            class="w-full h-full object-cover"
+                            widths={[768, 1200]}
+                            sizes="(min-width: 768px) 672px, 100vw"
+                        />
+                    </div>
+                </div>
+            </div>
+        )}
 
         <!-- Post body -->
         <div class="pb-20 px-6">

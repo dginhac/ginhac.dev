@@ -2,6 +2,7 @@
 import BaseLayout from "./BaseLayout.astro";
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
+import TypeBadge from "../components/TypeBadge.astro";
 
 interface Props {
     title: string;
@@ -24,14 +25,7 @@ const formattedDate = date.toLocaleDateString("en-US", {
 
 const isoDate = date.toISOString().split("T")[0];
 
-const typeLabelColor: Record<string, string> = {
-    RESEARCH: "#2563EB",
-    PUBLICATION: "#7C3AED",
-    TEACHING: "#059669",
-    INSIGHT: "#6B7280",
-};
 const typeLabel = type?.toUpperCase();
-const labelColor = (typeLabel && typeLabelColor[typeLabel]) ?? "#6B7280";
 ---
 
 <BaseLayout title={title} description={description}>
@@ -56,12 +50,9 @@ const labelColor = (typeLabel && typeLabelColor[typeLabel]) ?? "#6B7280";
 
                 <!-- Type label -->
                 {typeLabel && (
-                    <p
-                        class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-5"
-                        style={`color: ${labelColor};`}
-                    >
-                        {typeLabel}
-                    </p>
+                    <div class="mb-5">
+                        <TypeBadge type={typeLabel} />
+                    </div>
                 )}
 
                 <!-- Title -->

@@ -1,20 +1,11 @@
 ---
 import type { FeaturedItem } from "../config/home";
 import { Image } from "astro:assets";
+import TypeBadge from "./TypeBadge.astro";
 
 type Props = FeaturedItem;
 
 const { type, title, description, href, featuredImage, featuredImageAlt } = Astro.props;
-
-/* Text-only label colors — no colored backgrounds */
-const labelColor: Record<string, string> = {
-    RESEARCH: "var(--color-label-research)",
-    INSIGHT: "var(--color-label-insight)",
-    TEACHING: "var(--color-label-teaching)",
-    PUBLICATION: "var(--color-label-publication)",
-};
-
-const color = labelColor[type] ?? "var(--color-text-secondary)";
 ---
 
 <a
@@ -34,13 +25,9 @@ const color = labelColor[type] ?? "var(--color-text-secondary)";
     )}
 
     <div class="flex flex-col flex-1 p-6">
-        <!-- Label: Inter 11px / semibold / 0.08em / uppercase -->
-        <span
-            class="self-start text-[11px] font-semibold uppercase tracking-[0.08em] px-2 py-0.5 rounded bg-section-alt mb-4 leading-none"
-            style={`color: ${color};`}
-        >
-            {type}
-        </span>
+        <div class="self-start mb-4">
+            <TypeBadge type={type} />
+        </div>
 
         <!-- Card title: Manrope 16px / semibold / -0.015em -->
         <h3

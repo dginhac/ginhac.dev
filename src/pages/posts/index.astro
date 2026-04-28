@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import TypeBadge from "../../components/TypeBadge.astro";
 
 const postImages = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/posts/**/*.{webp,jpg,jpeg,png}"
@@ -24,12 +25,6 @@ const posts = await Promise.all(
     })
 );
 
-const typeColors: Record<string, string> = {
-  research: "#2563EB",
-  insight: "#374151",
-  teaching: "#059669",
-  publication: "#7C3AED",
-};
 ---
 
 <BaseLayout title="All content" description="All articles, research notes, teaching resources, and publications.">
@@ -41,8 +36,6 @@ const typeColors: Record<string, string> = {
 
     <ul class="space-y-0">
       {posts.map(({ post, thumbnail }) => {
-        const typeKey = (post.data.type ?? "").toLowerCase();
-        const color = typeColors[typeKey] ?? "#374151";
         return (
           <li class="border-b border-border py-7 first:pt-0 last:border-0 last:pb-0">
             <a href={`/posts/${post.id}`} class="group flex gap-5 sm:gap-6 items-start">
@@ -63,12 +56,7 @@ const typeColors: Record<string, string> = {
 
               <div class="flex-1 min-w-0">
                 <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2">
-                  <span
-                    class="text-[11px] font-semibold tracking-[0.08em] uppercase"
-                    style={`color: ${color}`}
-                  >
-                    {post.data.type ?? "POST"}
-                  </span>
+                  {post.data.type && <TypeBadge type={post.data.type} />}
                   {post.data.date && (
                     <span class="text-text-secondary text-sm">
                       {new Date(post.data.date).toLocaleDateString("en-GB", {

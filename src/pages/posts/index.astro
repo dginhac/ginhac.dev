@@ -41,35 +41,21 @@ const posts = await Promise.all(
             <a href={`/posts/${post.id}`} class="group flex gap-5 sm:gap-6 items-start">
 
               {thumbnail && (
-                <div class="hidden sm:block flex-shrink-0 w-[152px] rounded-lg overflow-hidden border border-border">
+                <div class="hidden sm:block flex-shrink-0 w-[240px] rounded-lg overflow-hidden border border-border">
                   <div class="aspect-[4/3]">
                     <Image
                       src={thumbnail}
                       alt={post.data.featuredImageAlt ?? ""}
                       class="w-full h-full object-cover"
-                      widths={[304]}
-                      sizes="152px"
+                      widths={[480]}
+                      sizes="240px"
                     />
                   </div>
                 </div>
               )}
 
               <div class="flex-1 min-w-0">
-                <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2">
-                  {post.data.type && <TypeBadge type={post.data.type} />}
-                  {post.data.date && (
-                    <span class="text-text-secondary text-sm">
-                      {new Date(post.data.date).toLocaleDateString("en-GB", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </span>
-                  )}
-                  {post.data.readingTime && (
-                    <span class="text-text-secondary text-sm">&middot; {post.data.readingTime}</span>
-                  )}
-                </div>
+                {post.data.type && <div class="mb-2"><TypeBadge type={post.data.type} /></div>}
 
                 <h2 class="font-heading text-xl font-semibold text-text-primary tracking-tight mb-1 group-hover:text-accent transition-colors">
                   {post.data.title}
@@ -83,6 +69,24 @@ const posts = await Promise.all(
                         {tag}
                       </span>
                     ))}
+                  </div>
+                )}
+
+                {(post.data.date || post.data.readingTime) && (
+                  <div class="flex items-center gap-x-2 text-text-secondary text-sm mt-3">
+                    {post.data.date && (
+                      <span>
+                        {new Date(post.data.date).toLocaleDateString("en-GB", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </span>
+                    )}
+                    {post.data.date && post.data.readingTime && (
+                      <span aria-hidden="true" class="opacity-40">·</span>
+                    )}
+                    {post.data.readingTime && <span>{post.data.readingTime}</span>}
                   </div>
                 )}
               </div>

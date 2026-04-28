@@ -26,38 +26,9 @@ export const homeContent = {
     title: "Featured",
     description:
       "A curated selection of research projects, insights, publications, and teaching resources.",
-    articlesLinkLabel: "View all content.",
+    articlesLinkLabel: "View all content",
     articlesHref: "/posts",
-    items: [
-      {
-        type: "RESEARCH" as FeaturedItemType,
-        title: "LUMEN — Learning Unified Models of Exposure and Luminance",
-        description:
-          "An exploratory research project on HDR imaging and radiometric representation learning.",
-        href: "/research/lumen",
-      },
-      {
-        type: "INSIGHT" as FeaturedItemType,
-        title: "Understanding HDR Imaging",
-        description:
-          "A long-form article on classical and recent approaches to high dynamic range image reconstruction.",
-        href: "/posts/understanding-hdr-imaging",
-      },
-      {
-        type: "TEACHING" as FeaturedItemType,
-        title: "C++ Programming",
-        description:
-          "Teaching resources on object-oriented programming, software engineering practices, and Git-based development.",
-        href: "/teaching/cpp-programming",
-      },
-      {
-        type: "PUBLICATION" as FeaturedItemType,
-        title: "Selected Publication",
-        description:
-          "A recent or particularly significant scientific publication highlighted from the publication list.",
-        href: "/publications",
-      },
-    ] satisfies FeaturedItem[],
+    items: [] satisfies FeaturedItem[],
   },
 
   bio: {

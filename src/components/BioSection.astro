@@ -1,6 +1,7 @@
 ---
 import type { homeContent } from "../config/home";
 import { links } from "../config/links";
+import { renderMarkdown } from "../utils/markdown";
 
 interface Props {
     bio: typeof homeContent.bio;
@@ -24,20 +25,20 @@ const { bio } = Astro.props;
                     {bio.title}
                 </h2>
                 <!-- Inter 16px / normal / 1.7 -->
-                <p class="text-base text-text-secondary leading-[1.7] mb-7" set:html={bio.text} />
+                <div class="text-base text-text-secondary leading-[1.7] mb-7" set:html={renderMarkdown(bio.text)} />
                 <!-- Inter 14px / medium links -->
                 <div class="flex flex-wrap gap-5">
                     <a
                         href={links.scholar}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="text-sm font-medium text-accent hover:opacity-75 transition-opacity"
+                        class="link text-sm font-medium"
                     >
                         Google Scholar ↗
                     </a>
                     <a
                         href={links.cv}
-                        class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
+                        class="link text-sm font-medium"
                     >
                         CV (PDF)
                     </a>

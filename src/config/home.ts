@@ -37,7 +37,7 @@ export const homeContent = {
 
   bio: {
     title: "Profile",
-    text: "I am a Full Professor in Computer Science at <a href='https://www.ube.fr/en/home' target=_new>Université Bourgogne Europe</a>, affiliated with the <a href='https://icb.cnrs.fr/en/icb-home/' target=_new>ICB laboratory</a>. My work spans computer vision, artificial intelligence, digital imaging systems, and engineering education, with a focus on the links between fundamental research, applications, and teaching.",
+    text: "I am a Full Professor in Computer Science at [Université Bourgogne Europe](https://www.ube.fr/en/home), affiliated with the [ICB laboratory](https://icb.cnrs.fr/en/icb-home/). My [work](/posts) spans computer vision, artificial intelligence, digital imaging systems, and engineering education, with a focus on the links between fundamental research, applications, and teaching.",
     currentIntro:
       "Currently, my work is structured around several research and teaching directions.",
     currentTitle: "Currently",

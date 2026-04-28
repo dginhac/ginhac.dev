@@ -59,16 +59,17 @@ body {
     border-radius: 3px;
 }
 
-/* Inline links inside paragraphs — site-wide */
-p a {
+/* Content links — shared style for all non-nav/footer links */
+.link, p a, .link-external, .link-internal {
     color: var(--color-accent);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+    text-decoration: none;
+    transition: opacity 0.15s;
 }
 
-p a:hover {
-    text-decoration-color: var(--color-accent);
+.link:hover, p a:hover, .link-external:hover, .link-internal:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    opacity: 0.75;
 }
 
 /* ── Post prose ─────────────────────────────────────── */

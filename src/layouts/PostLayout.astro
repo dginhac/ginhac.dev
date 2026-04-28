@@ -15,7 +15,16 @@ interface Props {
     featuredImageAlt?: string;
 }
 
-const { title, description, date, type, tags = [], readingTime, featuredImageSrc, featuredImageAlt } = Astro.props;
+const {
+    title,
+    description,
+    date,
+    type,
+    tags = [],
+    readingTime,
+    featuredImageSrc,
+    featuredImageAlt,
+} = Astro.props;
 
 const formattedDate = date.toLocaleDateString("en-US", {
     year: "numeric",
@@ -30,30 +39,30 @@ const typeLabel = type?.toUpperCase();
 
 <BaseLayout title={title} description={description}>
     <article>
-
         <!-- Full-width editorial header -->
         <div
             class="pt-28 pb-14 md:pt-32 md:pb-18 px-6"
             style="background-color: var(--color-section-alt);"
         >
             <div class="max-w-[52rem] mx-auto">
-
                 <!-- Back link -->
                 <a
-                    href="/"
+                    href="/posts"
                     class="inline-flex items-center gap-1.5 text-sm mb-8 transition-opacity hover:opacity-60"
                     style="color: var(--color-text-secondary);"
                 >
                     <span aria-hidden="true">←</span>
-                    Home
+                    All content
                 </a>
 
                 <!-- Type label -->
-                {typeLabel && (
-                    <div class="mb-5">
-                        <TypeBadge type={typeLabel} />
-                    </div>
-                )}
+                {
+                    typeLabel && (
+                        <div class="mb-5">
+                            <TypeBadge type={typeLabel} />
+                        </div>
+                    )
+                }
 
                 <!-- Title -->
                 <h1
@@ -71,64 +80,76 @@ const typeLabel = type?.toUpperCase();
                     {description}
                 </p>
 
-                <!-- Meta row: date · reading time + tags -->
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-3">
+                <!-- Meta: tags then date · reading time -->
+                <div class="flex flex-col gap-y-5">
+                    {
+                        tags.length > 0 && (
+                            <div class="flex flex-wrap gap-2">
+                                {tags.map((tag) => (
+                                    <span
+                                        class="text-xs font-medium px-2.5 py-0.5 rounded-full border"
+                                        style="color: #2563EB; background-color: #EAF3FB; border-color: #C7DEF0;"
+                                    >
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        )
+                    }
+
                     <div
                         class="flex items-center gap-x-2 text-sm"
                         style="color: var(--color-text-secondary);"
                     >
                         <time datetime={isoDate}>{formattedDate}</time>
-                        {readingTime && (
-                            <>
-                                <span aria-hidden="true" class="opacity-40">·</span>
-                                <span>{readingTime}</span>
-                            </>
-                        )}
+                        {
+                            readingTime && (
+                                <>
+                                    <span aria-hidden="true" class="opacity-40">
+                                        ·
+                                    </span>
+                                    <span>{readingTime}</span>
+                                </>
+                            )
+                        }
                     </div>
-
-                    {tags.length > 0 && (
-                        <div class="flex flex-wrap gap-2">
-                            {tags.map((tag) => (
-                                <span
-                                    class="text-xs font-medium px-2.5 py-0.5 rounded-full border"
-                                    style="color: #2563EB; background-color: #EAF3FB; border-color: #C7DEF0;"
-                                >
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                    )}
                 </div>
-
             </div>
         </div>
 
         <!-- Lead image (opt-in via showFeaturedImage: true) -->
-        {featuredImageSrc && (
-            <div class="px-6 py-10" style="background-color: var(--color-site-bg);">
-                <div class="max-w-[52rem] mx-auto">
-                    <div
-                        class="rounded-xl overflow-hidden border aspect-[16/9]"
-                        style="border-color: var(--color-border);"
-                    >
-                        <Image
-                            src={featuredImageSrc}
-                            alt={featuredImageAlt ?? ""}
-                            class="w-full h-full object-cover"
-                            widths={[800, 1200]}
-                            sizes="(min-width: 900px) 832px, 100vw"
-                        />
+        {
+            featuredImageSrc && (
+                <div
+                    class="px-6 py-10"
+                    style="background-color: var(--color-site-bg);"
+                >
+                    <div class="max-w-[52rem] mx-auto">
+                        <div
+                            class="rounded-xl overflow-hidden border aspect-[16/9]"
+                            style="border-color: var(--color-border);"
+                        >
+                            <Image
+                                src={featuredImageSrc}
+                                alt={featuredImageAlt ?? ""}
+                                class="w-full h-full object-cover"
+                                widths={[800, 1200]}
+                                sizes="(min-width: 900px) 832px, 100vw"
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
-        )}
+            )
+        }
 
         <!-- Post body -->
-        <div class="px-6 pb-24" style={featuredImageSrc ? "" : "padding-top: 3.5rem;"}>
+        <div
+            class="px-6 pb-24"
+            style={featuredImageSrc ? "" : "padding-top: 3.5rem;"}
+        >
             <div class="max-w-2xl mx-auto post-body">
                 <slot />
             </div>
         </div>
-
     </article>
 </BaseLayout>

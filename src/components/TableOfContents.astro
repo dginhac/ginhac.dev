@@ -1,0 +1,125 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+    headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+---
+
+<nav aria-label="Table of contents" class="toc">
+    <p class="toc-title">Contents</p>
+    <ul>
+        {
+            headings.map((h) => (
+                <li>
+                    <a
+                        href={`#${h.slug}`}
+                        class:list={["toc-link", { "toc-h3": h.depth === 3 }]}
+                        data-toc-heading={h.slug}
+                    >
+                        {h.text}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</nav>
+
+<style>
+    .toc {
+        position: sticky;
+        top: 5.5rem;
+        max-height: calc(100vh - 7rem);
+        overflow-y: auto;
+        padding-left: 1rem;
+        border-left: 1px solid var(--color-border);
+    }
+
+    .toc-title {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-text-secondary);
+        opacity: 0.55;
+        margin-bottom: 0.875rem;
+    }
+
+    .toc ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+    }
+
+    .toc-link {
+        display: block;
+        font-size: 0.8125rem;
+        line-height: 1.5;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        padding: 0.25rem 0;
+        opacity: 0.7;
+        transition:
+            color 0.15s,
+            opacity 0.15s;
+    }
+
+    .toc-h3 {
+        padding-left: 0.875rem;
+    }
+
+    .toc-link:hover {
+        color: var(--color-accent);
+        opacity: 1;
+    }
+
+    .toc-link.is-active {
+        color: var(--color-accent);
+        opacity: 1;
+    }
+</style>
+
+<script>
+    function initToc() {
+        const links =
+            document.querySelectorAll<HTMLAnchorElement>("[data-toc-heading]");
+        if (!links.length) return;
+
+        const headingEls = Array.from(links)
+            .map((l) => document.getElementById(l.dataset.tocHeading!))
+            .filter(Boolean) as HTMLElement[];
+
+        let activeId = "";
+
+        function setActive(id: string) {
+            if (id === activeId) return;
+            activeId = id;
+            links.forEach((l) =>
+                l.classList.toggle(
+                    "is-active",
+                    l.dataset.tocHeading === id
+                )
+            );
+        }
+
+        function onScroll() {
+            const scrollY = window.scrollY + 120;
+            let current = headingEls[0]?.id ?? "";
+            for (const el of headingEls) {
+                if (el.offsetTop <= scrollY) current = el.id;
+            }
+            setActive(current);
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+    }
+
+    initToc();
+    document.addEventListener("astro:page-load", initToc);
+</script>

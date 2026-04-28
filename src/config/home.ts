@@ -18,14 +18,13 @@ export const homeContent = {
     lastName: "Ginhac",
     subtitle:
       "Professor in Computer Science, I work at the intersection of artificial intelligence, computer vision, and digital systems, with a particular interest in visual representations, imaging, and efficient architectures.",
-    image: "/images/hero-portrait.jpg",
   },
 
   featured: {
     title: "Featured",
     description:
       "A curated selection of research projects, insights, publications, and teaching resources.",
-    articlesLinkLabel: "View articles",
+    articlesLinkLabel: "View all content.",
     articlesHref: "/posts",
     items: [
       {

@@ -1,0 +1,71 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const allPosts = await getCollection("posts");
+const posts = allPosts.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+const typeColors: Record<string, string> = {
+  research: "#2563EB",
+  insight: "#374151",
+  teaching: "#059669",
+  publication: "#7C3AED",
+};
+---
+
+<BaseLayout title="All posts" description="All articles, research notes, teaching resources, and publications.">
+  <div class="max-w-5xl mx-auto px-6 py-16">
+    <h1 class="font-heading text-3xl font-bold text-hero-text tracking-tight mb-2">All content</h1>
+    <p class="text-text-secondary text-base mb-12">
+      {posts.length} items — articles, research notes, teaching resources, and publications.
+    </p>
+
+    <ul class="space-y-8">
+      {posts.map((post) => {
+        const typeKey = (post.data.type ?? "").toLowerCase();
+        const color = typeColors[typeKey] ?? "#374151";
+        return (
+          <li class="border-b border-border pb-8 last:border-0 last:pb-0">
+            <div class="flex items-center gap-3 mb-2">
+              <span
+                class="text-[11px] font-semibold tracking-widest uppercase"
+                style={`color: ${color}`}
+              >
+                {post.data.type ?? "POST"}
+              </span>
+              {post.data.date && (
+                <span class="text-text-secondary text-sm">
+                  {new Date(post.data.date).toLocaleDateString("en-GB", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </span>
+              )}
+              {post.data.readingTime && (
+                <span class="text-text-secondary text-sm">&middot; {post.data.readingTime}</span>
+              )}
+            </div>
+            <a href={`/posts/${post.id}`} class="group">
+              <h2 class="font-heading text-xl font-semibold text-text-primary tracking-tight mb-1 group-hover:text-accent transition-colors">
+                {post.data.title}
+              </h2>
+              <p class="text-text-secondary text-base leading-relaxed">{post.data.description}</p>
+            </a>
+            {post.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-2 mt-3">
+                {post.data.tags.map((tag) => (
+                  <span class="text-xs text-text-secondary bg-section-alt border border-border rounded px-2 py-0.5">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</BaseLayout>

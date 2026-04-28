@@ -1,0 +1,67 @@
+---
+title: "Teaching C++ Programming: Principles and Approach"
+description: "An overview of the C++ programming course — objectives, structure, and the role of software engineering practices in an undergraduate curriculum."
+date: 2026-01-08
+type: "teaching"
+tags: ["C++", "programming", "software engineering", "Git"]
+lang: "en"
+featured: true
+readingTime: "4 min read"
+---
+
+import KeyPoint from "../../components/post/KeyPoint.astro";
+import ResourceList from "../../components/post/ResourceList.astro";
+
+C++ is one of the most widely used languages in systems programming, scientific computing, and embedded applications. Teaching it effectively requires balancing language mechanics with broader software engineering habits.
+
+This post describes the approach taken in our undergraduate C++ programming course.
+
+## Course objectives
+
+The course targets second-year undergraduate students with prior exposure to procedural programming (typically in C or Python). The main objectives are:
+
+* Understanding object-oriented programming: encapsulation, inheritance, polymorphism.
+* Writing modular, maintainable code using standard C++ idioms.
+* Managing memory explicitly, including RAII and smart pointers.
+* Using version control (Git) as an integral part of the development workflow.
+
+<KeyPoint title="Teaching philosophy">
+Programming is not only about syntax. The course treats software engineering practices — version control, code review, documentation — as first-class topics alongside language features.
+</KeyPoint>
+
+## Structure
+
+The course is organized into three blocks:
+
+**Block 1 — Language foundations.** Classes, constructors, operator overloading, templates. Weekly exercises completed in a local development environment, submitted via Git.
+
+**Block 2 — Memory and resource management.** Stack vs heap, ownership, RAII, `unique_ptr` and `shared_ptr`. Students progressively refactor earlier exercises to eliminate raw pointers.
+
+**Block 3 — Project.** A small group project over four weeks. Students design, implement, test, and document a small application. Code review sessions are included.
+
+## Git as a learning tool
+
+From the first session, students are required to use Git for all submissions. This serves two purposes: it teaches version control as a professional skill, and it creates a natural record of each student's progress.
+
+Common workflows introduced:
+
+* Commit conventions (small, meaningful commits)
+* Branching for features and fixes
+* Pull requests and peer review in group projects
+
+## Resources
+
+<ResourceList
+  items={[
+    {
+      label: "Course repository (example)",
+      href: "https://github.com/example/cpp-course",
+      description: "Sample repository structure used in the course."
+    },
+    {
+      label: "C++ Core Guidelines",
+      href: "https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines",
+      description: "The authoritative reference for modern C++ best practices."
+    }
+  ]}
+/>

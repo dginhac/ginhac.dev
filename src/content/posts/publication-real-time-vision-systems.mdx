@@ -1,0 +1,50 @@
+---
+title: "Real-Time Object Detection on Resource-Constrained Platforms [Sample]"
+description: "Sample publication entry — a hypothetical study on deploying compact detection models on embedded vision hardware."
+date: 2025-06-15
+type: "publication"
+tags: ["object detection", "embedded systems", "real-time", "efficiency"]
+lang: "en"
+featured: false
+readingTime: "3 min read"
+---
+
+import Bibliography from "../../components/post/Bibliography.astro";
+
+> **Note:** This is a sample publication entry created for testing purposes. It does not represent a real paper.
+
+## Abstract
+
+We study the deployment of compact object detection models on embedded vision systems with sub-watt power budgets. Starting from a lightweight backbone, we apply a combination of structured pruning, 8-bit post-training quantization, and operator fusion to produce a model that meets real-time latency constraints on a representative edge platform.
+
+We evaluate the resulting system on a standard detection benchmark and a custom dataset of industrial inspection scenes. Our compressed model retains 97% of the full-precision mAP while reducing inference time by 4.2× and peak memory by 3.8×.
+
+## Key results
+
+* **Latency**: 24 ms per frame at 640×480 resolution on the target platform.
+* **mAP**: 97% of the uncompressed baseline on the standard evaluation set.
+* **Memory**: 3.8× reduction in peak activation memory.
+
+## Venue
+
+*Sample Workshop on Efficient Deep Learning for Embedded Vision (WEDELV), 2025.*  
+*This entry is a placeholder for testing content types and post layout.*
+
+## Bibliography
+
+<Bibliography
+  items={[
+    {
+      authors: "Howard, A. et al.",
+      title: "MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications",
+      venue: "arXiv",
+      year: "2017"
+    },
+    {
+      authors: "Redmon, J., & Farhadi, A.",
+      title: "YOLOv3: An Incremental Improvement",
+      venue: "arXiv",
+      year: "2018"
+    }
+  ]}
+/>

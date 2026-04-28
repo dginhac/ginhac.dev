@@ -1,0 +1,77 @@
+---
+title: "LUMEN — Luminance Representation Learning for HDR Vision"
+description: "An overview of the LUMEN research project, exploring how multiple exposures can be used to learn exposure-invariant representations of scene luminance."
+date: 2026-02-10
+type: "research"
+tags: ["HDR", "representation learning", "computer vision", "deep learning"]
+lang: "en"
+featured: true
+readingTime: "7 min read"
+---
+
+import KeyPoint from "../../components/post/KeyPoint.astro";
+import Figure from "../../components/post/Figure.astro";
+import Bibliography from "../../components/post/Bibliography.astro";
+
+Most computer vision systems are trained on standard, single-exposure images. Yet real-world scenes exhibit a dynamic range far exceeding what any single exposure can capture.
+
+The LUMEN project investigates a different starting point: what if we treated multiple exposures not as inputs to be merged, but as complementary views of the same underlying scene luminance?
+
+## Motivation
+
+Camera sensors operate within a limited dynamic range. When capturing a scene, any given exposure setting will either clip bright regions or lose detail in shadows. A sequence of images taken at different exposure times, however, collectively spans the full luminance range of the scene.
+
+This multi-exposure structure provides a natural learning signal: if two patches from different exposures show the same physical surface, their representations should agree — regardless of the local exposure level.
+
+<KeyPoint title="Central hypothesis">
+Exposure variation is a nuisance for recognition, but a signal for representation learning. Training a model to be invariant to exposure changes encourages it to encode the underlying physical luminance, rather than the sensor-specific rendering.
+</KeyPoint>
+
+## Approach
+
+LUMEN frames multi-exposure sequences as a self-supervised learning problem. Given two crops from different exposures of the same scene, the model is trained to produce representations that are close in embedding space.
+
+Key design choices:
+
+* **Exposure-aware augmentation** — the training pipeline explicitly includes radiometric transformations to simulate various exposure levels.
+* **Contrastive objective** — pairs of crops from different exposures are treated as positive pairs; crops from different scenes are negatives.
+* **Architecture** — a standard vision encoder (ViT or ResNet) is used without modification; the exposure invariance emerges from the training procedure.
+
+## Preliminary results
+
+Early experiments show that LUMEN representations transfer well to downstream tasks involving challenging lighting conditions, including low-light detection and overexposed scene segmentation.
+
+They also show improved consistency compared to representations trained on single-exposure data, measured by the agreement between features extracted from different exposures of the same scene.
+
+## Open questions
+
+Several questions remain active:
+
+* What is the right temporal scope for multi-exposure training data — burst sequences, bracketed captures, or synthetic generation?
+* How does exposure invariance interact with other nuisance factors such as motion blur and noise?
+* Can LUMEN representations serve as a foundation for HDR-specific downstream tasks?
+
+## Bibliography
+
+<Bibliography
+  items={[
+    {
+      authors: "Chen, T., Kornblith, S., Norouzi, M., & Hinton, G.",
+      title: "A Simple Framework for Contrastive Learning of Visual Representations",
+      venue: "ICML",
+      year: "2020"
+    },
+    {
+      authors: "He, K., Chen, X., Xie, S., Li, Y., Dollár, P., & Girshick, R.",
+      title: "Masked Autoencoders Are Scalable Vision Learners",
+      venue: "CVPR",
+      year: "2022"
+    },
+    {
+      authors: "Debevec, P. E., & Malik, J.",
+      title: "Recovering High Dynamic Range Radiance Maps from Photographs",
+      venue: "SIGGRAPH",
+      year: "1997"
+    }
+  ]}
+/>

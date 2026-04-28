@@ -1,9 +1,15 @@
 ---
-import type { homeContent } from "../config/home";
+import type { FeaturedItem } from "../config/home";
 import FeaturedCard from "./FeaturedCard.astro";
 
 interface Props {
-    featured: typeof homeContent.featured;
+    featured: {
+        title: string;
+        description: string;
+        articlesLinkLabel: string;
+        articlesHref: string;
+        items: FeaturedItem[];
+    };
 }
 
 const { featured } = Astro.props;

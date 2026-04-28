@@ -1,14 +1,28 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HomeHero from "../components/HomeHero.astro";
 import FeaturedSection from "../components/FeaturedSection.astro";
 import BioSection from "../components/BioSection.astro";
 import { homeContent } from "../config/home";
 import { site } from "../config/site";
+import type { FeaturedItemType } from "../config/home";
+
+const allPosts = await getCollection("posts");
+const featuredItems = allPosts
+    .filter((p) => p.data.featured && !p.data.draft)
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+    .slice(0, 4)
+    .map((p) => ({
+        type: (p.data.type ?? "INSIGHT").toUpperCase() as FeaturedItemType,
+        title: p.data.title,
+        description: p.data.description,
+        href: `/posts/${p.id}`,
+    }));
 ---
 
 <BaseLayout title={site.title} description={site.description}>
-  <HomeHero hero={homeContent.hero} />
-  <FeaturedSection featured={homeContent.featured} />
-  <BioSection bio={homeContent.bio} />
+    <HomeHero hero={homeContent.hero} />
+    <FeaturedSection featured={{ ...homeContent.featured, items: featuredItems }} />
+    <BioSection bio={homeContent.bio} />
 </BaseLayout>

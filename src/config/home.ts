@@ -18,7 +18,7 @@ export interface FeaturedItem {
 export const homeContent = {
   hero: {
     eyebrow: "AI · Computer Vision · Digital Imaging Systems",
-    firstName: "Dominique",
+    firstName: "Dom.",
     lastName: "Ginhac",
     subtitle:
       "Professor in Computer Science, I work at the intersection of artificial intelligence, computer vision, and imaging systems, with a particular interest in low-level vision, computational imaging, and efficient IA-based software/hardware architectures.",

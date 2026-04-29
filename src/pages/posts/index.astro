@@ -4,97 +4,206 @@ import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import TypeBadge from "../../components/TypeBadge.astro";
+import { postsContent } from "../../config/posts";
+
+const { meta, header, filters, emptyState } = postsContent;
 
 const postImages = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/posts/**/*.{webp,jpg,jpeg,png}"
+    "/src/assets/posts/**/*.{webp,jpg,jpeg,png}",
 );
 
 const allPosts = await getCollection("posts");
 const posts = await Promise.all(
-  allPosts
-    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
-    .map(async (post) => {
-      let thumbnail: ImageMetadata | undefined;
-      if (post.data.featuredImage) {
-        const key = `/src/assets/posts/${post.id}/${post.data.featuredImage}`;
-        if (postImages[key]) {
-          thumbnail = (await postImages[key]()).default;
-        }
-      }
-      return { post, thumbnail };
-    })
+    allPosts
+        .sort(
+            (a, b) =>
+                new Date(b.data.date).getTime() -
+                new Date(a.data.date).getTime(),
+        )
+        .map(async (post) => {
+            let thumbnail: ImageMetadata | undefined;
+            if (post.data.featuredImage) {
+                const key = `/src/assets/posts/${post.id}/${post.data.featuredImage}`;
+                if (postImages[key]) {
+                    thumbnail = (await postImages[key]()).default;
+                }
+            }
+            return { post, thumbnail };
+        }),
 );
-
 ---
 
-<BaseLayout title="All content" description="All articles, research notes, teaching resources, and publications.">
-  <div class="max-w-5xl mx-auto px-6 py-16">
-    <h1 class="font-heading text-3xl font-bold text-hero-text tracking-tight mb-2">All content</h1>
-    <p class="text-text-secondary text-base mb-12">
-      {posts.length} items — articles, research notes, teaching resources, and publications.
-    </p>
+<BaseLayout title={meta.title} description={meta.description}>
+    <!-- Editorial page header -->
+    <div class="w-full bg-section-alt border-b border-border">
+        <div class="max-w-5xl mx-auto px-6 py-12 sm:py-16">
+            <p
+                class="text-xs font-medium tracking-[0.08em] uppercase text-text-secondary mb-3"
+            >
+                {header.eyebrow}
+            </p>
+            <h1
+                class="font-heading text-3xl sm:text-4xl font-bold text-hero-text tracking-tight leading-tight mb-4 uppercase"
+            >
+                <span class="text-accent-soft font-extrabold">/</span>
+                {header.title}
+            </h1>
+            {header.description.map((para) => (
+                <p class="text-text-secondary text-base sm:text-lg leading-relaxed mb-3 last:mb-6">
+                    {para}
+                </p>
+            ))}
+            <p class="text-sm text-text-secondary mb-8">
+                <span id="post-count">{posts.length}</span>
+                <span id="post-count-label"
+                    >{posts.length === 1 ? "item" : "items"}</span
+                >
+            </p>
 
-    <ul class="space-y-0">
-      {posts.map(({ post, thumbnail }) => {
-        return (
-          <li class="border-b border-border py-7 first:pt-0 last:border-0 last:pb-0">
-            <a href={`/posts/${post.id}`} class="group flex gap-5 sm:gap-6 items-start">
+            <!-- Type filters -->
+            <nav class="flex flex-wrap gap-2" aria-label="Filter by type">
+                {
+                    filters.map(({ label, value, href }) => (
+                        <a
+                            href={href}
+                            data-filter={value}
+                            class="filter-btn text-sm font-medium px-3.5 py-1.5 rounded-full border border-border bg-white text-text-secondary transition-colors hover:border-accent hover:text-accent"
+                        >
+                            {label}
+                        </a>
+                    ))
+                }
+            </nav>
+        </div>
+    </div>
 
-              {thumbnail && (
-                <div class="hidden sm:block flex-shrink-0 w-[240px] rounded-lg overflow-hidden border border-border">
-                  <div class="aspect-[4/3]">
-                    <Image
-                      src={thumbnail}
-                      alt={post.data.featuredImageAlt ?? ""}
-                      class="w-full h-full object-cover"
-                      widths={[480]}
-                      sizes="240px"
-                    />
-                  </div>
-                </div>
-              )}
+    <!-- Posts list -->
+    <div class="max-w-5xl mx-auto px-6 py-12">
+        <p id="empty-state" class="hidden text-text-secondary text-base py-8">
+            {emptyState.message}
+        </p>
+        <ul id="post-list" class="space-y-0">
+            {
+                posts.map(({ post, thumbnail }) => (
+                    <li
+                        data-type={post.data.type?.toUpperCase() ?? ""}
+                        class="post-item border-b border-border py-7 first:pt-0 last:border-0 last:pb-0"
+                    >
+                        <a
+                            href={`/posts/${post.id}`}
+                            class="group flex gap-5 sm:gap-6 items-start"
+                        >
+                            {thumbnail && (
+                                <div class="hidden sm:block flex-shrink-0 w-[240px] rounded-lg overflow-hidden border border-border">
+                                    <div class="aspect-[4/3]">
+                                        <Image
+                                            src={thumbnail}
+                                            alt={
+                                                post.data.featuredImageAlt ?? ""
+                                            }
+                                            class="w-full h-full object-cover"
+                                            widths={[480]}
+                                            sizes="240px"
+                                        />
+                                    </div>
+                                </div>
+                            )}
 
-              <div class="flex-1 min-w-0">
-                {post.data.type && <div class="mb-2"><TypeBadge type={post.data.type} /></div>}
+                            <div class="flex-1 min-w-0">
+                                {post.data.type && (
+                                    <div class="mb-2">
+                                        <TypeBadge type={post.data.type} />
+                                    </div>
+                                )}
 
-                <h2 class="font-heading text-xl font-semibold text-text-primary tracking-tight mb-1 group-hover:text-accent transition-colors">
-                  {post.data.title}
-                </h2>
-                <p class="text-text-secondary text-base leading-relaxed">{post.data.description}</p>
+                                <h2 class="font-heading text-xl font-semibold text-text-primary tracking-tight mb-1 group-hover:text-accent transition-colors">
+                                    {post.data.title}
+                                </h2>
+                                <p class="text-text-secondary text-base leading-relaxed">
+                                    {post.data.description}
+                                </p>
 
-                {post.data.tags.length > 0 && (
-                  <div class="flex flex-wrap gap-2 mt-3">
-                    {post.data.tags.map((tag) => (
-                      <span class="text-xs text-text-secondary bg-section-alt border border-border rounded px-2 py-0.5">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                                {post.data.tags.length > 0 && (
+                                    <div class="flex flex-wrap gap-2 mt-3">
+                                        {post.data.tags.map((tag) => (
+                                            <span class="text-xs text-text-secondary bg-section-alt border border-border rounded px-2 py-0.5">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
 
-                {(post.data.date || post.data.readingTime) && (
-                  <div class="flex items-center gap-x-2 text-text-secondary text-sm mt-3">
-                    {post.data.date && (
-                      <span>
-                        {new Date(post.data.date).toLocaleDateString("en-GB", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
-                      </span>
-                    )}
-                    {post.data.date && post.data.readingTime && (
-                      <span aria-hidden="true" class="opacity-40">·</span>
-                    )}
-                    {post.data.readingTime && <span>{post.data.readingTime}</span>}
-                  </div>
-                )}
-              </div>
-
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  </div>
+                                {(post.data.date || post.data.readingTime) && (
+                                    <div class="flex items-center gap-x-2 text-text-secondary text-sm mt-3">
+                                        {post.data.date && (
+                                            <span>
+                                                {new Date(
+                                                    post.data.date,
+                                                ).toLocaleDateString("en-GB", {
+                                                    year: "numeric",
+                                                    month: "long",
+                                                    day: "numeric",
+                                                })}
+                                            </span>
+                                        )}
+                                        {post.data.date &&
+                                            post.data.readingTime && (
+                                                <span
+                                                    aria-hidden="true"
+                                                    class="opacity-40"
+                                                >
+                                                    ·
+                                                </span>
+                                            )}
+                                        {post.data.readingTime && (
+                                            <span>{post.data.readingTime}</span>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
 </BaseLayout>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const active = params.get("type")?.toUpperCase() ?? "ALL";
+
+    const items = document.querySelectorAll<HTMLElement>(".post-item");
+    const buttons = document.querySelectorAll<HTMLAnchorElement>(".filter-btn");
+    const countEl = document.getElementById("post-count");
+    const emptyState = document.getElementById("empty-state");
+    const postList = document.getElementById("post-list");
+
+    let visible = 0;
+
+    items.forEach((item) => {
+        const type = item.dataset.type ?? "";
+        const show = active === "ALL" || type === active;
+        item.style.display = show ? "" : "none";
+        if (show) visible++;
+    });
+
+    if (countEl) countEl.textContent = String(visible);
+    if (emptyState) emptyState.classList.toggle("hidden", visible > 0);
+    if (postList) postList.classList.toggle("hidden", visible === 0);
+
+    buttons.forEach((btn) => {
+        const btnType = btn.dataset.filter ?? "ALL";
+        const isActive = btnType === active;
+        if (isActive) {
+            btn.classList.remove(
+                "bg-white",
+                "text-text-secondary",
+                "border-border",
+                "hover:border-accent",
+                "hover:text-accent",
+            );
+            btn.classList.add("bg-accent", "text-white", "border-accent");
+        }
+    });
+</script>

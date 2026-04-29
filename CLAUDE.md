@@ -23,7 +23,8 @@ All site content lives in `src/config/`:
 - `site.ts` — name, title, description
 - `navigation.ts` — main nav links
 - `links.ts` — external profile URLs and email
-- `home.ts` — all homepage section content (hero, featured items, bio)
+- `home.ts` — all homepage section content (meta, hero, featured items, bio)
+- `posts.ts` — posts index page content (meta, header, filters, empty state)
 
 Update these files to change content; no component edits needed for copy changes.
 
@@ -35,14 +36,19 @@ Posts are written in MDX and live in `src/content/posts/`. The content collectio
 
 **Post frontmatter schema:**
 ```yaml
-title: string          # required
-description: string    # required
-date: YYYY-MM-DD       # required
-type: string           # optional — e.g. "insight", "tutorial", "teaching" or "publication"
-tags: [string]         # optional
-lang: string           # optional, default "en"
-featured: boolean      # optional, default false
-readingTime: string    # optional — e.g. "8 min read"
+title: string               # required
+description: string         # required
+date: YYYY-MM-DD            # required
+type: string                # optional — e.g. "insight", "tutorial", "teaching" or "publication"
+tags: [string]              # optional, default []
+lang: string                # optional, default "en"
+featured: boolean           # optional, default false — shows post in FeaturedSection on homepage
+draft: boolean              # optional, default false — excludes post from all listings
+readingTime: string         # optional — e.g. "8 min read"
+featuredImage: string       # optional — filename relative to src/assets/posts/<slug>/
+featuredImageAlt: string    # optional — alt text for the featured image
+showFeaturedImage: boolean  # optional — whether to display the image inside the post body
+relatedPosts: [string]      # optional — list of post slugs to show in the related posts section
 ```
 
 **Available post components** (import from `../../components/post/` within MDX):
@@ -58,10 +64,10 @@ readingTime: string    # optional — e.g. "8 min read"
 - `components/Header.astro` — fixed top bar, transparent over hero → white on scroll; site name + nav + FR language link
 - `components/Footer.astro` — three-column footer with nav, external links, obfuscated email
 - `components/HomeHero.astro` — two-column hero (text + portrait with geometric frame)
-- `components/FeaturedSection.astro` — section wrapper; renders FeaturedCard grid
+- `components/FeaturedSection.astro` — section wrapper; renders eyebrow + FeaturedCard grid
 - `components/FeaturedCard.astro` — single card with type badge; card hover triggers "Read more →" opacity + underline
 - `components/TypeBadge.astro` — shared type badge with per-category tinted pill (color/bg/border); used in FeaturedCard, PostLayout, and posts/index
-- `components/BioSection.astro` — profile text + Scholar/CV links + "Currently" subsection; bio text rendered via `renderMarkdown`
+- `components/BioSection.astro` — eyebrow + profile text + Scholar/CV links + "Currently" subsection; bio text rendered via `renderMarkdown`
 - `components/post/Figure.astro` — post figure with float/align support
 - `components/post/KeyPoint.astro` — post callout block
 - `components/post/ResourceList.astro` — post resource links
@@ -74,6 +80,7 @@ readingTime: string    # optional — e.g. "8 min read"
 ### Pages
 
 - `pages/index.astro` — homepage; composes HomeHero + FeaturedSection + BioSection
+- `pages/posts/index.astro` — posts listing; editorial header with type filter nav (client-side JS), driven by `postsContent` from `src/config/posts.ts`
 - `pages/posts/[slug].astro` — dynamic post route; renders any entry from `src/content/posts/` using `PostLayout`
 
 ### Styling
@@ -94,7 +101,7 @@ All tokens are defined in `src/styles/global.css` under `@theme` and generate Ta
 |---|---|---|---|
 | `--color-hero-bg` | `#FBFCFF` | `bg-hero-bg` | Hero section background (light, blue-tinted) |
 | `--color-hero-text` | `#0F172A` | `text-hero-text` | Hero title (deep navy) |
-| `--color-hero-muted` | `#6B7280` | `text-hero-muted` | Hero eyebrow / subtitle |
+| `--color-hero-muted` | `#6B7280` | `text-hero-muted` | Hero subtitle |
 | `--color-site-bg` | `#FBFCFF` | `bg-site-bg` | Body / bio section background |
 | `--color-section-alt` | `#F3F6FA` | `bg-section-alt` | Featured section, card label pills, post header card |
 | `--color-footer-bg` | `#EEF3F8` | `bg-footer-bg` | Footer (one step deeper than section-alt) |
@@ -113,7 +120,8 @@ Handled by `components/TypeBadge.astro` — do not replicate color logic elsewhe
 | RESEARCH | `#2563EB` | `#EAF3FB` | `#BFDBFE` |
 | PUBLICATION | `#7C3AED` | `#F3E8FF` | `#D8B4FE` |
 | TEACHING | `#059669` | `#ECFDF5` | `#A7F3D0` |
-| INSIGHT | `#374151` | `#F3F4F6` | `#D1D5DB` |
+| INSIGHT | `#EA580C` | `#FFF7ED` | `#FED7AA` |
+| DEFAULT (fallback) | `#374151` | `#F3F4F6` | `#D1D5DB` |
 
 #### Typography
 
@@ -130,17 +138,17 @@ Typographic scale in use:
 
 | Element | Font | Size | Weight | Tracking | Leading |
 |---|---|---|---|---|---|
-| Hero eyebrow | Inter | 14px / `text-sm` | 500 | `0.08em` | — |
+| Section eyebrow | Inter | 12px / `text-xs` | 500 | `0.08em` | — |
 | Hero `h1` | Manrope | 36→48px | light (base) / bold (`<strong>`) | `-0.03em` | `1.07` |
 | Hero subtitle | Inter | 16→18px | 400 | — | `1.65` |
 | Section `h2` | Manrope | 24→30px | 700 | `-0.02em` | `1.2` |
 | Card `h3` | Manrope | 16px | 600 | `-0.015em` | `1.25` |
-| Card body / labels | Inter | 14px / 11px | 400 / 600 | — / `0.08em` | `1.65` / `1` |
+| Card body / labels | Inter | 14px / 12px | 400 / 600 | — / `0.06em` | `1.65` / `1` |
 | Bio body | Inter | 16px | 400 | — | `1.7` |
 | "Currently" label | Inter | 13px | 500 | `0.08em` | — |
 | Nav / links | Inter | 14px | 500 | — | — |
 | Footer | Inter | 14px | 400 | — | `1.5` |
-| Post `h1` | Manrope | 30→36px | 700 | `-0.03em` | `1.1` |
+| Post `h1` | Manrope | 30→44px | 700 | `-0.03em` | `1.08` |
 | Post `h2` | Manrope | 22px | 700 | `-0.02em` | `1.25` |
 | Post `h3` | Manrope | 18px | 600 | `-0.01em` | `1.35` |
 | Post body | Inter | 16px | 400 | — | `1.75` |

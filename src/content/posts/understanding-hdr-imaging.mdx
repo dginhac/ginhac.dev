@@ -1,0 +1,165 @@
+---
+title: "Understanding HDR Imaging"
+description: "From exposure fusion to luminance representation learning: High Dynamic Range (HDR) imaging addresses one of the most fundamental limitations of digital imaging systems: the inability of a single exposure to capture the full range of luminance present in real-world scenes."
+date: 2026-04-27
+type: "insight"
+tags: ["HDR", "computer vision", "imaging", "AI"]
+lang: "en"
+featured: true
+readingTime: "8 min read"
+featuredImage: "featured-hdr.webp"
+featuredImageAlt: "Multiple exposures of the same scene illustrating HDR imaging"
+showFeaturedImage: true
+---
+
+import Figure from "../../components/post/Figure.astro";
+import KeyPoint from "../../components/post/KeyPoint.astro";
+import ResourceList from "../../components/post/ResourceList.astro";
+import Bibliography from "../../components/post/Bibliography.astro";
+
+import hdrExposures from "../../assets/posts/understanding-hdr-imaging/LDR-images.png";
+import hdrPipeline from "../../assets/posts/understanding-hdr-imaging/hdr-pipeline.jpg";
+
+
+High Dynamic Range (HDR) imaging addresses one of the most fundamental limitations of digital imaging systems: the inability of a single exposure to capture the full range of luminance present in real-world scenes.
+
+From bright outdoor environments to dim indoor settings, natural scenes often span several orders of magnitude in intensity. Yet, most imaging sensors operate within a limited dynamic range, forcing a trade-off between preserving highlights and retaining details in shadows.
+
+## Why dynamic range matters
+
+When capturing a scene, a camera must choose an exposure time. This choice directly determines which parts of the scene will be correctly recorded.
+
+<Figure
+  src={hdrExposures}
+  alt="Different exposures of the same scene"
+  caption="Short and long exposures capture complementary information: highlights are preserved in short exposures, while shadows are revealed in long exposures."
+  align="right"
+  width="third"
+/>
+
+A short exposure prevents bright regions from saturating but loses information in darker areas. Conversely, a long exposure reveals shadow details but often saturates bright regions. As a result, no single image provides a complete representation of the scene.
+
+This limitation is not only a visual issue. It also affects any downstream computer vision task that relies on pixel intensities, such as detection, tracking, or scene understanding.
+
+## From multiple exposures to HDR reconstruction
+
+A classical solution consists in capturing multiple images of the same scene at different exposure levels. Each image contains reliable information in a specific luminance range.
+
+The key idea of HDR reconstruction is to combine these images into a single representation that integrates all available information.
+
+Early methods explicitly model the camera response function and reconstruct a radiance map from multiple exposures. These approaches rely on careful calibration and assumptions about the imaging process.
+
+An alternative family of methods, known as exposure fusion, bypasses explicit radiometric reconstruction. Instead, they directly merge well-exposed regions from each image based on heuristic criteria such as contrast, saturation, and well-exposedness.
+
+<KeyPoint title="Take home message">
+HDR imaging is fundamentally about recovering missing information. Each exposure provides only a partial observation of the scene. The challenge is to combine these partial observations into a coherent and physically meaningful representation.
+</KeyPoint>
+
+While effective in controlled settings, these approaches face limitations when dealing with dynamic scenes, camera motion, or complex lighting conditions. Alignment errors and ghosting artifacts can significantly degrade the final result.
+
+## Learning-based HDR imaging
+
+The rise of deep learning has significantly changed the landscape of HDR imaging.
+
+Instead of explicitly designing fusion rules, learning-based methods train neural networks to directly infer HDR representations from input images. These models can implicitly learn alignment, merging strategies, and reconstruction processes.
+
+A typical pipeline involves:
+
+* feature extraction from each exposure,
+* alignment or motion compensation,
+* feature fusion across exposures,
+* reconstruction of an HDR output.
+
+<Figure
+  src={hdrPipeline}
+  alt="Learning-based HDR pipeline"
+  caption="A simplified pipeline for learning-based HDR imaging, combining multiple exposures into a unified representation."
+  align="full"
+/>
+
+Learning-based methods are generally more robust to noise and non-linearities, and they can handle more complex scenarios. However, they also introduce new challenges, such as the need for large datasets and the difficulty of defining appropriate training objectives.
+
+Moreover, most of these methods remain focused on producing a final HDR image, rather than explicitly modeling the underlying luminance structure of the scene.
+
+## Beyond reconstruction: luminance representation learning
+
+A promising direction is to move beyond direct HDR reconstruction and focus instead on learning a representation of scene luminance.
+
+In this perspective, multiple exposures are not only inputs to be fused, but complementary views of the same underlying physical quantity: the scene luminance.
+
+Rather than reconstructing a single output image, the goal becomes learning a latent representation that is:
+
+* invariant to exposure changes,
+* consistent across observations,
+* informative for downstream tasks.
+
+This shift connects HDR imaging with broader trends in representation learning and self-supervised learning.
+
+<KeyPoint>
+Multiple exposures can be seen as different projections of the same latent luminance. Learning to align and integrate these projections opens the way to more general and reusable visual representations.
+</KeyPoint>
+
+Such representations could be leveraged not only for image reconstruction, but also for tasks such as object detection, depth estimation, or scene understanding under challenging lighting conditions.
+
+<Figure 
+    src="https://placehold.co/600x400" 
+    alt="Conceptual view of luminance representation learning" 
+    caption="Instead of only reconstructing an HDR image, multiple exposures can be used to learn a latent representation of scene luminance." 
+    align="left" 
+    width="third" />
+
+This perspective also aligns with the idea of foundation models in vision, where the objective is to learn general-purpose representations from large and diverse datasets.
+
+## Conclusion
+
+HDR imaging has evolved from carefully engineered pipelines to data-driven approaches, and is now moving toward representation learning.
+
+This evolution reflects a broader shift in computer vision: from solving isolated problems to learning general representations that can support multiple tasks.
+
+Understanding HDR imaging through the lens of representation learning provides new opportunities for designing more robust, adaptive, and general visual systems.
+
+## Resources
+
+<ResourceList
+items={[
+{
+label: "GitHub repository (example)",
+href: "https://github.com/your-repository",
+description: "Code examples and experiments related to HDR imaging."
+},
+{
+label: "LUMEN project",
+href: "/research/lumen",
+description: "Research project exploring luminance representation learning."
+},
+{
+label: "CERBERE project",
+href: "/research/cerbere",
+description: "Research project exploring autonomous vehicle."
+},
+{
+label: "Google (example)",
+href: "https://google",
+description: "Search the web ..."
+},
+]}
+/>
+
+## Bibliography
+
+<Bibliography
+items={[
+{
+authors: "Debevec, P. E., & Malik, J.",
+title: "Recovering High Dynamic Range Radiance Maps from Photographs",
+venue: "SIGGRAPH",
+year: "1997"
+},
+{
+authors: "Mertens, T., Kautz, J., & Van Reeth, F.",
+title: "Exposure Fusion",
+venue: "Pacific Graphics",
+year: "2007"
+}
+]}
+/>

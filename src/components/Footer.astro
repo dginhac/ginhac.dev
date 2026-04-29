@@ -4,92 +4,102 @@ import { mainNav } from "../config/navigation";
 import { links } from "../config/links";
 
 const externalLinks = [
-  { label: "Google Scholar", href: links.scholar },
-  { label: "GitHub",         href: links.github },
-  { label: "LinkedIn",       href: links.linkedin },
-  { label: "ORCID",          href: links.orcid },
+    { label: "Google Scholar", href: links.scholar },
+    { label: "GitHub", href: links.github },
+    { label: "LinkedIn", href: links.linkedin },
+    { label: "ORCID", href: links.orcid },
 ];
 ---
 
 <!-- footer-bg (#EEF3F8) is one step deeper than section-alt (#F3F6FA) -->
 <footer class="bg-footer-bg border-t border-border">
-  <div class="max-w-5xl mx-auto px-6 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
-
-      <!-- Identity -->
-      <div>
-        <p class="text-sm font-semibold text-text-primary">{site.name}</p>
-        <p class="text-xs text-text-secondary mt-1 leading-relaxed">{site.title}</p>
-        <p class="text-xs text-text-secondary mt-5 font-mono select-all opacity-60">
-          {links.email}
-        </p>
-      </div>
-
-      <!-- Navigation -->
-      <div>
-        <p class="text-xs font-semibold uppercase tracking-widest text-text-secondary opacity-50 mb-3">
-          Navigation
-        </p>
-        <ul class="space-y-2">
-          {
-            mainNav.map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  class="text-sm text-text-secondary hover:text-text-primary transition-colors"
+    <div class="max-w-5xl mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+            <!-- Identity -->
+            <div>
+                <p class="text-sm font-semibold text-text-primary">
+                    {site.name}
+                </p>
+                <p class="text-xs text-text-secondary mt-1 leading-relaxed">
+                    {site.title}
+                </p>
+                <p
+                    class="text-xs text-text-secondary mt-5 font-mono select-all opacity-60"
                 >
-                  {item.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+                    {links.email}
+                </p>
+            </div>
 
-      <!-- Profiles -->
-      <div>
-        <p class="text-xs font-semibold uppercase tracking-widest text-text-secondary opacity-50 mb-3">
-          Profiles
-        </p>
-        <ul class="space-y-2">
-          {
-            externalLinks.map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-sm text-text-secondary hover:text-text-primary transition-colors"
+            <!-- Navigation -->
+            <div>
+                <p
+                    class="text-xs font-semibold uppercase tracking-widest text-text-secondary opacity-50 mb-3"
                 >
-                  {item.label} ↗
-                </a>
-              </li>
-            ))
-          }
-          <li>
+                    Navigation
+                </p>
+                <ul class="space-y-2">
+                    {
+                        mainNav.map((item) => (
+                            <li>
+                                <a
+                                    href={item.href}
+                                    class="text-sm text-text-secondary hover:text-text-primary hover:underline transition-colors"
+                                >
+                                    {item.label}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
+            <!-- Profiles -->
+            <div>
+                <p
+                    class="text-xs font-semibold uppercase tracking-widest text-text-secondary opacity-50 mb-3"
+                >
+                    Profiles
+                </p>
+                <ul class="space-y-2">
+                    {
+                        externalLinks.map((item) => (
+                            <li>
+                                <a
+                                    href={item.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-sm text-text-secondary hover:text-text-primary hover:underline transition-colors"
+                                >
+                                    {item.label} ↗
+                                </a>
+                            </li>
+                        ))
+                    }
+                    <li>
+                        <a
+                            href={links.cv}
+                            class="text-sm text-text-secondary hover:text-text-primary hover:underline transition-colors"
+                        >
+                            CV (PDF)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div
+            class="border-t border-border pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
+        >
+            <p class="text-xs text-text-secondary opacity-50">
+                &copy; 2026 {site.name}
+            </p>
             <a
-              href={links.cv}
-              class="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                href="/legal"
+                class="text-xs text-text-secondary opacity-50 hover:opacity-100 hover:underline transition-opacity"
             >
-              CV (PDF)
+                Legal notice
             </a>
-          </li>
-        </ul>
-      </div>
-
+        </div>
     </div>
-
-    <!-- Bottom bar -->
-    <div class="border-t border-border pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-      <p class="text-xs text-text-secondary opacity-50">
-        &copy; 2026 {site.name}
-      </p>
-      <a
-        href="/legal"
-        class="text-xs text-text-secondary opacity-50 hover:opacity-100 transition-opacity"
-      >
-        Legal notice
-      </a>
-    </div>
-  </div>
 </footer>

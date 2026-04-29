@@ -1,0 +1,62 @@
+---
+interface ResourceItem {
+    label: string;
+    href: string;
+    description?: string;
+}
+
+interface Props {
+    items: ResourceItem[];
+}
+
+const { items } = Astro.props;
+
+function isExternal(href: string) {
+    return href.startsWith("http://") || href.startsWith("https://");
+}
+---
+
+<ul class="my-8">
+    {
+        items.map((item) => {
+            const external = isExternal(item.href);
+            return (
+                <li class="py-4 first:pt-0" style="border-bottom: 1px solid var(--color-border);">
+                    <a
+                        href={item.href}
+                        target={external ? "_blank" : undefined}
+                        rel={external ? "noopener noreferrer" : undefined}
+                        class="post-resource-link inline-flex items-baseline gap-1.5 font-semibold text-[0.9375rem] leading-snug mb-1"
+                        style="color: var(--color-accent);"
+                    >
+                        {item.label}
+                        {external && (
+                            <span
+                                aria-hidden="true"
+                                class="text-[0.7rem] translate-y-[-1px] opacity-70"
+                            >
+                                ↗
+                            </span>
+                        )}
+                    </a>
+                    {item.description && (
+                        <p
+                            class="text-sm leading-relaxed"
+                            style="color: var(--color-text-secondary); margin-bottom: 0;"
+                        >
+                            {item.description}
+                        </p>
+                    )}
+                </li>
+            );
+        })
+    }
+</ul>
+
+<style>
+    .post-resource-link:hover {
+        text-decoration: underline;
+        text-decoration-color: var(--color-accent);
+        text-underline-offset: 3px;
+    }
+</style>

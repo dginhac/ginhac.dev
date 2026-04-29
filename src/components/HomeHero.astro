@@ -1,7 +1,6 @@
 ---
 import type { homeContent } from "../config/home";
 import { Image } from "astro:assets";
-import portrait from "../assets/hero-portrait.jpg";
 
 interface Props {
     hero: typeof homeContent.hero;
@@ -85,8 +84,8 @@ const { hero } = Astro.props;
                     </div>
                     <!-- Portrait -->
                     <Image
-                        src={portrait}
-                        alt="Portrait de Dominique Ginhac"
+                        src={hero.portrait}
+                        alt={hero.portraitAlt}
                         loading="eager"
                         fetchpriority="high"
                         decoding="async"

@@ -1,14 +1,46 @@
 ---
+import { getCollection } from "astro:content";
+import type { ImageMetadata } from "astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HomeHero from "../components/HomeHero.astro";
 import FeaturedSection from "../components/FeaturedSection.astro";
 import BioSection from "../components/BioSection.astro";
 import { homeContent } from "../config/home";
 import { site } from "../config/site";
+import type { FeaturedItemType } from "../config/home";
+
+const postImages = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/posts/**/*.{webp,jpg,jpeg,png}"
+);
+
+const allPosts = await getCollection("posts");
+const featuredItems = await Promise.all(
+    allPosts
+        .filter((p) => p.data.featured && !p.data.draft)
+        .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+        .slice(0, 4)
+        .map(async (p) => {
+            let featuredImage: ImageMetadata | undefined;
+            if (p.data.featuredImage) {
+                const key = `/src/assets/posts/${p.id}/${p.data.featuredImage}`;
+                if (postImages[key]) {
+                    featuredImage = (await postImages[key]()).default;
+                }
+            }
+            return {
+                type: (p.data.type ?? "INSIGHT").toUpperCase() as FeaturedItemType,
+                title: p.data.title,
+                description: p.data.description,
+                href: `/posts/${p.id}`,
+                featuredImage,
+                featuredImageAlt: p.data.featuredImageAlt,
+            };
+        })
+);
 ---
 
 <BaseLayout title={site.title} description={site.description}>
-  <HomeHero hero={homeContent.hero} />
-  <FeaturedSection featured={homeContent.featured} />
-  <BioSection bio={homeContent.bio} />
+    <HomeHero hero={homeContent.hero} />
+    <FeaturedSection featured={{ ...homeContent.featured, items: featuredItems }} />
+    <BioSection bio={homeContent.bio} />
 </BaseLayout>

@@ -1,0 +1,26 @@
+---
+interface Props {
+    type: string;
+}
+
+const { type } = Astro.props;
+
+const label = type.toUpperCase();
+
+const palette: Record<string, { color: string; bg: string; border: string }> = {
+    INSIGHT: { color: "#3EA580C", bg: "#FFF7ED", border: "#FED7AA" },
+    RESEARCH: { color: "#2563EB", bg: "#EAF3FB", border: "#BFDBFE" },
+    PUBLICATION: { color: "#7C3AED", bg: "#F3E8FF", border: "#D8B4FE" },
+    TEACHING: { color: "#059669", bg: "#ECFDF5", border: "#A7F3D0" },
+    DEFAULT: { color: "#374151", bg: "#F3F4F6", border: "#D1D5DB" },
+};
+
+const s = palette[label] ?? palette["DEFAULT"];
+---
+
+<span
+    class="inline-block text-[12px] font-semibold uppercase tracking-[0.06em] px-2.5 py-1 rounded-full border leading-none"
+    style={`color: ${s.color}; background-color: ${s.bg}; border-color: ${s.border};`}
+>
+    {label}
+</span>

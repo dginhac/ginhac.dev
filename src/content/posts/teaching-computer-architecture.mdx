@@ -1,0 +1,52 @@
+---
+title: "Teaching Computer Architecture: From Logic Gates to Pipelines"
+description: "How a computer architecture course is structured to build intuition from transistors up through instruction-level parallelism."
+date: 2025-10-05
+type: "teaching"
+tags: ["computer architecture", "digital systems", "teaching", "hardware"]
+lang: "en"
+featured: false
+readingTime: "5 min read"
+featuredImage: "featured.webp"
+featuredImageAlt: "Processor pipeline diagram illustrating instruction-level parallelism"
+---
+
+import KeyPoint from "../../components/post/KeyPoint.astro";
+
+Computer architecture is one of the foundational courses in any computer science curriculum. It bridges abstract programming concepts and the physical hardware that executes them.
+
+This post describes the structure and pedagogical intent of our computer architecture course for third-year undergraduates.
+
+## Why bottom-up?
+
+Many architecture courses start at the instruction set level. We prefer a bottom-up approach, beginning with combinational logic and building progressively toward a pipelined processor.
+
+This choice is deliberate. Students who understand why a register file is built the way it is — in terms of multiplexers, decoders, and flip-flops — develop stronger intuition for performance, timing, and the physical costs of design decisions.
+
+<KeyPoint title="Core idea">
+Architecture is not a set of concepts to memorize. It is a series of engineering trade-offs. The goal of the course is to help students recognize and reason about those trade-offs.
+</KeyPoint>
+
+## Course structure
+
+**Module 1 — Logic foundations.** Boolean algebra, combinational circuits, sequential circuits. Labs use a hardware description language (VHDL or Verilog) on an FPGA board to make abstract circuits tangible.
+
+**Module 2 — Processor design.** Single-cycle datapath for a reduced instruction set. Students implement ADD, SUB, AND, OR, LW, SW, BEQ in hardware before seeing a pipelined version.
+
+**Module 3 — Pipelining.** Five-stage pipeline, data hazards, forwarding, stalls, control hazards, and branch prediction. The transition from single-cycle to pipelined is explored incrementally.
+
+**Module 4 — Memory hierarchy.** Cache organization, replacement policies, write strategies. Simulation exercises using traces to compute hit rates and cycles-per-instruction.
+
+## Labs and FPGA work
+
+Hands-on labs are central to the course. Students spend roughly half of each session in the lab, writing HDL code and testing it on real hardware.
+
+This approach is slower than simulation alone, but consistently results in stronger understanding. When a timing violation prevents a design from running, students quickly learn that clock frequency is a real constraint — not an abstraction.
+
+## Assessments
+
+Grading is based on:
+
+* Lab submissions (working implementations with written explanations)
+* A mid-term exam covering logic and single-cycle design
+* A final project implementing a small extension to the pipeline (e.g. a branch predictor or a new instruction)

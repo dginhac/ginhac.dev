@@ -21,13 +21,12 @@ function isExternal(href: string) {
         items.map((item) => {
             const external = isExternal(item.href);
             return (
-                <li class="py-4 first:pt-0" style="border-bottom: 1px solid var(--color-border);">
+                <li class="py-4 first:pt-0 border-b border-border">
                     <a
                         href={item.href}
                         target={external ? "_blank" : undefined}
                         rel={external ? "noopener noreferrer" : undefined}
-                        class="post-resource-link inline-flex items-baseline gap-1.5 font-semibold text-[0.9375rem] leading-snug mb-1"
-                        style="color: var(--color-accent);"
+                        class="inline-flex items-baseline gap-1.5 font-semibold text-[0.9375rem] leading-snug mb-1 text-accent hover:underline hover:decoration-accent hover:underline-offset-[3px]"
                     >
                         {item.label}
                         {external && (
@@ -40,10 +39,7 @@ function isExternal(href: string) {
                         )}
                     </a>
                     {item.description && (
-                        <p
-                            class="text-sm leading-relaxed"
-                            style="color: var(--color-text-secondary); margin-bottom: 0;"
-                        >
+                        <p class="text-sm leading-relaxed text-text-secondary mb-0">
                             {item.description}
                         </p>
                     )}
@@ -52,11 +48,3 @@ function isExternal(href: string) {
         })
     }
 </ul>
-
-<style>
-    .post-resource-link:hover {
-        text-decoration: underline;
-        text-decoration-color: var(--color-accent);
-        text-underline-offset: 3px;
-    }
-</style>

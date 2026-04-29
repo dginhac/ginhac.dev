@@ -93,19 +93,19 @@ const posts = await Promise.all(
                     >
                         <a
                             href={`/posts/${post.id}`}
-                            class="group flex gap-5 sm:gap-6 items-start"
+                            class="group flex flex-col sm:flex-row gap-4 sm:gap-5 md:gap-6 items-start"
                         >
                             {thumbnail && (
-                                <div class="hidden sm:block flex-shrink-0 w-[240px] rounded-lg overflow-hidden border border-border">
-                                    <div class="aspect-[4/3]">
+                                <div class="w-full sm:w-[240px] sm:flex-shrink-0 rounded-lg overflow-hidden border border-border">
+                                    <div class="aspect-[16/9] sm:aspect-[4/3]">
                                         <Image
                                             src={thumbnail}
                                             alt={
                                                 post.data.featuredImageAlt ?? ""
                                             }
                                             class="w-full h-full object-cover"
-                                            widths={[480]}
-                                            sizes="240px"
+                                            widths={[480, 800]}
+                                            sizes="(min-width: 640px) 240px, 100vw"
                                         />
                                     </div>
                                 </div>
@@ -121,7 +121,7 @@ const posts = await Promise.all(
                                 <h2 class="font-heading text-xl font-semibold text-text-primary tracking-tight mb-1 group-hover:text-accent transition-colors">
                                     {post.data.title}
                                 </h2>
-                                <p class="text-text-secondary text-base leading-relaxed">
+                                <p class="text-text-secondary text-base leading-relaxed line-clamp-2">
                                     {post.data.description}
                                 </p>
 

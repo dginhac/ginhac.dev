@@ -17,6 +17,7 @@ const posts = defineCollection({
     featuredImageAlt: z.string().optional(),
     showFeaturedImage: z.boolean().optional(),
     relatedPosts: z.array(z.string()).optional(),
+    eyebrow: z.string().optional(),
   }),
 });
 

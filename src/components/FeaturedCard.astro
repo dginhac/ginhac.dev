@@ -5,24 +5,27 @@ import TypeBadge from "./TypeBadge.astro";
 
 type Props = FeaturedItem;
 
-const { type, title, description, href, featuredImage, featuredImageAlt } = Astro.props;
+const { type, title, description, href, featuredImage, featuredImageAlt } =
+    Astro.props;
 ---
 
 <a
     href={href}
     class="group flex flex-col bg-white rounded-xl border border-border hover:shadow-[0_2px_12px_rgba(15,23,42,0.06)] transition-shadow overflow-hidden"
 >
-    {featuredImage && (
-        <div class="aspect-[3/2] overflow-hidden">
-            <Image
-                src={featuredImage}
-                alt={featuredImageAlt ?? ""}
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                widths={[480, 800]}
-                sizes="(min-width: 1024px) 480px, (min-width: 640px) 50vw, 100vw"
-            />
-        </div>
-    )}
+    {
+        featuredImage && (
+            <div class="aspect-[3/2] overflow-hidden">
+                <Image
+                    src={featuredImage}
+                    alt={featuredImageAlt ?? ""}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                    widths={[480, 800]}
+                    sizes="(min-width: 1024px) 480px, (min-width: 640px) 50vw, 100vw"
+                />
+            </div>
+        )
+    }
 
     <div class="flex flex-col flex-1 p-6">
         <div class="self-start mb-4">
@@ -37,7 +40,9 @@ const { type, title, description, href, featuredImage, featuredImageAlt } = Astr
         </h3>
 
         <!-- Body: Inter 14px / normal / 1.65 -->
-        <p class="text-sm text-text-secondary leading-[1.65] flex-1">
+        <p
+            class="text-sm text-text-secondary leading-[1.65] flex-1 line-clamp-3"
+        >
             {description}
         </p>
 

@@ -1,4 +1,4 @@
-import portrait from "../assets/hero-portrait.jpg";
+import portrait from "../assets/hero-portrait-v2.jpg";
 
 export type FeaturedItemType =
   | "RESEARCH"

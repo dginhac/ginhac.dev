@@ -38,7 +38,7 @@ const posts = await Promise.all(
     <div class="w-full bg-section-alt border-b border-border">
         <div class="max-w-5xl mx-auto px-6 py-12 sm:py-16">
             <p
-                class="text-xs font-medium tracking-[0.08em] uppercase text-text-secondary mb-3"
+                class="text-xs font-medium tracking-[0.08em] uppercase text-text-secondary mt-8 mb-3"
             >
                 {header.eyebrow}
             </p>
@@ -48,11 +48,13 @@ const posts = await Promise.all(
                 <span class="text-accent-soft font-extrabold">/</span>
                 {header.title}
             </h1>
-            {header.description.map((para) => (
-                <p class="text-text-secondary text-base sm:text-lg leading-relaxed mb-3 last:mb-6">
-                    {para}
-                </p>
-            ))}
+            {
+                header.description.map((para) => (
+                    <p class="text-text-secondary text-base sm:text-lg leading-relaxed mb-3 last:mb-6">
+                        {para}
+                    </p>
+                ))
+            }
             <p class="text-sm text-text-secondary mb-8">
                 <span id="post-count">{posts.length}</span>
                 <span id="post-count-label"

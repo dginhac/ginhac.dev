@@ -34,6 +34,7 @@ export const homeContent = {
   },
 
   featured: {
+    eyebrow: "Selected work",
     title: "Featured",
     description:
       "A curated selection of research projects, insights, publications, and teaching resources.",
@@ -43,6 +44,7 @@ export const homeContent = {
   },
 
   bio: {
+    eyebrow: "About",
     title: "Profile",
     text: "I am a Full Professor in Computer Science at [Université Bourgogne Europe](https://www.ube.fr/en/home), affiliated with the [ICB laboratory](https://icb.cnrs.fr/en/icb-home/). My [work](/posts) spans computer vision, artificial intelligence, digital imaging systems, and engineering education, with a focus on the links between fundamental research, applications, and teaching.",
     currentIntro:

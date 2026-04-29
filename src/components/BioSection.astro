@@ -16,6 +16,9 @@ const { bio } = Astro.props;
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
             <!-- Profile text — spans 2 of 3 columns -->
             <div class="md:col-span-2">
+                <p class="text-xs font-medium tracking-[0.08em] uppercase text-text-secondary mb-3">
+                    {bio.eyebrow}
+                </p>
                 <!-- Manrope 24/30px / bold / UPPERCASE / -0.02em -->
                 <h2
                     id="bio-heading"

@@ -16,6 +16,13 @@ export interface FeaturedItem {
 }
 
 export const homeContent = {
+  meta: {
+    title:
+      "Personal academic website of Dominique Ginhac - Professor in Computer Science, AI & Computer Vision",
+    description:
+      "Research, teaching, and publications in artificial intelligence, computer vision, imaging, and digital systems.",
+  },
+
   hero: {
     eyebrow: "AI · Computer Vision · Digital Imaging Systems",
     firstName: "Dom.",

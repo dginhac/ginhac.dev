@@ -6,7 +6,6 @@ import HomeHero from "../components/HomeHero.astro";
 import FeaturedSection from "../components/FeaturedSection.astro";
 import BioSection from "../components/BioSection.astro";
 import { homeContent } from "../config/home";
-import { site } from "../config/site";
 import type { FeaturedItemType } from "../config/home";
 
 const postImages = import.meta.glob<{ default: ImageMetadata }>(
@@ -39,7 +38,7 @@ const featuredItems = await Promise.all(
 );
 ---
 
-<BaseLayout title={site.title} description={site.description}>
+<BaseLayout title={homeContent.meta.title} description={homeContent.meta.description}>
     <HomeHero hero={homeContent.hero} />
     <FeaturedSection featured={{ ...homeContent.featured, items: featuredItems }} />
     <BioSection bio={homeContent.bio} />

@@ -6,9 +6,13 @@ const logoGlob = import.meta.glob<string>("../assets/*.svg", { query: "?raw", im
 const logoRaw: string = (await logoGlob[site.logo.src]?.()) ?? "";
 ---
 
-<header id="site-header" aria-label="Site header">
+<header
+  id="site-header"
+  aria-label="Site header"
+  class="fixed top-0 inset-x-0 z-50 bg-transparent border-b border-transparent transition-[background-color,border-color] duration-200 ease-in-out"
+>
   <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
-    <a href="/" class="site-name flex items-center gap-2.5 text-sm font-semibold tracking-tight transition-colors">
+    <a href="/" class="site-name flex items-center gap-2.5 text-sm font-semibold tracking-tight hover:opacity-65 transition-opacity">
       <span class="logo-mark" aria-hidden="true" style={`--logo-h: ${site.logo.height}px`} set:html={logoRaw} />
       {site.name}
     </a>
@@ -25,7 +29,7 @@ const logoRaw: string = (await logoGlob[site.logo.src]?.()) ?? "";
             </li>
           ))
         }
-        <li class="ml-3 pl-3 lang-divider border-l transition-colors">
+        <li class="ml-3 pl-3 border-l lang-divider transition-colors">
           <a
             href="/fr/"
             class="lang-link px-2 py-1 text-xs font-medium uppercase tracking-widest transition-colors rounded"
@@ -59,7 +63,7 @@ const logoRaw: string = (await logoGlob[site.logo.src]?.()) ?? "";
   </div>
 
   <!-- Mobile dropdown -->
-  <div id="mobile-menu" class="mobile-menu border-t" aria-hidden="true">
+  <div id="mobile-menu" class="mobile-menu border-t border-border bg-white" aria-hidden="true">
     <nav class="max-w-5xl mx-auto px-6 py-3" aria-label="Mobile navigation">
       <ul class="flex flex-col gap-0.5">
         {
@@ -88,18 +92,12 @@ const logoRaw: string = (await logoGlob[site.logo.src]?.()) ?? "";
 </header>
 
 <style>
+  /*
+    CSS custom properties drive all header colors and change with scroll/menu state.
+    Ancestor-conditional selectors and :global() cannot be expressed in Tailwind —
+    everything below is genuinely irreducible.
+  */
   #site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
-    background-color: transparent;
-    border-bottom: 1px solid transparent;
-    transition:
-      background-color 0.2s ease,
-      border-color 0.2s ease;
-
     --hdr-name:       #0F172A;
     --hdr-link:       #4B5563;
     --hdr-link-hover: rgba(15, 23, 42, 0.05);
@@ -114,14 +112,11 @@ const logoRaw: string = (await logoGlob[site.logo.src]?.()) ?? "";
     --hdr-link-hover: #F3F6FA;
   }
 
-  .logo-mark :global(svg) {
-    height: var(--logo-h);
-    width: auto;
-    display: block;
-  }
+  /* Inline SVG sizing — requires :global() */
+  .logo-mark :global(svg) { height: var(--logo-h); width: auto; display: block; }
 
+  /* Colors reference CSS vars (some change with state) */
   .site-name { color: var(--hdr-name); }
-  .site-name:hover { color: var(--hdr-name); opacity: 0.65; }
 
   .nav-link { color: var(--hdr-link); }
   .nav-link:hover { background-color: var(--hdr-link-hover); color: var(--hdr-name); }
@@ -131,22 +126,13 @@ const logoRaw: string = (await logoGlob[site.logo.src]?.()) ?? "";
 
   .lang-divider { border-color: var(--hdr-divider); }
 
-  /* Hamburger button */
   .menu-btn { color: var(--hdr-link); }
   .menu-btn:hover { background-color: var(--hdr-link-hover); color: var(--hdr-name); }
 
-  /* Mobile menu: hidden by default, shown via .menu-open */
-  .mobile-menu {
-    display: none;
-    background-color: #FFFFFF;
-    border-color: #E5EAF0;
-  }
+  /* Ancestor-conditional: mobile menu and icon swap */
+  .mobile-menu { display: none; }
+  #site-header.menu-open .mobile-menu { display: block; }
 
-  #site-header.menu-open .mobile-menu {
-    display: block;
-  }
-
-  /* Icon swap */
   .icon-close { display: none; }
   #site-header.menu-open .icon-open { display: none; }
   #site-header.menu-open .icon-close { display: block; }
@@ -156,14 +142,12 @@ const logoRaw: string = (await logoGlob[site.logo.src]?.()) ?? "";
   const header = document.getElementById("site-header");
   const toggle = document.getElementById("menu-toggle");
 
-  // Scroll handler
   const updateScroll = () => {
     header?.classList.toggle("is-scrolled", window.scrollY > 40);
   };
   window.addEventListener("scroll", updateScroll, { passive: true });
   updateScroll();
 
-  // Hamburger toggle
   toggle?.addEventListener("click", () => {
     const open = header?.classList.toggle("menu-open");
     toggle.setAttribute("aria-expanded", String(open));

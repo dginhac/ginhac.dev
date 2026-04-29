@@ -1,11 +1,15 @@
 ---
 import { site } from "../config/site";
 import { mainNav } from "../config/navigation";
+
+const logoGlob = import.meta.glob<string>("../assets/*.svg", { query: "?raw", import: "default" });
+const logoRaw: string = (await logoGlob[site.logo.src]?.()) ?? "";
 ---
 
 <header id="site-header" aria-label="Site header">
   <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
-    <a href="/" class="site-name text-sm font-semibold tracking-tight transition-colors">
+    <a href="/" class="site-name flex items-center gap-2.5 text-sm font-semibold tracking-tight transition-colors">
+      <span class="logo-mark" aria-hidden="true" style={`--logo-h: ${site.logo.height}px`} set:html={logoRaw} />
       {site.name}
     </a>
 
@@ -68,6 +72,12 @@ import { mainNav } from "../config/navigation";
     background-color: #FFFFFF;
     border-bottom-color: #E5EAF0;
     --hdr-link-hover: #F3F6FA;
+  }
+
+  .logo-mark :global(svg) {
+    height: var(--logo-h);
+    width: auto;
+    display: block;
   }
 
   .site-name { color: var(--hdr-name); }

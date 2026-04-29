@@ -18,10 +18,10 @@ const { hero } = Astro.props;
 >
     <div class="max-w-5xl mx-auto px-6">
         <div
-            class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center"
+            class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 items-center"
         >
             <!-- Text column -->
-            <div class="order-2 md:order-1">
+            <div class="order-2 md:order-1 md:col-span-2">
                 <!-- Eyebrow: Inter 14px / medium / 0.08em -->
                 <p
                     class="text-xs font-medium tracking-[0.08em] uppercase text-text-secondary mb-3"
@@ -34,7 +34,7 @@ const { hero } = Astro.props;
                   tracking-[-0.03em] and leading-[1.07] per typographic spec.
                 -->
                 <h1
-                    class="font-heading text-4xl md:text-5xl font-light tracking-[-0.03em] text-hero-text leading-[1.07] mb-6"
+                    class="font-heading text-3xl md:text-[2.5rem] font-bold tracking-[-0.02em] text-hero-text leading-[1.2] mb-6"
                 >
                     <span class="text-accent-soft font-extrabold">/</span>
                     {hero.title}

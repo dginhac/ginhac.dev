@@ -16,35 +16,44 @@ function isExternal(href: string) {
 }
 ---
 
-<ul class="my-8">
-    {
-        items.map((item) => {
-            const external = isExternal(item.href);
-            return (
-                <li class="py-4 first:pt-0 border-b border-border">
-                    <a
-                        href={item.href}
-                        target={external ? "_blank" : undefined}
-                        rel={external ? "noopener noreferrer" : undefined}
-                        class="inline-flex items-baseline gap-1.5 font-semibold text-[0.9375rem] leading-snug mb-1 text-accent hover:underline hover:decoration-accent hover:underline-offset-[3px]"
-                    >
-                        {item.label}
-                        {external && (
-                            <span
-                                aria-hidden="true"
-                                class="text-[0.7rem] translate-y-[-1px] opacity-70"
+{
+    items.length > 0 && (
+        <section id="resources" class="mt-16 pt-7 border-t border-border">
+            <h2 class="font-heading text-[1.375rem] font-bold tracking-[-0.02em] leading-[1.25] text-hero-text mb-4">
+                Resources
+            </h2>
+            <ul class="list-none p-0 m-0 flex flex-col gap-3">
+                {items.map((item) => {
+                    const external = isExternal(item.href);
+                    return (
+                        <li>
+                            <a
+                                href={item.href}
+                                target={external ? "_blank" : undefined}
+                                rel={external ? "noopener noreferrer" : undefined}
+                                class="group block px-5 py-4 rounded-lg border border-border bg-white no-underline transition-shadow hover:shadow-[0_2px_8px_rgba(15,23,42,0.06)]"
                             >
-                                ↗
-                            </span>
-                        )}
-                    </a>
-                    {item.description && (
-                        <p class="text-sm leading-relaxed text-text-secondary mb-0">
-                            {item.description}
-                        </p>
-                    )}
-                </li>
-            );
-        })
-    }
-</ul>
+                                <span class="inline-flex items-baseline gap-1.5 font-semibold text-[0.9375rem] leading-snug text-accent group-hover:underline group-hover:underline-offset-[3px]">
+                                    {item.label}
+                                    {external && (
+                                        <span
+                                            aria-hidden="true"
+                                            class="text-[0.7rem] translate-y-[-1px] opacity-70"
+                                        >
+                                            ↗
+                                        </span>
+                                    )}
+                                </span>
+                                {item.description && (
+                                    <p class="text-sm leading-relaxed text-text-secondary mt-1.5 mb-0">
+                                        {item.description}
+                                    </p>
+                                )}
+                            </a>
+                        </li>
+                    );
+                })}
+            </ul>
+        </section>
+    )
+}

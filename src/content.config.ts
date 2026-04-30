@@ -18,6 +18,11 @@ const posts = defineCollection({
     showFeaturedImage: z.boolean().optional(),
     relatedPosts: z.array(z.string()).optional(),
     eyebrow: z.string().optional(),
+    resources: z.array(z.object({
+      label: z.string(),
+      href: z.string(),
+      description: z.string().optional(),
+    })).optional(),
   }),
 });
 

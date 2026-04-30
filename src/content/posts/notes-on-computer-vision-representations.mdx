@@ -9,10 +9,16 @@ featured: true
 readingTime: "5 min read"
 featuredImage: "featured-visual.webp"
 featuredImageAlt: "Abstract visualization of visual feature spaces in computer vision"
+resources:
+  - label: "Understanding HDR Imaging"
+    href: "/posts/understanding-hdr-imaging"
+    description: "A related post on luminance representation learning."
+  - label: "LUMEN project"
+    href: "/research/lumen"
+    description: "Research on exposure-invariant luminance representations."
 ---
 
 import KeyPoint from "../../components/post/KeyPoint.astro";
-import ResourceList from "../../components/post/ResourceList.astro";
 
 Visual representations sit at the core of every computer vision system. Before any model can detect, segment, or classify, it must first encode the visual world into a form it can reason about.
 
@@ -47,19 +53,3 @@ Several properties are commonly sought:
 
 These properties are often in tension, and the right balance depends on the application.
 
-## Resources
-
-<ResourceList
-  items={[
-    {
-      label: "Understanding HDR Imaging",
-      href: "/posts/understanding-hdr-imaging",
-      description: "A related post on luminance representation learning."
-    },
-    {
-      label: "LUMEN project",
-      href: "/research/lumen",
-      description: "Research on exposure-invariant luminance representations."
-    }
-  ]}
-/>

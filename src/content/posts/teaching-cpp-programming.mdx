@@ -9,10 +9,16 @@ featured: true
 readingTime: "4 min read"
 featuredImage: "featured-prog.webp"
 featuredImageAlt: "Code editor showing C++ object-oriented programming concepts"
+resources:
+  - label: "Course repository (example)"
+    href: "https://github.com/example/cpp-course"
+    description: "Sample repository structure used in the course."
+  - label: "C++ Core Guidelines"
+    href: "https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines"
+    description: "The authoritative reference for modern C++ best practices."
 ---
 
 import KeyPoint from "../../components/post/KeyPoint.astro";
-import ResourceList from "../../components/post/ResourceList.astro";
 
 C++ is one of the most widely used languages in systems programming, scientific computing, and embedded applications. Teaching it effectively requires balancing language mechanics with broader software engineering habits.
 
@@ -51,19 +57,3 @@ Common workflows introduced:
 * Branching for features and fixes
 * Pull requests and peer review in group projects
 
-## Resources
-
-<ResourceList
-  items={[
-    {
-      label: "Course repository (example)",
-      href: "https://github.com/example/cpp-course",
-      description: "Sample repository structure used in the course."
-    },
-    {
-      label: "C++ Core Guidelines",
-      href: "https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines",
-      description: "The authoritative reference for modern C++ best practices."
-    }
-  ]}
-/>

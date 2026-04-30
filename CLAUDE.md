@@ -88,12 +88,16 @@ featuredImage: string       # optional — filename relative to src/assets/posts
 featuredImageAlt: string    # optional — alt text for the featured image
 showFeaturedImage: boolean  # optional — whether to display the image inside the post body
 relatedPosts: [string]      # optional — list of post slugs to show in the related posts section
+resources:                  # optional — list of resources rendered automatically at end of post
+  - label: string           #   required — clickable link text
+    href: string            #   required — internal or external URL
+    description: string     #   optional — one-line description shown below the label
 ```
 
 **Available post components** (import from `../../components/post/` within MDX):
 - `Figure` — responsive image with caption; supports `align` (left/right/center/full) and `width` (third/half/two-thirds/full); left/right variants float on desktop, full-width on mobile
 - `KeyPoint` — callout box with a titled highlight; soft left-border style
-- `ResourceList` — clean list of links with descriptions; auto-detects external URLs
+- `ResourceList` — editorial card list of links; driven automatically from `resources` frontmatter — do not use manually in MDX
 - `Bibliography` — numbered academic citation list
 - `RelatedPosts` — related posts section (driven by `relatedPosts` frontmatter)
 - `TableOfContents` — in-post table of contents

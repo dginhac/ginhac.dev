@@ -5,6 +5,7 @@ import { Image } from "astro:assets";
 import TypeBadge from "../components/TypeBadge.astro";
 import TableOfContents from "../components/post/TableOfContents.astro";
 import RelatedPosts from "../components/post/RelatedPosts.astro";
+import ResourceList from "../components/post/ResourceList.astro";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -19,6 +20,7 @@ interface Props {
     headings?: MarkdownHeading[];
     relatedPosts?: CollectionEntry<"posts">[];
     eyebrow?: string;
+    resources?: { label: string; href: string; description?: string }[];
 }
 
 const {
@@ -33,6 +35,7 @@ const {
     headings = [],
     relatedPosts = [],
     eyebrow,
+    resources = [],
 } = Astro.props;
 
 const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
@@ -42,6 +45,9 @@ const showToc = tocHeadings.length >= 3;
 // The TableOfContents END_SECTIONS set will automatically place the divider before it.
 const allTocHeadings: MarkdownHeading[] = [
     ...tocHeadings,
+    ...(resources.length > 0
+        ? [{ depth: 2, slug: "resources", text: "Resources" }]
+        : []),
     ...(relatedPosts.length > 0
         ? [{ depth: 2, slug: "related-posts", text: "Related posts" }]
         : []),
@@ -208,6 +214,7 @@ const headerInnerClass = showToc
                             <div class="post-body">
                                 <slot />
                             </div>
+                            <ResourceList items={resources} />
                             <RelatedPosts posts={relatedPosts} />
                         </div>
                         <aside class="hidden xl:block w-[220px] shrink-0 pt-1">
@@ -219,6 +226,7 @@ const headerInnerClass = showToc
                         <div class="post-body">
                             <slot />
                         </div>
+                        <ResourceList items={resources} />
                         <RelatedPosts posts={relatedPosts} />
                     </div>
                 )

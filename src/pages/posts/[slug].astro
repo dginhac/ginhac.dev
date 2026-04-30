@@ -2,7 +2,7 @@
 import { getCollection, render } from "astro:content";
 import type { ImageMetadata } from "astro";
 import PostLayout from "../../layouts/PostLayout.astro";
-import { getRelatedPosts } from "../../utils/relatedPosts";
+import { getRelatedPosts } from "../../utils/posts/relatedPosts";
 
 export async function getStaticPaths() {
     const posts = await getCollection("posts");

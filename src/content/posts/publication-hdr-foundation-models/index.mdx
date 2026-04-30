@@ -1,0 +1,59 @@
+---
+title: "Toward Foundation Models for HDR Imaging [Sample]"
+description: "Sample publication entry — a hypothetical paper exploring the use of self-supervised pre-training for high dynamic range image reconstruction."
+date: 2025-09-01
+type: "publication"
+tags: ["HDR", "foundation models", "self-supervised learning", "computer vision"]
+lang: "en"
+featured: true
+readingTime: "3 min read"
+featuredImage: "featured.webp"
+featuredImageAlt: "Self-supervised pre-training architecture for HDR image representation"
+---
+
+import KeyPoint from "../../../components/post/KeyPoint.astro";
+import Bibliography from "../../../components/post/Bibliography.astro";
+
+> **Note:** This is a sample publication entry created for testing purposes. It does not represent a real paper.
+
+## Abstract
+
+High dynamic range (HDR) image reconstruction has traditionally relied on task-specific architectures trained on bracketed exposure sequences. In this work, we investigate whether a foundation model pre-trained with a self-supervised objective on large-scale multi-exposure data can serve as a general-purpose encoder for HDR-related tasks.
+
+We propose an exposure-contrastive pre-training strategy and evaluate the resulting representations on three downstream tasks: HDR reconstruction from a single image, tone mapping quality prediction, and low-light object detection.
+
+Results indicate that the pre-trained encoder provides consistent improvements across all three tasks, with particularly strong transfer in the low-data regime.
+
+<KeyPoint title="Main claim (sample)">
+Self-supervised pre-training on multi-exposure data yields representations that transfer more reliably to HDR downstream tasks than ImageNet-pretrained baselines, especially when fine-tuning data is scarce.
+</KeyPoint>
+
+## Contributions
+
+1. A self-supervised pre-training strategy based on exposure-contrastive learning.
+2. A benchmark suite for evaluating HDR representation transfer.
+3. Empirical analysis of the relationship between exposure diversity in pre-training data and downstream task performance.
+
+## Venue
+
+*Sample Conference on Computer Vision and Pattern Recognition (SCVPR), 2025.*  
+*This entry is a placeholder for testing content types and post layout.*
+
+## Bibliography
+
+<Bibliography
+  items={[
+    {
+      authors: "Radford, A. et al.",
+      title: "Learning Transferable Visual Models From Natural Language Supervision",
+      venue: "ICML",
+      year: "2021"
+    },
+    {
+      authors: "Oquab, M. et al.",
+      title: "DINOv2: Learning Robust Visual Features without Supervision",
+      venue: "TMLR",
+      year: "2024"
+    }
+  ]}
+/>

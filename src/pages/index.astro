@@ -9,7 +9,7 @@ import { homeContent } from "../config/home";
 import type { FeaturedItemType } from "../config/home";
 
 const postImages = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/posts/**/*.{webp,jpg,jpeg,png}"
+    "/src/content/posts/**/*.{webp,jpg,jpeg,png}"
 );
 
 const allPosts = await getCollection("posts");
@@ -21,7 +21,7 @@ const featuredItems = await Promise.all(
         .map(async (p) => {
             let featuredImage: ImageMetadata | undefined;
             if (p.data.featuredImage) {
-                const key = `/src/assets/posts/${p.id}/${p.data.featuredImage}`;
+                const key = `/src/content/posts/${p.id}/${p.data.featuredImage}`;
                 if (postImages[key]) {
                     featuredImage = (await postImages[key]()).default;
                 }

@@ -9,7 +9,7 @@ import { postsContent } from "../../config/posts";
 const { meta, header, filters, emptyState } = postsContent;
 
 const postImages = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/posts/**/*.{webp,jpg,jpeg,png}",
+    "/src/content/posts/**/*.{webp,jpg,jpeg,png}",
 );
 
 const allPosts = await getCollection("posts");
@@ -23,7 +23,7 @@ const posts = await Promise.all(
         .map(async (post) => {
             let thumbnail: ImageMetadata | undefined;
             if (post.data.featuredImage) {
-                const key = `/src/assets/posts/${post.id}/${post.data.featuredImage}`;
+                const key = `/src/content/posts/${post.id}/${post.data.featuredImage}`;
                 if (postImages[key]) {
                     thumbnail = (await postImages[key]()).default;
                 }

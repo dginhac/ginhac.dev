@@ -71,7 +71,7 @@ For simple content edits, copy changes, or visual adjustments using existing pro
 
 Posts are written in MDX and live in `src/content/posts/`. The content collection is declared in `src/content.config.ts` using Astro 6's Content Layer API (`glob` loader).
 
-**To add a new post:** create a `.mdx` file in `src/content/posts/`. It is automatically routed to `/posts/<filename>/` via the dynamic page at `src/pages/posts/[slug].astro`. No other file needs to change.
+**To add a new post:** create a folder `src/content/posts/<slug>/` containing `index.mdx`. The folder is automatically routed to `/posts/<slug>/` via `src/pages/posts/[slug].astro`. No other file needs to change. Place all post-specific images and an optional `references.bib` alongside `index.mdx` in the same folder.
 
 **Post frontmatter schema:**
 ```yaml
@@ -84,17 +84,18 @@ lang: string                # optional, default "en"
 featured: boolean           # optional, default false — shows post in FeaturedSection on homepage
 draft: boolean              # optional, default false — excludes post from all listings
 readingTime: string         # optional — e.g. "8 min read"
-featuredImage: string       # optional — filename relative to src/assets/posts/<slug>/
+featuredImage: string       # optional — filename relative to the post folder (e.g. "featured.webp")
 featuredImageAlt: string    # optional — alt text for the featured image
 showFeaturedImage: boolean  # optional — whether to display the image inside the post body
 relatedPosts: [string]      # optional — list of post slugs to show in the related posts section
+bibliography: string        # optional — filename of a .bib file in the post folder (e.g. "references.bib"); reserved for future rendering
 resources:                  # optional — list of resources rendered automatically at end of post
   - label: string           #   required — clickable link text
     href: string            #   required — internal or external URL
     description: string     #   optional — one-line description shown below the label
 ```
 
-**Available post components** (import from `../../components/post/` within MDX):
+**Available post components** (import from `../../../components/post/` within MDX):
 - `Figure` — responsive image with caption; supports `align` (left/right/center/full) and `width` (third/half/two-thirds/full); left/right variants float on desktop, full-width on mobile
 - `KeyPoint` — callout box with a titled highlight; soft left-border style
 - `ResourceList` — editorial card list of links; driven automatically from `resources` frontmatter — do not use manually in MDX
@@ -123,6 +124,8 @@ resources:                  # optional — list of resources rendered automatica
 ### Utilities
 
 - `src/utils/markdown.ts` — `renderMarkdown(source)` wraps `marked` with a custom renderer that auto-detects external vs. internal links and adds the appropriate class (`link-external` opens in new tab; `link-internal` stays in tab). Use this for any config prose that contains Markdown links.
+- `src/utils/posts/slugUtils.ts` — `getPostSlug(entryId)` normalises a content entry id to a bare URL slug; supports both `slug/index.mdx` and `slug.mdx` layouts.
+- `src/utils/posts/relatedPosts.ts` — `getRelatedPosts(current, all)` returns up to 3 related posts; uses manual `relatedPosts` frontmatter if set, otherwise scores by shared tags, type, and recency.
 
 ### Pages
 
@@ -217,5 +220,5 @@ English is the default at `/`. The header includes a placeholder `FR` link to `/
 ### Assets
 
 Portrait: `src/assets/hero-portrait.jpg`  
-Favicon: `public/favicon.svg`. 
-Post images: `src/assets/posts/` with a directory by post (use the slug to name the directory)
+Favicon: `public/favicon.svg`.  
+Post images: co-located with the post in `src/content/posts/<slug>/` — place images alongside `index.mdx` and reference them with relative paths (e.g. `import img from "./featured.webp"`) or via the `featuredImage` frontmatter field.

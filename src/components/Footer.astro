@@ -3,12 +3,7 @@ import { site } from "../config/site";
 import { mainNav } from "../config/navigation";
 import { links } from "../config/links";
 
-const externalLinks = [
-    { label: "Google Scholar", href: links.scholar },
-    { label: "GitHub", href: links.github },
-    { label: "LinkedIn", href: links.linkedin },
-    { label: "ORCID", href: links.orcid },
-];
+const externalLinks = [links.scholar, links.github, links.linkedin, links.orcid];
 ---
 
 <!-- footer-bg (#EEF3F8) is one step deeper than section-alt (#F3F6FA) -->
@@ -75,14 +70,6 @@ const externalLinks = [
                             </li>
                         ))
                     }
-                    <li>
-                        <a
-                            href={links.cv}
-                            class="text-sm text-text-secondary hover:text-text-primary hover:underline transition-colors"
-                        >
-                            CV (PDF)
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>

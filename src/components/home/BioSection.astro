@@ -1,6 +1,5 @@
 ---
 import type { homeContent } from "../../config/home";
-import { links } from "../../config/links";
 import { renderMarkdown } from "../../utils/markdown";
 
 interface Props {
@@ -30,22 +29,22 @@ const { bio } = Astro.props;
                 <!-- Inter 16px / normal / 1.7 -->
                 <div class="text-base text-text-secondary leading-[1.7] mb-7" set:html={renderMarkdown(bio.text)} />
                 <!-- Inter 14px / medium links -->
-                <div class="flex flex-wrap gap-5">
-                    <a
-                        href={links.scholar}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="link text-sm font-medium"
-                    >
-                        Google Scholar ↗
-                    </a>
-                    <a
-                        href={links.cv}
-                        class="link text-sm font-medium"
-                    >
-                        CV (PDF)
-                    </a>
-                </div>
+                {bio.links.length > 0 && (
+                    <div class="flex flex-wrap gap-5">
+                        {bio.links.map((link) => {
+                            const external = link.href.startsWith("http");
+                            return (
+                                <a
+                                    href={link.href}
+                                    class="link text-sm font-medium"
+                                    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                                >
+                                    {link.label}{external ? " ↗" : ""}
+                                </a>
+                            );
+                        })}
+                    </div>
+                )}
             </div>
 
             <!-- Currently -->

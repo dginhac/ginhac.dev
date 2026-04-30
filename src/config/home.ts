@@ -1,4 +1,5 @@
 import portrait from "../assets/hero-portrait-v2.jpg";
+import { links } from "./links";
 
 export type FeaturedItemType =
   | "RESEARCH"
@@ -51,6 +52,7 @@ export const homeContent = {
     eyebrow: "About",
     title: "Profile",
     text: "I am a Full Professor in Computer Science at [Université Bourgogne Europe](https://www.ube.fr/en/home), affiliated with the [ICB laboratory](https://icb.cnrs.fr/en/icb-home/). My [work](/posts) spans computer vision, artificial intelligence, digital imaging systems, and engineering education, with a focus on the links between fundamental research, applications, and teaching.",
+    links: [links.scholar, links.cv],
     currentIntro:
       "Currently, my work is structured around several research and teaching directions.",
     currentTitle: "Currently",

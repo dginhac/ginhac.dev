@@ -3,7 +3,12 @@ import { site } from "../config/site";
 import { mainNav } from "../config/navigation";
 import { links } from "../config/links";
 
-const externalLinks = [links.scholar, links.github, links.linkedin, links.orcid];
+const externalLinks = [
+    links.scholar,
+    links.github,
+    links.linkedin,
+    links.orcid,
+];
 ---
 
 <!-- footer-bg (#EEF3F8) is one step deeper than section-alt (#F3F6FA) -->
@@ -79,7 +84,7 @@ const externalLinks = [links.scholar, links.github, links.linkedin, links.orcid]
             class="border-t border-border pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
         >
             <p class="text-xs text-text-secondary opacity-50">
-                &copy; 2026 {site.name}
+                &copy; 2026 {site.name} - Built with Astro
             </p>
             <a
                 href="/legal"

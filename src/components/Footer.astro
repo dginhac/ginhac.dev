@@ -2,6 +2,7 @@
 import { site } from "../config/site";
 import { mainNav } from "../config/navigation";
 import { links } from "../config/links";
+import { Coffee } from "@lucide/astro";
 
 const externalLinks = [
     links.scholar,
@@ -84,7 +85,28 @@ const externalLinks = [
             class="border-t border-border pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
         >
             <p class="text-xs text-text-secondary opacity-50">
-                &copy; 2026 {site.name} - Built with Astro
+                &copy; 2026 {site.name} · Built with{" "}
+                <a
+                    href="https://astro.build"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline-offset-4 hover:underline"
+                >
+                    Astro
+                </a>
+                {", "}
+                <a
+                    href="https://claude.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline-offset-4 hover:underline"
+                >
+                    Claude Code
+                </a>
+                {" and a lot of "}<Coffee
+                    size={16}
+                    class="inline-block align-middle"
+                />
             </p>
             <a
                 href="/legal"

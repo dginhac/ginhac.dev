@@ -30,6 +30,11 @@ export const homeContent = {
       "Professor in Computer Science, I work at the intersection of artificial intelligence, computer vision, and imaging systems, with a particular interest in low-level vision, computational imaging, and efficient IA-based software/hardware architectures.",
     portrait,
     portraitAlt: "Portrait of Dominique Ginhac",
+    ctas: [
+      { label: "Publications", href: "/publications" },
+      { label: "Research", href: "/research" },
+      { label: "Teaching", href: "/teaching" },
+    ],
   },
 
   featured: {

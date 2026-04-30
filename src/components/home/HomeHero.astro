@@ -47,27 +47,28 @@ const { hero } = Astro.props;
                     {hero.subtitle}
                 </p>
 
-                <!-- CTAs: primary button + text links -->
-                <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
-                    <a
-                        href="/publications"
-                        class="inline-flex items-center px-5 py-2.5 bg-accent text-white text-sm font-medium rounded-md hover:opacity-90 transition-opacity"
-                    >
-                        Publications
-                    </a>
-                    <a
-                        href="/research"
-                        class="text-sm font-medium text-hero-muted hover:text-hero-text transition-colors underline-offset-4 hover:underline"
-                    >
-                        Research
-                    </a>
-                    <a
-                        href="/teaching"
-                        class="text-sm font-medium text-hero-muted hover:text-hero-text transition-colors underline-offset-4 hover:underline"
-                    >
-                        Teaching
-                    </a>
-                </div>
+                <!-- CTAs: first is primary button, rest are text links -->
+                {hero.ctas.length > 0 && (
+                    <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+                        {hero.ctas.map((cta, i) =>
+                            i === 0 ? (
+                                <a
+                                    href={cta.href}
+                                    class="inline-flex items-center px-5 py-2.5 bg-accent text-white text-sm font-medium rounded-md hover:opacity-90 transition-opacity"
+                                >
+                                    {cta.label}
+                                </a>
+                            ) : (
+                                <a
+                                    href={cta.href}
+                                    class="text-sm font-medium text-hero-muted hover:text-hero-text transition-colors underline-offset-4 hover:underline"
+                                >
+                                    {cta.label}
+                                </a>
+                            )
+                        )}
+                    </div>
+                )}
             </div>
 
             <!-- Portrait column -->

@@ -43,22 +43,29 @@ All site content lives in `src/config/`:
 
 Update these files to change content; no component edits needed for copy changes.
 
-## Documentation
+## Documentation policy
 
-Use Context7 to retrieve the latest Astro documentation whenever implementing or modifying Astro-specific features.
+Use Context7 when the task involves framework-specific behavior, APIs, configuration, or version-sensitive features.
 
-Relevant Astro topics:
-- project structure
-- `.astro` components
-- layouts
-- content collections
-- Markdown/MDX
-- image optimization
-- routing
-- internationalization
-- RSS/feed generation
-- SEO metadata
-- sitemap integration
+For Astro, use Context7 before implementing or modifying:
+- routing;
+- layouts;
+- content collections;
+- Markdown/MDX support;
+- image optimization;
+- integrations;
+- i18n;
+- RSS or sitemap generation;
+- build/deployment configuration.
+
+For Tailwind CSS, use Context7 before:
+- installing or configuring Tailwind;
+- modifying the Tailwind configuration;
+- changing theme tokens or plugins;
+- debugging build or configuration issues;
+- using advanced or version-specific Tailwind features.
+
+For simple content edits, copy changes, or visual adjustments using existing project patterns, Context7 is not required.
 
 ### Posts (MDX)
 

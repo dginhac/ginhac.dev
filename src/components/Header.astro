@@ -2,7 +2,7 @@
 import { site } from "../config/site";
 import { mainNav } from "../config/navigation";
 
-const logoGlob = import.meta.glob<string>("../assets/*.svg", { query: "?raw", import: "default" });
+const logoGlob = import.meta.glob<string>("../assets/**/*.svg", { query: "?raw", import: "default" });
 const logoRaw: string = (await logoGlob[site.logo.src]?.()) ?? "";
 ---
 

@@ -1,4 +1,4 @@
-import portrait from "../assets/hero-portrait-v2.jpg";
+import portrait from "../assets/home/hero-portrait-v2.jpg";
 import { links } from "./links";
 
 export type FeaturedItemType =

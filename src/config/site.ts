@@ -4,7 +4,7 @@ export const site = {
   description:
     "Research, teaching, and publications in artificial intelligence, computer vision, imaging, and digital systems.",
   logo: {
-    src: "../assets/dg-primary.svg",
+    src: "../assets/brand/dg-primary.svg",
     alt: "DG monogram",
     height: 36,
   },

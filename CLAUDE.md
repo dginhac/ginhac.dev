@@ -13,6 +13,21 @@ npx astro check   # TypeScript/Astro type checking
 
 No test runner or linter is configured.
 
+# Project context
+
+This is an academic personal website built with Astro.
+
+The site should remain:
+- clean,
+- minimal,
+- text-focused,
+- responsive,
+- accessible,
+- easy to maintain.
+
+Use Astro-native components by default. Do not add client-side JavaScript unless necessary.
+
+
 ## Architecture
 
 Astro 6 static site with Tailwind CSS v4 (via `@tailwindcss/vite`) and MDX (via `@astrojs/mdx`). TypeScript strict mode. No UI framework (React/Vue/etc.) — pure `.astro` components only.
@@ -27,6 +42,23 @@ All site content lives in `src/config/`:
 - `posts.ts` — posts index page content (meta, header, filters, empty state)
 
 Update these files to change content; no component edits needed for copy changes.
+
+## Documentation
+
+Use Context7 to retrieve the latest Astro documentation whenever implementing or modifying Astro-specific features.
+
+Relevant Astro topics:
+- project structure
+- `.astro` components
+- layouts
+- content collections
+- Markdown/MDX
+- image optimization
+- routing
+- internationalization
+- RSS/feed generation
+- SEO metadata
+- sitemap integration
 
 ### Posts (MDX)
 
@@ -56,6 +88,8 @@ relatedPosts: [string]      # optional — list of post slugs to show in the rel
 - `KeyPoint` — callout box with a titled highlight; soft left-border style
 - `ResourceList` — clean list of links with descriptions; auto-detects external URLs
 - `Bibliography` — numbered academic citation list
+- `RelatedPosts` — related posts section (driven by `relatedPosts` frontmatter)
+- `TableOfContents` — in-post table of contents
 
 ### Component structure
 
@@ -63,15 +97,17 @@ relatedPosts: [string]      # optional — list of post slugs to show in the rel
 - `layouts/PostLayout.astro` — post page shell; editorial header card (title, description, date, tags, type label) + prose body column; used by `pages/posts/[slug].astro`
 - `components/Header.astro` — fixed top bar, transparent over hero → white on scroll; site name + nav + FR language link
 - `components/Footer.astro` — three-column footer with nav, external links, obfuscated email
-- `components/HomeHero.astro` — two-column hero (text + portrait with geometric frame)
-- `components/FeaturedSection.astro` — section wrapper; renders eyebrow + FeaturedCard grid
-- `components/FeaturedCard.astro` — single card with type badge; card hover triggers "Read more →" opacity + underline
 - `components/TypeBadge.astro` — shared type badge with per-category tinted pill (color/bg/border); used in FeaturedCard, PostLayout, and posts/index
-- `components/BioSection.astro` — eyebrow + profile text + Scholar/CV links + "Currently" subsection; bio text rendered via `renderMarkdown`
+- `components/home/HomeHero.astro` — two-column hero (text + portrait with geometric frame)
+- `components/home/FeaturedSection.astro` — section wrapper; renders eyebrow + FeaturedCard grid
+- `components/home/FeaturedCard.astro` — single card with type badge; card hover triggers "Read more →" opacity + underline
+- `components/home/BioSection.astro` — eyebrow + profile text + Scholar/CV links + "Currently" subsection; bio text rendered via `renderMarkdown`
 - `components/post/Figure.astro` — post figure with float/align support
 - `components/post/KeyPoint.astro` — post callout block
 - `components/post/ResourceList.astro` — post resource links
 - `components/post/Bibliography.astro` — post reference list
+- `components/post/RelatedPosts.astro` — related posts section at the bottom of a post
+- `components/post/TableOfContents.astro` — in-post table of contents
 
 ### Utilities
 

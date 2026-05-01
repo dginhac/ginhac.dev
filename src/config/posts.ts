@@ -20,6 +20,7 @@ export const postsContent = {
     { label: "Research", value: "RESEARCH", href: "/posts?type=RESEARCH" },
     { label: "Teaching", value: "TEACHING", href: "/posts?type=TEACHING" },
     { label: "Publications", value: "PUBLICATION", href: "/posts?type=PUBLICATION" },
+    { label: "How-to", value: "HOWTO", href: "/posts?type=HOWTO" },
   ],
 
   emptyState: {

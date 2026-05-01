@@ -5,7 +5,8 @@ export type FeaturedItemType =
   | "RESEARCH"
   | "INSIGHT"
   | "TEACHING"
-  | "PUBLICATION";
+  | "PUBLICATION"
+  | "HOWTO";
 
 export interface FeaturedItem {
   type: FeaturedItemType;

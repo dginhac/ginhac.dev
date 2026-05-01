@@ -3,6 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import type { ImageMetadata, MarkdownHeading } from "astro";
 import { Image } from "astro:assets";
 import TypeBadge from "../components/TypeBadge.astro";
+import { formatPostDate } from "../utils/posts/dateUtils";
 import TableOfContents from "../components/post/TableOfContents.astro";
 import RelatedPosts from "../components/post/RelatedPosts.astro";
 import ResourceList from "../components/post/ResourceList.astro";
@@ -12,6 +13,7 @@ interface Props {
     title: string;
     description: string;
     date: Date;
+    updated?: Date;
     type?: string;
     tags?: string[];
     readingTime?: string;
@@ -27,6 +29,7 @@ const {
     title,
     description,
     date,
+    updated,
     type,
     tags = [],
     readingTime,
@@ -53,13 +56,12 @@ const allTocHeadings: MarkdownHeading[] = [
         : []),
 ];
 
-const formattedDate = date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-});
-
+const formattedDate = formatPostDate(date);
 const isoDate = date.toISOString().split("T")[0];
+
+const showUpdated = updated && updated.getTime() !== date.getTime();
+const formattedUpdated = showUpdated ? formatPostDate(updated) : null;
+const isoUpdated = showUpdated ? updated.toISOString().split("T")[0] : null;
 
 const typeLabel = type?.toUpperCase();
 
@@ -147,7 +149,15 @@ const headerInnerClass = showToc
                         class="flex items-center gap-x-2 text-sm"
                         style="color: var(--color-text-secondary);"
                     >
-                        <time datetime={isoDate}>{formattedDate}</time>
+                        {showUpdated ? (
+                            <>
+                                <span>Published <time datetime={isoDate}>{formattedDate}</time></span>
+                                <span aria-hidden="true" class="opacity-40">·</span>
+                                <span>Updated <time datetime={isoUpdated!}>{formattedUpdated}</time></span>
+                            </>
+                        ) : (
+                            <time datetime={isoDate}>{formattedDate}</time>
+                        )}
                         {
                             readingTime && (
                                 <>

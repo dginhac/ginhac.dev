@@ -5,6 +5,11 @@ import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import TypeBadge from "../../components/TypeBadge.astro";
 import { postsContent } from "../../config/posts";
+import {
+    formatPostDate,
+    getEffectivePostDate,
+    hasUpdatedDate,
+} from "../../utils/posts/dateUtils";
 
 const { meta, header, filters, emptyState } = postsContent;
 
@@ -17,8 +22,8 @@ const posts = await Promise.all(
     allPosts
         .sort(
             (a, b) =>
-                new Date(b.data.date).getTime() -
-                new Date(a.data.date).getTime(),
+                getEffectivePostDate(b).getTime() -
+                getEffectivePostDate(a).getTime(),
         )
         .map(async (post) => {
             let thumbnail: ImageMetadata | undefined;
@@ -139,13 +144,9 @@ const posts = await Promise.all(
                                     <div class="flex items-center gap-x-2 text-text-secondary text-sm mt-3">
                                         {post.data.date && (
                                             <span>
-                                                {new Date(
-                                                    post.data.date,
-                                                ).toLocaleDateString("en-US", {
-                                                    year: "numeric",
-                                                    month: "long",
-                                                    day: "numeric",
-                                                })}
+                                                {hasUpdatedDate(post)
+                                                    ? `Updated ${formatPostDate(post.data.updated!)}`
+                                                    : formatPostDate(post.data.date)}
                                             </span>
                                         )}
                                         {post.data.date &&

@@ -41,6 +41,7 @@ Update these files for content changes; no component edits needed.
 **`content/home.ts` shape:**
 - `hero.links[]` — CTA buttons: `{ label, href, variant, external?, download? }` typed as `ButtonLinkItem`
 - `bio.links[]` — action links same shape (`external: true` for Scholar, `download: true` for CV)
+- `bio.currentItems[]` — typed as `CurrentItem[]`; each item has a `parts` array of `string | InlineLinkPart`. String parts render as plain text; `InlineLinkPart` (`{ label, href, external? }`) renders as `<Link arrow="none">`. Both types exported from `home.ts`.
 - `featured.items[]` — typed as `FeaturedItem[]`
 
 **Logo glob:** `Header.astro` loads the logo via `import.meta.glob("../../assets/**/*.svg")`. The key must match `site.logo.src` exactly (currently `"../../assets/brand/dg-primary.svg"`, relative to the component file at `src/components/layout/`).
@@ -93,15 +94,15 @@ resources:
 - `Footer.astro` — three-column footer with nav, external links, obfuscated email
 
 **UI primitives** (`components/ui/`)
-- `Link.astro` — text link with configurable arrow (`arrow?: "auto" | "forward" | "back" | "none"`, default `"auto"`). Auto: `→` internal, `↗` external, none for mailto. Back arrow renders before slot, others after. Styling via `baseClasses` on `<a>` + inner `<span class="inline-flex items-center">` wrapping a `<span class="group-hover:underline">` around `<slot />` — this pattern keeps `text-align` utilities working on the caller while underline triggers only on text. External http/https get `target="_blank" rel="noopener noreferrer"` automatically.
+- `Link.astro` — text link with configurable arrow (`arrow?: "auto" | "forward" | "back" | "none"`, default `"auto"`). Auto: `→` internal, `↗` external, none for mailto. Back arrow renders before slot, others after. `arrow="none"` automatically applies `text-accent` and `inline` display — use it for inline text links inside prose. Arrow variants use `inline-flex items-center gap-1` and inherit contextual color. Callers can override either via the `class` prop (appended last). `group-hover:underline` is on the inner slot span (not the `<a>`) so arrows are never underlined. External http/https get `target="_blank" rel="noopener noreferrer"` automatically.
 - `ButtonLink.astro` — CTA/button-style link. Props: `variant?: "primary" | "secondary" | "ghost"` (default `"secondary"`), `size?: "sm" | "md"` (default `"md"`), `external?`, `download?`. Uses design tokens: primary = `bg-accent text-white`, secondary = `border border-border bg-white text-text-primary hover:bg-section-alt`, ghost = `text-text-secondary hover:bg-section-alt`. Pill-shaped (`rounded-full`). External and mailto safety attrs handled same as Link.
-- `TypeBadge.astro` — type badge (small, rectangular); reads from `categoryStyles.ts`
+- `TypeBadge.astro` — type badge (small, rectangular); reads from `categoryStyles.ts`. Accepts optional `href?: string`; renders as `<a>` with hover opacity/shadow when provided, plain `<span>` otherwise. PostLayout passes `href="/posts?type=<TYPE>"` so the badge links to the filtered archive.
 - `Pill.astro` — pill variant of TypeBadge (larger, `rounded-full`); used in /research and /teaching headers
 
 **Home components** (`components/home/`)
 - `HomeHero.astro` — two-column hero (text + portrait); renders `hero.links` via `ButtonLink`
 - `FeaturedSection.astro` — eyebrow + FeaturedCard grid
-- `BioSection.astro` — profile text (via `renderMarkdown`) + `bio.links` rendered via `ButtonLink` + "Currently" items
+- `BioSection.astro` — profile text (via `renderMarkdown`) + `bio.links` rendered via `ButtonLink` + "Currently" items. Each item in `bio.currentItems` is a `CurrentItem` with a `parts` array; string parts render as plain text, `InlineLinkPart` objects render as `<Link arrow="none">`.
 
 **Cards** (`components/cards/`)
 - `FeaturedCard.astro` — homepage featured card with TypeBadge; hover shows "Read more →"
@@ -119,7 +120,7 @@ resources:
 ### Pages
 
 - `pages/index.astro` — homepage
-- `pages/posts/index.astro` — posts listing with type filter (client-side JS)
+- `pages/posts/index.astro` — posts listing with combined type + tag filtering (client-side JS). Type filter buttons use category colors from `categoryStyles.ts`; active state is `font-semibold shadow-sm`. Tags are stored as `data-tags` JSON on each `<li>`; `?tag=` param filters by tag and shows a dismissible indicator. Switching type filters preserves the active tag via JS href rewriting. Post header tags in `PostLayout` link to `?tag=<encoded>` for the same filtering.
 - `pages/posts/[slug].astro` — dynamic post route using `PostLayout`
 - `pages/research/index.astro` — research synthesis page driven by `researchConfig`
 - `pages/teaching/index.astro` — teaching synthesis page driven by `teachingConfig`

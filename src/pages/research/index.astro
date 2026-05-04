@@ -1,0 +1,157 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AcademicCard from "../../components/cards/AcademicCard.astro";
+import { researchConfig } from "../../config/research";
+
+const {
+    meta,
+    eyebrow,
+    title,
+    description,
+    intro,
+    pills,
+    sections,
+    projects,
+    contact,
+} = researchConfig;
+
+const currentProjects = projects.filter((p) => p.status === "current");
+const previousProjects = projects.filter((p) => p.status === "previous");
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+    <!-- Page header -->
+    <div class="w-full bg-section-alt border-b border-border">
+        <div class="max-w-5xl mx-auto px-6 py-12 sm:py-16">
+            <p
+                class="text-xs font-medium tracking-[0.08em] uppercase text-text-secondary mt-8 mb-3"
+            >
+                {eyebrow}
+            </p>
+            <h1
+                class="font-heading text-3xl md:text-[2.5rem] font-bold text-hero-text tracking-[-0.02em] leading-[1.2] mb-4"
+            >
+                <span class="text-accent-soft font-extrabold">/</span>
+                {title}
+            </h1>
+            <p
+                class="text-text-secondary text-base sm:text-lg leading-relaxed mb-3"
+            >
+                {description}
+            </p>
+            <p class="text-text-secondary text-base leading-relaxed">
+                {intro}
+            </p>
+            <div class="mt-8 flex flex-wrap gap-2">
+                {
+                    pills.map((pill) => (
+                        <span class="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs text-blue-600">
+                            {pill}
+                        </span>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Current projects -->
+    <section
+        class="max-w-5xl mx-auto px-6 py-12 md:py-16"
+        aria-labelledby="current-heading"
+    >
+        <div class="mb-8">
+            <p
+                class="text-xs font-medium tracking-[0.08em] uppercase text-text-secondary mb-2"
+            >
+                Current
+            </p>
+            <h2
+                id="current-heading"
+                class="font-heading text-2xl md:text-[1.875rem] font-bold tracking-[-0.02em] leading-[1.2] text-text-primary mb-2"
+            >
+                <span class="text-accent-soft font-extrabold">/</span>
+                {sections.current.title}
+            </h2>
+            {
+                sections.current.description && (
+                    <p class="text-text-secondary text-base leading-[1.65]">
+                        {sections.current.description}
+                    </p>
+                )
+            }
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {
+                currentProjects.map((p) => (
+                    <AcademicCard
+                        title={p.title}
+                        description={p.description}
+                        href={p.href}
+                        period={p.period}
+                        role={p.role}
+                        tags={p.tags}
+                        linkLabel="View project →"
+                    />
+                ))
+            }
+        </div>
+    </section>
+
+    <!-- Previous projects -->
+    {
+        previousProjects.length > 0 && (
+            <section
+                class="bg-section-alt border-t border-border"
+                aria-labelledby="previous-heading"
+            >
+                <div class="max-w-5xl mx-auto px-6 py-12 md:py-16">
+                    <div class="mb-8">
+                        <p class="text-xs font-medium tracking-[0.08em] uppercase text-text-secondary mb-2">
+                            Previous
+                        </p>
+                        <h2
+                            id="previous-heading"
+                            class="font-heading text-2xl md:text-[1.875rem] font-bold tracking-[-0.02em] leading-[1.2] text-text-primary mb-2"
+                        >
+                            <span class="text-accent-soft font-extrabold">
+                                /
+                            </span>
+                            {sections.previous.title}
+                        </h2>
+                        {sections.previous.description && (
+                            <p class="text-text-secondary text-base leading-[1.65]">
+                                {sections.previous.description}
+                            </p>
+                        )}
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {previousProjects.map((p) => (
+                            <AcademicCard
+                                title={p.title}
+                                description={p.description}
+                                href={p.href}
+                                period={p.period}
+                                role={p.role}
+                                tags={p.tags}
+                                linkLabel="View project →"
+                            />
+                        ))}
+                    </div>
+                </div>
+            </section>
+        )
+    }
+
+    <!-- Contact -->
+    <div class="border-t border-border">
+        <div class="max-w-5xl mx-auto px-6 py-10">
+            <p class="text-text-secondary text-sm">
+                {contact.text}
+                {" "}
+                <a href={contact.href} class="link">{contact.linkLabel}</a>.
+            </p>
+        </div>
+    </div>
+</BaseLayout>

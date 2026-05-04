@@ -1,0 +1,79 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  period?: string;
+  role?: string;
+  level?: string;
+  institution?: string;
+  volume?: string;
+  tags?: string[];
+  linkLabel?: string;
+}
+
+const {
+  title,
+  description,
+  href,
+  period,
+  role,
+  level,
+  institution,
+  volume,
+  tags = [],
+  linkLabel = "View →",
+} = Astro.props;
+
+const researchLine = [period, role].filter(Boolean).join(" · ");
+const teachingLine2 = [institution, volume].filter(Boolean).join(" · ");
+const hasMetadata = !!(researchLine || level || teachingLine2);
+---
+
+<a
+  href={href}
+  class="group flex flex-col bg-white rounded-xl border border-border hover:shadow-[0_2px_12px_rgba(15,23,42,0.06)] transition-shadow p-6"
+>
+  <h3
+    class="font-heading text-base font-semibold tracking-[-0.015em] text-text-primary leading-[1.25] mb-2 group-hover:text-accent transition-colors"
+  >
+    {title}
+  </h3>
+
+  {
+    hasMetadata && (
+      <div class="mb-3 space-y-0.5">
+        {researchLine && (
+          <p class="text-xs text-text-secondary">{researchLine}</p>
+        )}
+        {level && <p class="text-xs text-text-secondary">{level}</p>}
+        {teachingLine2 && (
+          <p class="text-xs text-text-secondary">{teachingLine2}</p>
+        )}
+      </div>
+    )
+  }
+
+  <p class="text-sm text-text-secondary leading-[1.65] flex-1 line-clamp-3">
+    {description}
+  </p>
+
+  {
+    tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mt-3">
+        {tags.map((tag) => (
+          <span class="text-xs text-text-secondary bg-section-alt border border-border rounded px-2 py-0.5">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )
+  }
+
+  <span
+    class="mt-4 text-xs font-medium text-accent group-hover:opacity-75 group-hover:underline underline-offset-[3px] transition-opacity"
+    aria-hidden="true"
+  >
+    {linkLabel}
+  </span>
+</a>

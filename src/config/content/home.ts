@@ -24,6 +24,16 @@ export interface ButtonLinkItem {
   download?: boolean;
 }
 
+export interface InlineLinkPart {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+export interface CurrentItem {
+  parts: Array<string | InlineLinkPart>;
+}
+
 export const homeContent = {
   meta: {
     title:
@@ -78,8 +88,22 @@ export const homeContent = {
       "Currently, my work is structured around several research and teaching directions.",
     currentTitle: "Currently",
     currentItems: [
-      "LUMEN project — learning luminance representations for HDR imaging.",
-      "Progressive redesign of C++ programming resources with Git and software engineering practices.",
-    ],
+      {
+        parts: [
+          { label: "LUMEN project", href: "/posts/lumen" },
+          " — learning luminance representations for HDR imaging.",
+        ],
+      },
+      {
+        parts: [
+          "Progressive redesign of ",
+          {
+            label: "C++ programming",
+            href: "/posts/cpp-object-oriented-programming",
+          },
+          " resources with Git and software engineering practices.",
+        ],
+      },
+    ] satisfies CurrentItem[],
   },
 } as const;

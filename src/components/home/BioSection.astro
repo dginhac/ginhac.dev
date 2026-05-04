@@ -2,6 +2,7 @@
 import type { homeContent } from "../../config/content/home";
 import { renderMarkdown } from "../../utils/markdown";
 import ButtonLink from "../ui/ButtonLink.astro";
+import Link from "../ui/Link.astro";
 
 interface Props {
     bio: typeof homeContent.bio;
@@ -73,7 +74,21 @@ const { bio } = Astro.props;
                                     class="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-accent"
                                     aria-hidden="true"
                                 />
-                                {item}
+                                <span>
+                                    {item.parts.map((part) =>
+                                        typeof part === "string" ? (
+                                            part
+                                        ) : (
+                                            <Link
+                                                href={part.href}
+                                                arrow="none"
+                                                external={part.external}
+                                            >
+                                                {part.label}
+                                            </Link>
+                                        ),
+                                    )}
+                                </span>
                             </li>
                         ))
                     }

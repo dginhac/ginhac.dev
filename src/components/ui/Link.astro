@@ -36,11 +36,12 @@ const arrowSymbol = !shouldShowArrow
 const baseClasses =
     "group underline-offset-4 transition-opacity hover:opacity-60 font-medium";
 
-// gap lives on the inner span so the <a> stays plain inline,
-// preserving text-align utilities (e.g. sm:text-right) on the caller
-const innerClasses = `inline-flex items-center${arrow !== "none" ? " gap-1" : ""}`;
+// arrow="none" → plain inline with accent color; arrows → flex row for symbol alignment
+const displayClasses =
+    arrow === "none" ? "inline" : "inline-flex items-center gap-1";
+const toneClasses = arrow === "none" ? "text-accent" : "";
 
-const classes = [baseClasses, className].filter(Boolean).join(" ");
+const classes = [baseClasses, toneClasses, className].filter(Boolean).join(" ");
 
 const safeAttrs =
     isExternal && !isMailto
@@ -49,7 +50,7 @@ const safeAttrs =
 ---
 
 <a href={href} class={classes} {...safeAttrs}>
-    <span class={innerClasses}>
+    <span class={displayClasses}>
         {
             arrow === "back" && arrowSymbol && (
                 <span

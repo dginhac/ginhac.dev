@@ -5,8 +5,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HomeHero from "../components/home/HomeHero.astro";
 import FeaturedSection from "../components/home/FeaturedSection.astro";
 import BioSection from "../components/home/BioSection.astro";
-import { homeContent } from "../config/home";
-import type { FeaturedItemType } from "../config/home";
+import { homeContent } from "../config/content/home";
+import type { FeaturedItemType } from "../config/content/home";
 
 const postImages = import.meta.glob<{ default: ImageMetadata }>(
     "/src/content/posts/**/*.{webp,jpg,jpeg,png}"

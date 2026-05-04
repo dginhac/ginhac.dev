@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import AcademicCard from "../../components/cards/AcademicCard.astro";
-import { teachingConfig } from "../../config/teaching";
+import Pill from "../../components/ui/Pill.astro";
+import { teachingConfig } from "../../config/content/teaching";
 
 const {
     meta,
@@ -42,14 +43,10 @@ const previousCourses = courses.filter((c) => c.status === "previous");
             <p class="text-text-secondary text-base leading-relaxed">
                 {intro}
             </p>
-            <div class="mt-8 flex flex-wrap gap-2">
-                {
-                    pills.map((pill) => (
-                        <span class="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs text-emerald-600">
-                            {pill}
-                        </span>
-                    ))
-                }
+            <div class="mt-6 flex flex-wrap gap-2">
+                {pills.map((pill) => (
+                    <Pill label={pill} category="TEACHING" />
+                ))}
             </div>
         </div>
     </div>

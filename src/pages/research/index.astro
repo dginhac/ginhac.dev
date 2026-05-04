@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import AcademicCard from "../../components/cards/AcademicCard.astro";
-import { researchConfig } from "../../config/research";
+import Pill from "../../components/ui/Pill.astro";
+import { researchConfig } from "../../config/content/research";
 
 const {
     meta,
@@ -42,14 +43,10 @@ const previousProjects = projects.filter((p) => p.status === "previous");
             <p class="text-text-secondary text-base leading-relaxed">
                 {intro}
             </p>
-            <div class="mt-8 flex flex-wrap gap-2">
-                {
-                    pills.map((pill) => (
-                        <span class="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs text-blue-600">
-                            {pill}
-                        </span>
-                    ))
-                }
+            <div class="mt-6 flex flex-wrap gap-2">
+                {pills.map((pill) => (
+                    <Pill label={pill} category="RESEARCH" />
+                ))}
             </div>
         </div>
     </div>

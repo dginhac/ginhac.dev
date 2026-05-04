@@ -1,5 +1,5 @@
-import portrait from "../assets/home/hero-portrait-v2.jpg";
-import { links } from "./links";
+import portrait from "../../assets/home/hero-portrait-v2.jpg";
+import { links } from "../links";
 
 export type FeaturedItemType =
   | "RESEARCH"

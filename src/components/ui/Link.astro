@@ -1,0 +1,60 @@
+---
+interface Props {
+    href: string;
+    class?: string;
+    arrow?: "auto" | "forward" | "back" | "none";
+    external?: boolean;
+}
+
+const {
+    href,
+    class: className,
+    arrow = "auto",
+    external: externalProp,
+} = Astro.props;
+
+const isMailto = href.startsWith("mailto:");
+const isExternal =
+    externalProp !== undefined
+        ? externalProp
+        : href.startsWith("http://") || href.startsWith("https://");
+
+const shouldShowArrow = arrow !== "none" && !(arrow === "auto" && isMailto);
+
+const arrowSymbol = !shouldShowArrow
+    ? null
+    : arrow === "back"
+      ? "←"
+      : arrow === "forward"
+        ? "→"
+        : isExternal
+          ? "↗"
+          : "→";
+
+const safeAttrs =
+    isExternal && !isMailto
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {};
+---
+
+<a
+    href={href}
+    class={`gap-1 transition-colors hover:opacity-60 hover:underline hover:underline-offset-[3px]${className ? ` ${className}` : ""}`}
+    {...safeAttrs}
+>
+    {
+        arrow === "back" && arrowSymbol && (
+            <span aria-hidden="true" class="shrink-0 opacity-70 text-[0.7em]">
+                {arrowSymbol}
+            </span>
+        )
+    }
+    <slot />
+    {
+        arrow !== "back" && arrowSymbol && (
+            <span aria-hidden="true" class="shrink-0 opacity-70 text-[0.7em]">
+                {arrowSymbol}
+            </span>
+        )
+    }
+</a>

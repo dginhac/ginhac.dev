@@ -3,6 +3,7 @@ import { site } from "../../config/content/site";
 import { mainNav } from "../../config/navigation";
 import { links } from "../../config/links";
 import { Coffee } from "@lucide/astro";
+import Link from "../ui/Link.astro";
 
 const externalLinks = [
     links.scholar,
@@ -42,12 +43,12 @@ const externalLinks = [
                     {
                         mainNav.map((item) => (
                             <li>
-                                <a
+                                <Link
                                     href={item.href}
-                                    class="text-sm text-text-secondary hover:text-text-primary hover:underline transition-colors"
+                                    class="text-sm text-text-secondary hover:text-text-primary"
                                 >
                                     {item.label}
-                                </a>
+                                </Link>
                             </li>
                         ))
                     }
@@ -65,14 +66,12 @@ const externalLinks = [
                     {
                         externalLinks.map((item) => (
                             <li>
-                                <a
+                                <Link
                                     href={item.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="text-sm text-text-secondary hover:text-text-primary hover:underline transition-colors"
+                                    class="text-sm text-text-secondary hover:text-text-primary"
                                 >
-                                    {item.label} ↗
-                                </a>
+                                    {item.label}
+                                </Link>
                             </li>
                         ))
                     }
@@ -82,38 +81,21 @@ const externalLinks = [
 
         <!-- Bottom bar -->
         <div
-            class="border-t border-border pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
+            class="border-t border-border pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-text-secondary opacity-50"
         >
-            <p class="text-xs text-text-secondary opacity-50">
+            <p>
                 &copy; 2026 {site.name} · Built with{" "}
-                <a
-                    href="https://astro.build"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="underline-offset-4 hover:underline"
-                >
-                    Astro
-                </a>
+                <Link href="https://astro.build"> Astro </Link>
                 {", "}
-                <a
-                    href="https://claude.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="underline-offset-4 hover:underline"
-                >
-                    Claude Code
-                </a>
-                {" and a lot of "}<Coffee
-                    size={16}
-                    class="inline-block align-middle"
-                />
+                <Link href="https://claude.com"> Claude Code </Link>
+                {" and a lot of "}
+                <Coffee size={16} class="inline-block align-middle" />
             </p>
-            <a
-                href="/legal"
-                class="text-xs text-text-secondary opacity-50 hover:opacity-100 hover:underline transition-opacity"
-            >
-                Legal notice
-            </a>
+            <p>
+                <Link href="/legal" class="text-text-secondary font-medium"
+                    >Legal notice</Link
+                >
+            </p>
         </div>
     </div>
 </footer>

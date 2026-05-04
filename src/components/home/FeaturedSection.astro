@@ -1,6 +1,7 @@
 ---
 import type { FeaturedItem } from "../../config/content/home";
 import FeaturedCard from "../cards/FeaturedCard.astro";
+import Link from "../ui/Link.astro";
 
 interface Props {
     featured: {
@@ -43,12 +44,12 @@ const { featured } = Astro.props;
                 </p>
             </div>
             <!-- Inter 14px / medium -->
-            <a
+            <Link
                 href={featured.articlesHref}
-                class="link sm:w-1/4 sm:text-right text-sm font-medium"
+                class="text-text-secondary sm:w-1/4 sm:text-right text-sm font-medium opacity-50"
             >
-                {featured.articlesLinkLabel} →
-            </a>
+                {featured.articlesLinkLabel}
+            </Link>
         </div>
 
         <!-- Cards grid -->

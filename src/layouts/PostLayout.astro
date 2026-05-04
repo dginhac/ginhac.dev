@@ -7,6 +7,7 @@ import { formatPostDate } from "../utils/posts/dateUtils";
 import TableOfContents from "../components/post/TableOfContents.astro";
 import RelatedPosts from "../components/post/RelatedPosts.astro";
 import ResourceList from "../components/post/ResourceList.astro";
+import Link from "../components/ui/Link.astro";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -81,14 +82,13 @@ const headerInnerClass = showToc
         >
             <div class={headerInnerClass}>
                 <!-- Back link -->
-                <a
+                <Link
                     href="/posts"
-                    class="inline-flex items-center gap-1.5 text-sm mb-8 transition-opacity hover:opacity-60"
-                    style="color: var(--color-text-secondary);"
+                    arrow="back"
+                    class="text-text-secondary text-sm mb-8 transition-opacity hover:opacity-60"
                 >
-                    <span aria-hidden="true">←</span>
                     All content
-                </a>
+                </Link>
 
                 <!-- Type label -->
                 {

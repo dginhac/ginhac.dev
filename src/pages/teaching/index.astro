@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import AcademicCard from "../../components/cards/AcademicCard.astro";
 import Pill from "../../components/ui/Pill.astro";
+import Link from "../../components/ui/Link.astro";
 import { teachingConfig } from "../../config/content/teaching";
 
 const {
@@ -149,7 +150,7 @@ const previousCourses = courses.filter((c) => c.status === "previous");
             <p class="text-text-secondary text-sm">
                 {contact.text}
                 {" "}
-                <a href={contact.href} class="link">{contact.linkLabel}</a>.
+                <Link href={contact.href} class="link" arrow="none">{contact.linkLabel}</Link>.
             </p>
         </div>
     </div>

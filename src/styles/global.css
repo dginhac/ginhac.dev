@@ -60,6 +60,7 @@ body {
 }
 
 /* Content links — shared style for all non-nav/footer links */
+/*
 .link, p a, .link-external, .link-internal {
     color: var(--color-accent);
     text-decoration: none;
@@ -71,6 +72,7 @@ body {
     text-underline-offset: 3px;
     opacity: 0.75;
 }
+*/
 
 /* ── Post prose ─────────────────────────────────────── */
 .post-body {

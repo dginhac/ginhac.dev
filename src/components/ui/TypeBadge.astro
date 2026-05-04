@@ -7,18 +7,28 @@ import type { CategoryType } from "../../config/styles/categoryStyles";
 
 interface Props {
     type: string;
+    href?: string;
 }
 
-const { type } = Astro.props;
+const { type, href } = Astro.props;
 const label = type.toUpperCase();
 const colorClasses =
     label in categoryStyles
         ? categoryStyles[label as CategoryType].badge
         : fallbackCategoryStyles.badge;
+
+const baseClasses = `inline-block text-xs font-semibold uppercase tracking-[0.06em] px-4 py-2 rounded-md border leading-none ${colorClasses}`;
+const interactiveClasses = href ? " transition hover:opacity-80 hover:shadow-sm" : "";
 ---
 
-<span
-    class={`inline-block text-xs font-semibold uppercase tracking-[0.06em] px-4 py-2 rounded-md border leading-none ${colorClasses}`}
->
-    {label}
-</span>
+{
+    href ? (
+        <a href={href} class={baseClasses + interactiveClasses}>
+            {label}
+        </a>
+    ) : (
+        <span class={baseClasses}>
+            {label}
+        </span>
+    )
+}

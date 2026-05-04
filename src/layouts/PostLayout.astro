@@ -76,10 +76,7 @@ const headerInnerClass = showToc
 <BaseLayout title={title} description={description}>
     <article id="top">
         <!-- Full-width editorial header -->
-        <div
-            class="pt-28 pb-14 md:pt-32 md:pb-18 px-6"
-            style="background-color: var(--color-section-alt);"
-        >
+        <div class="pt-28 pb-14 md:pt-32 md:pb-12 px-6 bg-section-alt">
             <div class={headerInnerClass}>
                 <!-- Back link -->
                 <Link
@@ -94,7 +91,10 @@ const headerInnerClass = showToc
                 {
                     typeLabel && (
                         <div class="my-8">
-                            <TypeBadge type={typeLabel} />
+                            <TypeBadge
+                                type={typeLabel}
+                                href={`/posts?type=${typeLabel}`}
+                            />
                         </div>
                     )
                 }
@@ -102,10 +102,7 @@ const headerInnerClass = showToc
                 <!-- Eyebrow -->
                 {
                     eyebrow && (
-                        <p
-                            class="text-xs font-medium tracking-[0.08em] uppercase mb-5"
-                            style="color: var(--color-text-secondary);"
-                        >
+                        <p class="text-xs font-medium tracking-[0.08em] uppercase mb-2 text-text-secondary">
                             {eyebrow}
                         </p>
                     )
@@ -113,8 +110,7 @@ const headerInnerClass = showToc
 
                 <!-- Title -->
                 <h1
-                    class="font-heading text-3xl md:text-[2.5rem] font-bold tracking-[-0.02em] leading-[1.2] mb-5"
-                    style="color: var(--color-hero-text);"
+                    class="font-heading text-3xl md:text-[2.5rem] font-bold tracking-[-0.02em] leading-[1.2] mb-6 text-hero-text"
                 >
                     <span class="text-accent-soft font-extrabold">/</span>
                     {title}
@@ -122,67 +118,69 @@ const headerInnerClass = showToc
 
                 <!-- Description -->
                 <p
-                    class="text-[1.0625rem] md:text-lg leading-[1.7] mb-8"
-                    style="color: #475569;"
+                    class="text-[1.0625rem] md:text-lg leading-[1.7] mb-4 text-text-primary"
                 >
                     {description}
                 </p>
 
-                <!-- Meta: tags then date · reading time -->
+                <!-- Meta: date then reading time -->
+                <p class="text-sm text-slate-500 mb-8">
+                    {
+                        showUpdated ? (
+                            <>
+                                <span>
+                                    Published{" "}
+                                    <time datetime={isoDate}>
+                                        {formattedDate}
+                                    </time>
+                                </span>
+                                <span aria-hidden="true" class="opacity-40">
+                                    ·
+                                </span>
+                                <span>
+                                    Updated{" "}
+                                    <time datetime={isoUpdated!}>
+                                        {formattedUpdated}
+                                    </time>
+                                </span>
+                            </>
+                        ) : (
+                            <time datetime={isoDate}>{formattedDate}</time>
+                        )
+                    }
+                    {
+                        readingTime && (
+                            <>
+                                <span aria-hidden="true" class="opacity-40">
+                                    ·
+                                </span>
+                                <span>{readingTime}</span>
+                            </>
+                        )
+                    }
+                </p>
+                <!-- Meta: tags  -->
+
                 <div class="flex flex-col gap-y-5">
                     {
                         tags.length > 0 && (
-                            <div class="flex flex-wrap gap-2">
-                                {tags.map((tag) => (
-                                    <a
-                                        href={`/posts?tag=${encodeURIComponent(tag)}`}
-                                        class="inline-flex items-center rounded-full border border-border bg-section-alt px-2.5 py-1 text-xs font-medium text-text-secondary transition-colors hover:bg-footer-bg hover:text-text-primary"
-                                    >
-                                        {tag}
-                                    </a>
-                                ))}
+                            <div class="flex flex-col gap-1.5">
+                                <span class="text-xs font-medium uppercase tracking-[0.08em] text-text-secondary mb-2">
+                                    Topics
+                                </span>
+                                <div class="flex flex-wrap gap-2">
+                                    {tags.map((tag) => (
+                                        <a
+                                            href={`/posts?tag=${encodeURIComponent(tag)}`}
+                                            class="inline-flex items-center rounded-full border border-border bg-section-alt px-2.5 py-1 text-xs font-medium text-text-secondary transition-colors hover:bg-footer-bg hover:text-text-primary"
+                                        >
+                                            {tag}
+                                        </a>
+                                    ))}
+                                </div>
                             </div>
                         )
                     }
-
-                    <div
-                        class="flex items-center gap-x-2 text-sm"
-                        style="color: var(--color-text-secondary);"
-                    >
-                        {
-                            showUpdated ? (
-                                <>
-                                    <span>
-                                        Published{" "}
-                                        <time datetime={isoDate}>
-                                            {formattedDate}
-                                        </time>
-                                    </span>
-                                    <span aria-hidden="true" class="opacity-40">
-                                        ·
-                                    </span>
-                                    <span>
-                                        Updated{" "}
-                                        <time datetime={isoUpdated!}>
-                                            {formattedUpdated}
-                                        </time>
-                                    </span>
-                                </>
-                            ) : (
-                                <time datetime={isoDate}>{formattedDate}</time>
-                            )
-                        }
-                        {
-                            readingTime && (
-                                <>
-                                    <span aria-hidden="true" class="opacity-40">
-                                        ·
-                                    </span>
-                                    <span>{readingTime}</span>
-                                </>
-                            )
-                        }
-                    </div>
                 </div>
             </div>
         </div>
@@ -190,15 +188,9 @@ const headerInnerClass = showToc
         <!-- Lead image — only in single-column layout (aligns with max-w-[52rem] header) -->
         {
             !showToc && featuredImageSrc && (
-                <div
-                    class="px-6 py-10"
-                    style="background-color: var(--color-site-bg);"
-                >
+                <div class="px-6 py-10 bg-site-bg">
                     <div class="max-w-[52rem] mx-auto">
-                        <div
-                            class="rounded-xl overflow-hidden border aspect-[16/9]"
-                            style="border-color: var(--color-border);"
-                        >
+                        <div class="rounded-xl overflow-hidden border aspect-[16/9] border-color-border">
                             <Image
                                 src={featuredImageSrc}
                                 alt={featuredImageAlt ?? ""}
@@ -222,10 +214,7 @@ const headerInnerClass = showToc
                     <div class="max-w-5xl mx-auto flex gap-14">
                         <div class="min-w-0 flex-1">
                             {featuredImageSrc && (
-                                <div
-                                    class="mb-10 rounded-xl overflow-hidden border aspect-[16/9]"
-                                    style="border-color: var(--color-border);"
-                                >
+                                <div class="mb-10 rounded-xl overflow-hidden border aspect-[16/9] border-border">
                                     <Image
                                         src={featuredImageSrc}
                                         alt={featuredImageAlt ?? ""}

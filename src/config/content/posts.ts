@@ -10,7 +10,6 @@ export const postsContent = {
     title: "All content",
     description: [
       "Browse all posts published on this site, including research projects, technical insights, teaching resources, and selected publications.",
-      "Use the filters below to navigate across research, teaching, publications, and longer-form insights.",
     ],
   },
 
@@ -19,7 +18,11 @@ export const postsContent = {
     { label: "Insights", value: "INSIGHT", href: "/posts?type=INSIGHT" },
     { label: "Research", value: "RESEARCH", href: "/posts?type=RESEARCH" },
     { label: "Teaching", value: "TEACHING", href: "/posts?type=TEACHING" },
-    { label: "Publications", value: "PUBLICATION", href: "/posts?type=PUBLICATION" },
+    {
+      label: "Publications",
+      value: "PUBLICATION",
+      href: "/posts?type=PUBLICATION",
+    },
     { label: "How-to", value: "HOWTO", href: "/posts?type=HOWTO" },
   ],
 

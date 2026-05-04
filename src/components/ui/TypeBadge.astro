@@ -1,0 +1,24 @@
+---
+import {
+    categoryStyles,
+    fallbackCategoryStyles,
+} from "../../config/styles/categoryStyles";
+import type { CategoryType } from "../../config/styles/categoryStyles";
+
+interface Props {
+    type: string;
+}
+
+const { type } = Astro.props;
+const label = type.toUpperCase();
+const colorClasses =
+    label in categoryStyles
+        ? categoryStyles[label as CategoryType].badge
+        : fallbackCategoryStyles.badge;
+---
+
+<span
+    class={`inline-block text-xs font-semibold uppercase tracking-[0.06em] px-4 py-2 rounded-md border leading-none ${colorClasses}`}
+>
+    {label}
+</span>

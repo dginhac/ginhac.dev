@@ -2,7 +2,7 @@
 import BaseLayout from "./BaseLayout.astro";
 import type { ImageMetadata, MarkdownHeading } from "astro";
 import { Image } from "astro:assets";
-import TypeBadge from "../components/TypeBadge.astro";
+import TypeBadge from "../components/ui/TypeBadge.astro";
 import { formatPostDate } from "../utils/posts/dateUtils";
 import TableOfContents from "../components/post/TableOfContents.astro";
 import RelatedPosts from "../components/post/RelatedPosts.astro";
@@ -149,15 +149,29 @@ const headerInnerClass = showToc
                         class="flex items-center gap-x-2 text-sm"
                         style="color: var(--color-text-secondary);"
                     >
-                        {showUpdated ? (
-                            <>
-                                <span>Published <time datetime={isoDate}>{formattedDate}</time></span>
-                                <span aria-hidden="true" class="opacity-40">·</span>
-                                <span>Updated <time datetime={isoUpdated!}>{formattedUpdated}</time></span>
-                            </>
-                        ) : (
-                            <time datetime={isoDate}>{formattedDate}</time>
-                        )}
+                        {
+                            showUpdated ? (
+                                <>
+                                    <span>
+                                        Published{" "}
+                                        <time datetime={isoDate}>
+                                            {formattedDate}
+                                        </time>
+                                    </span>
+                                    <span aria-hidden="true" class="opacity-40">
+                                        ·
+                                    </span>
+                                    <span>
+                                        Updated{" "}
+                                        <time datetime={isoUpdated!}>
+                                            {formattedUpdated}
+                                        </time>
+                                    </span>
+                                </>
+                            ) : (
+                                <time datetime={isoDate}>{formattedDate}</time>
+                            )
+                        }
                         {
                             readingTime && (
                                 <>

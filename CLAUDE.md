@@ -13,228 +13,167 @@ npx astro check   # TypeScript/Astro type checking
 
 No test runner or linter is configured.
 
-# Project context
+## Project context
 
-This is an academic personal website built with Astro.
-
-The site should remain:
-- clean,
-- minimal,
-- text-focused,
-- responsive,
-- accessible,
-- easy to maintain.
-
-Use Astro-native components by default. Do not add client-side JavaScript unless necessary.
-
+Academic personal website built with Astro. Keep it: clean, minimal, text-focused, responsive, accessible, easy to maintain. Astro-native components only — no client-side JS unless necessary, no React/Vue/etc.
 
 ## Architecture
 
-Astro 6 static site with Tailwind CSS v4 (via `@tailwindcss/vite`) and MDX (via `@astrojs/mdx`). TypeScript strict mode. No UI framework (React/Vue/etc.) — pure `.astro` components only.
+Astro 6 · Tailwind CSS v4 (via `@tailwindcss/vite`) · MDX (via `@astrojs/mdx`) · TypeScript strict. No `tailwind.config.*` — CSS-first config via `@theme` in `src/styles/global.css`.
 
 ### Configuration-driven content
 
 All site content lives in `src/config/`:
-- `content/site.ts` — name, title, description
-- `content/navigation.ts` — main nav links (note: `navigation.ts` and `links.ts` stay at `src/config/` root)
-- `links.ts` — external profile URLs and email
-- `navigation.ts` — nav link definitions
-- `content/home.ts` — all homepage section content (meta, hero, featured items, bio)
-- `content/posts.ts` — posts index page content (meta, header, filters, empty state)
-- `content/research.ts` — `/research` page content (meta, intro, projects list, contact)
-- `content/teaching.ts` — `/teaching` page content (meta, intro, courses list, contact)
-- `styles/categoryStyles.ts` — shared type/category color palette (badge + pill variants) for TypeBadge and Pill
 
-Update these files to change content; no component edits needed for copy changes.
+| File | Purpose |
+|---|---|
+| `content/site.ts` | Site name, title, description, logo |
+| `content/home.ts` | Homepage: hero, featured section, bio |
+| `content/posts.ts` | Posts index: meta, filters, empty state |
+| `content/research.ts` | `/research` page content |
+| `content/teaching.ts` | `/teaching` page content |
+| `styles/categoryStyles.ts` | Shared type/category color palette (badge + pill variants) |
+| `navigation.ts` | Main nav links |
+| `links.ts` | External profile URLs and email |
+
+Update these files for content changes; no component edits needed.
+
+**`content/home.ts` shape:**
+- `hero.links[]` — CTA buttons: `{ label, href, variant, external?, download? }` typed as `ButtonLinkItem`
+- `bio.links[]` — action links same shape (`external: true` for Scholar, `download: true` for CV)
+- `featured.items[]` — typed as `FeaturedItem[]`
+
+**Logo glob:** `Header.astro` loads the logo via `import.meta.glob("../../assets/**/*.svg")`. The key must match `site.logo.src` exactly (currently `"../../assets/brand/dg-primary.svg"`, relative to the component file at `src/components/layout/`).
 
 ## Documentation policy
 
-Use Context7 when the task involves framework-specific behavior, APIs, configuration, or version-sensitive features.
+Use Context7 before implementing: routing, layouts, content collections, MDX, image optimization, integrations, i18n, RSS/sitemap, build config, Tailwind configuration.
 
-For Astro, use Context7 before implementing or modifying:
-- routing;
-- layouts;
-- content collections;
-- Markdown/MDX support;
-- image optimization;
-- integrations;
-- i18n;
-- RSS or sitemap generation;
-- build/deployment configuration.
-
-For Tailwind CSS, use Context7 before:
-- installing or configuring Tailwind;
-- modifying the Tailwind configuration;
-- changing theme tokens or plugins;
-- debugging build or configuration issues;
-- using advanced or version-specific Tailwind features.
-
-For simple content edits, copy changes, or visual adjustments using existing project patterns, Context7 is not required.
+Not required for: simple content edits, copy changes, visual tweaks using existing patterns.
 
 ### Posts (MDX)
 
-Posts are written in MDX and live in `src/content/posts/`. The content collection is declared in `src/content.config.ts` using Astro 6's Content Layer API (`glob` loader).
+Posts live in `src/content/posts/<slug>/index.mdx` — auto-routed to `/posts/<slug>/`.
 
-**To add a new post:** create a folder `src/content/posts/<slug>/` containing `index.mdx`. The folder is automatically routed to `/posts/<slug>/` via `src/pages/posts/[slug].astro`. No other file needs to change. Place all post-specific images and an optional `references.bib` alongside `index.mdx` in the same folder.
-
-**Post frontmatter schema:**
+**Frontmatter schema:**
 ```yaml
 title: string               # required
 description: string         # required
 date: YYYY-MM-DD            # required
-updated: YYYY-MM-DD         # optional — last updated date; used for archive sort order and shown as "Updated" in metadata when different from date
-type: string                # optional — e.g. "insight", "tutorial", "teaching", "publication", or "howto"
+updated: YYYY-MM-DD         # optional — overrides sort date; shown as "Updated" when different from date
+type: string                # optional — insight | tutorial | teaching | publication | howto
 tags: [string]              # optional, default []
 lang: string                # optional, default "en"
-featured: boolean           # optional, default false — shows post in FeaturedSection on homepage
-draft: boolean              # optional, default false — excludes post from all listings
+featured: boolean           # optional — shows in FeaturedSection on homepage
+draft: boolean              # optional — excludes from all listings
 readingTime: string         # optional — e.g. "8 min read"
-eyebrow: string             # optional — overrides the eyebrow label in the post header (defaults to type label)
-featuredImage: string       # optional — filename relative to the post folder (e.g. "featured.webp")
-featuredImageAlt: string    # optional — alt text for the featured image
-showFeaturedImage: boolean  # optional — whether to display the image inside the post body
-relatedPosts: [string]      # optional — list of post slugs to show in the related posts section
-bibliography: string        # optional — filename of a .bib file in the post folder (e.g. "references.bib"); reserved for future rendering
-resources:                  # optional — list of resources rendered automatically at end of post
-  - label: string           #   required — clickable link text
-    href: string            #   required — internal or external URL
-    description: string     #   optional — one-line description shown below the label
+eyebrow: string             # optional — overrides post header eyebrow (defaults to type)
+featuredImage: string       # optional — filename relative to post folder
+featuredImageAlt: string    # optional
+showFeaturedImage: boolean  # optional
+relatedPosts: [string]      # optional — list of post slugs
+bibliography: string        # optional — .bib filename in post folder
+resources:
+  - label: string           # required
+    href: string            # required
+    description: string     # optional
 ```
 
-**Available post components** (import from `../../../components/post/` within MDX):
-- `Figure` — responsive image with caption; supports `align` (left/right/center/full) and `width` (third/half/two-thirds/full); left/right variants float on desktop, full-width on mobile
-- `KeyPoint` — callout box with a titled highlight; soft left-border style
-- `ResourceList` — editorial card list of links; driven automatically from `resources` frontmatter — do not use manually in MDX
-- `Bibliography` — numbered academic citation list
-- `RelatedPosts` — related posts section (driven by `relatedPosts` frontmatter)
-- `TableOfContents` — in-post table of contents
+**Available MDX components** (import from `../../../components/post/`):
+`Figure`, `KeyPoint`, `ResourceList` (auto from frontmatter — don't use manually), `Bibliography`, `RelatedPosts`, `TableOfContents`.
 
 ### Component structure
 
-- `layouts/BaseLayout.astro` — root HTML shell, imports `src/styles/global.css` (Tailwind entry), wraps Header + Footer + slot
-- `layouts/PostLayout.astro` — post page shell; editorial header card (title, description, date, tags, type label) + prose body column; used by `pages/posts/[slug].astro`
-- `components/layout/Header.astro` — fixed top bar, transparent over hero → white on scroll; site name + nav + FR language link
-- `components/layout/Footer.astro` — three-column footer with nav, external links, obfuscated email
-- `components/ui/TypeBadge.astro` — shared type badge with per-category tinted pill; reads color classes from `categoryStyles.ts`; used in FeaturedCard, PostLayout, and posts/index
-- `components/ui/Pill.astro` — pill variant of TypeBadge (larger, rounded-full); uses `categoryStyles.ts`; used in /research and /teaching header sections
-- `components/ui/Link.astro` — anchor with configurable arrow; `arrow` prop: `"auto"` (default — `→` internal, `↗` external, none for mailto), `"forward"` (force `→` after), `"back"` (force `←` before), `"none"` (no arrow); external http/https links get `target="_blank" rel="noopener noreferrer"` automatically
-- `components/home/HomeHero.astro` — two-column hero (text + portrait with geometric frame)
-- `components/home/FeaturedSection.astro` — section wrapper; renders eyebrow + FeaturedCard grid
-- `components/home/BioSection.astro` — eyebrow + profile text + Scholar/CV links + "Currently" subsection; bio text rendered via `renderMarkdown`
-- `components/cards/FeaturedCard.astro` — single card with type badge; card hover triggers "Read more →" opacity + underline
-- `components/cards/AcademicCard.astro` — card used in /research and /teaching grids; shows title, metadata line (period/role or level/institution/volume), description, tags, and a "View →" link label
-- `components/post/Figure.astro` — post figure with float/align support
-- `components/post/KeyPoint.astro` — post callout block
-- `components/post/ResourceList.astro` — post resource links
-- `components/post/Bibliography.astro` — post reference list
-- `components/post/RelatedPosts.astro` — related posts section at the bottom of a post
-- `components/post/TableOfContents.astro` — in-post table of contents
+**Layouts**
+- `layouts/BaseLayout.astro` — root HTML shell; imports global.css; wraps Header + Footer
+- `layouts/PostLayout.astro` — post shell: editorial header card + prose column
+
+**Layout components** (`components/layout/`)
+- `Header.astro` — fixed top bar; transparent → white on scroll; logo + nav + FR link; scroll/menu state via JS `.is-scrolled` / `.menu-open` and CSS custom props (`--hdr-*`)
+- `Footer.astro` — three-column footer with nav, external links, obfuscated email
+
+**UI primitives** (`components/ui/`)
+- `Link.astro` — text link with configurable arrow (`arrow?: "auto" | "forward" | "back" | "none"`, default `"auto"`). Auto: `→` internal, `↗` external, none for mailto. Back arrow renders before slot, others after. Styling via `baseClasses` on `<a>` + inner `<span class="inline-flex items-center">` wrapping a `<span class="group-hover:underline">` around `<slot />` — this pattern keeps `text-align` utilities working on the caller while underline triggers only on text. External http/https get `target="_blank" rel="noopener noreferrer"` automatically.
+- `ButtonLink.astro` — CTA/button-style link. Props: `variant?: "primary" | "secondary" | "ghost"` (default `"secondary"`), `size?: "sm" | "md"` (default `"md"`), `external?`, `download?`. Uses design tokens: primary = `bg-accent text-white`, secondary = `border border-border bg-white text-text-primary hover:bg-section-alt`, ghost = `text-text-secondary hover:bg-section-alt`. Pill-shaped (`rounded-full`). External and mailto safety attrs handled same as Link.
+- `TypeBadge.astro` — type badge (small, rectangular); reads from `categoryStyles.ts`
+- `Pill.astro` — pill variant of TypeBadge (larger, `rounded-full`); used in /research and /teaching headers
+
+**Home components** (`components/home/`)
+- `HomeHero.astro` — two-column hero (text + portrait); renders `hero.links` via `ButtonLink`
+- `FeaturedSection.astro` — eyebrow + FeaturedCard grid
+- `BioSection.astro` — profile text (via `renderMarkdown`) + `bio.links` rendered via `ButtonLink` + "Currently" items
+
+**Cards** (`components/cards/`)
+- `FeaturedCard.astro` — homepage featured card with TypeBadge; hover shows "Read more →"
+- `AcademicCard.astro` — card for /research and /teaching grids; shows title, metadata, description, tags
+
+**Post components** (`components/post/`): `Figure`, `KeyPoint`, `ResourceList`, `Bibliography`, `RelatedPosts`, `TableOfContents`
 
 ### Utilities
 
-- `src/utils/markdown.ts` — `renderMarkdown(source)` wraps `marked` with a custom renderer that auto-detects external vs. internal links and adds the appropriate class (`link-external` opens in new tab; `link-internal` stays in tab). Use this for any config prose that contains Markdown links.
-- `src/utils/posts/slugUtils.ts` — `getPostSlug(entryId)` normalises a content entry id to a bare URL slug; supports both `slug/index.mdx` and `slug.mdx` layouts.
-- `src/utils/posts/relatedPosts.ts` — `getRelatedPosts(current, all)` returns up to 3 related posts; uses manual `relatedPosts` frontmatter if set, otherwise scores by shared tags, type, and recency.
-- `src/utils/posts/dateUtils.ts` — `formatPostDate(date)` formats a date for display; `getEffectivePostDate(post)` returns `updated` if set, else `date`; `hasUpdatedDate(post)` returns true when `updated` differs from `date`.
+- `src/utils/markdown.ts` — `renderMarkdown(source)`: wraps `marked`, auto-detects external/internal links, emits `.link-external` / `.link-internal` classes. Use for any config prose with Markdown links.
+- `src/utils/posts/slugUtils.ts` — `getPostSlug(entryId)`: normalises content entry id to bare slug
+- `src/utils/posts/relatedPosts.ts` — `getRelatedPosts(current, all)`: up to 3 related posts by manual list, then tags/type/recency score
+- `src/utils/posts/dateUtils.ts` — `formatPostDate`, `getEffectivePostDate` (returns `updated ?? date`), `hasUpdatedDate`
 
 ### Pages
 
-- `pages/index.astro` — homepage; composes HomeHero + FeaturedSection + BioSection
-- `pages/posts/index.astro` — posts listing; editorial header with type filter nav (client-side JS), driven by `postsContent` from `src/config/content/posts.ts`
-- `pages/posts/[slug].astro` — dynamic post route; renders any entry from `src/content/posts/` using `PostLayout`
-- `pages/research/index.astro` — research synthesis page; intro, topic pills, current/previous project grid using `AcademicCard`, contact line; driven by `researchConfig` from `src/config/content/research.ts`
-- `pages/teaching/index.astro` — teaching synthesis page; same structure as /research; driven by `teachingConfig` from `src/config/content/teaching.ts`
+- `pages/index.astro` — homepage
+- `pages/posts/index.astro` — posts listing with type filter (client-side JS)
+- `pages/posts/[slug].astro` — dynamic post route using `PostLayout`
+- `pages/research/index.astro` — research synthesis page driven by `researchConfig`
+- `pages/teaching/index.astro` — teaching synthesis page driven by `teachingConfig`
 
 ### Styling
 
-Tailwind v4 with utility classes directly in `.astro` files. No `tailwind.config.*` — v4 uses CSS-first config. Global entry point: `src/styles/global.css`, which imports Tailwind and declares all design tokens via `@theme`. Max-width container: `max-w-5xl mx-auto px-6`.
+Max-width container: `max-w-5xl mx-auto px-6`. Post prose: `.post-body` selectors in `global.css` (no `@tailwindcss/typography`).
 
-Post prose styles (headings, paragraphs, lists, links, code, etc.) are declared as `.post-body` CSS selectors at the bottom of `global.css` — do not use `@tailwindcss/typography`.
+**Link styling:** Use `Link.astro` for text links, `ButtonLink.astro` for CTA/button links. Do not use raw `<a>` tags for content links. Nav links, footer links, and card wrapper links remain raw `<a>` tags.
 
-**Content links** use the `.link` utility class (defined in `global.css`): accent color, no underline at rest, underline + opacity-75 on hover. Apply `.link` to any non-nav/footer anchor. The classes `.link-external` and `.link-internal` share the same styles and are emitted automatically by `renderMarkdown`. Do not replicate hover styles inline; always use `.link` or let the markdown renderer handle it.
+**Prose links in config** (`renderMarkdown` output): `.link-external` (opens in new tab) and `.link-internal` share the same hover style defined in `global.css`.
 
-**Prose text in config files** (`src/config/content/home.ts` etc.) should use Markdown syntax for links, not raw HTML. Pass the string through `renderMarkdown` before `set:html`.
+#### Color tokens (`@theme` in global.css)
 
-#### Color system
+| Token | Value | Usage |
+|---|---|---|
+| `--color-accent` | `#2563EB` | Links, CTAs, focus rings, bullets — interactions only |
+| `--color-accent-soft` | `#7BAFD4` | Decorative only — never interactive |
+| `--color-hero-bg` / `--color-site-bg` | `#FBFCFF` | Hero and body background |
+| `--color-section-alt` | `#F3F6FA` | Featured section, card hover bg, secondary button hover |
+| `--color-footer-bg` | `#EEF3F8` | Footer |
+| `--color-text-primary` | `#1F2937` | Headings, strong labels |
+| `--color-text-secondary` | `#6B7280` | Body text, nav, meta |
+| `--color-border` | `#E5EAF0` | All borders and dividers |
 
-All tokens are defined in `src/styles/global.css` under `@theme` and generate Tailwind utilities automatically (e.g. `--color-accent` → `bg-accent`, `text-accent`).
+#### Type label colors (`src/config/styles/categoryStyles.ts`)
 
-| Token | Value | Tailwind class | Usage |
-|---|---|---|---|
-| `--color-hero-bg` | `#FBFCFF` | `bg-hero-bg` | Hero section background (light, blue-tinted) |
-| `--color-hero-text` | `#0F172A` | `text-hero-text` | Hero title (deep navy) |
-| `--color-hero-muted` | `#6B7280` | `text-hero-muted` | Hero subtitle |
-| `--color-site-bg` | `#FBFCFF` | `bg-site-bg` | Body / bio section background |
-| `--color-section-alt` | `#F3F6FA` | `bg-section-alt` | Featured section, card label pills, post header card |
-| `--color-footer-bg` | `#EEF3F8` | `bg-footer-bg` | Footer (one step deeper than section-alt) |
-| `--color-text-primary` | `#1F2937` | `text-text-primary` | Headings, strong labels |
-| `--color-text-secondary` | `#6B7280` | `text-text-secondary` | Body text, nav, meta |
-| `--color-accent` | `#2563EB` | `text-accent`, `bg-accent` | Links, CTA, focus rings, bullets — interactions only |
-| `--color-accent-soft` | `#7BAFD4` | `bg-accent-soft` | Decorative only (portrait corner dot) — never interactive |
-| `--color-border` | `#E5EAF0` | `border-border` | All borders and dividers (blue-gray tint) |
-
-#### Type label colors
-
-The shared color palette lives in `src/config/styles/categoryStyles.ts` and is consumed by both `TypeBadge.astro` (badge variant) and `Pill.astro` (pill variant). Colors are expressed as Tailwind utility class strings — do not replicate or override this logic in components.
-
-| Category | Tailwind classes (badge) |
+| Category | Badge classes |
 |---|---|
 | RESEARCH | `border-blue-200 bg-blue-50 text-blue-600` |
 | PUBLICATION | `border-violet-200 bg-violet-50 text-violet-600` |
 | TEACHING | `border-emerald-200 bg-emerald-50 text-emerald-600` |
 | INSIGHT | `border-orange-200 bg-orange-50 text-orange-600` |
 | HOWTO | `border-amber-200 bg-amber-50 text-amber-700` |
-| DEFAULT (fallback) | `border-slate-200 bg-slate-50 text-slate-600` |
+| DEFAULT | `border-slate-200 bg-slate-50 text-slate-600` |
 
-Pill classes use the same hue with slightly darker text (e.g. `text-blue-700` instead of `text-blue-600`).
+Pill classes use same hue with slightly darker text. Do not replicate this logic outside `TypeBadge.astro` and `Pill.astro`.
 
-#### Typography
+#### Design rules
 
-Two fonts, defined as `@theme` tokens in `global.css` and installed as self-hosted variable fonts via npm (no CDN):
-
-| Token | Package | Tailwind class | Usage |
-|---|---|---|---|
-| `--font-heading` | `@fontsource-variable/manrope` | `font-heading` | All headings (`h1`–`h3`), eyebrow labels use Inter |
-| `--font-sans` | `@fontsource-variable/inter` | `font-sans` | Everything else — body, nav, buttons, labels, footer |
-
-`font-sans` is set on `body` in global.css and inherited globally. `font-heading` is applied explicitly on heading elements only.
-
-Typographic scale in use:
-
-| Element | Font | Size | Weight | Tracking | Leading |
-|---|---|---|---|---|---|
-| Section eyebrow | Inter | 12px / `text-xs` | 500 | `0.08em` | — |
-| Hero `h1` | Manrope | 36→48px | light (base) / bold (`<strong>`) | `-0.03em` | `1.07` |
-| Hero subtitle | Inter | 16→18px | 400 | — | `1.65` |
-| Section `h2` | Manrope | 24→30px | 700 | `-0.02em` | `1.2` |
-| Card `h3` | Manrope | 16px | 600 | `-0.015em` | `1.25` |
-| Card body / labels | Inter | 14px / 12px | 400 / 600 | — / `0.06em` | `1.65` / `1` |
-| Bio body | Inter | 16px | 400 | — | `1.7` |
-| "Currently" label | Inter | 13px | 500 | `0.08em` | — |
-| Nav / links | Inter | 14px | 500 | — | — |
-| Footer | Inter | 14px | 400 | — | `1.5` |
-| Post `h1` | Manrope | 30→44px | 700 | `-0.03em` | `1.08` |
-| Post `h2` | Manrope | 22px | 700 | `-0.02em` | `1.25` |
-| Post `h3` | Manrope | 18px | 600 | `-0.01em` | `1.35` |
-| Post body | Inter | 16px | 400 | — | `1.75` |
-
-#### Design rules to preserve
-
-- **Accent** (`#2563EB`) is for interactions only — never as a section background.
-- **Accent-soft** (`#7BAFD4`) is decorative only — never used for links or interactive states.
-- **Hero**: light (`#FBFCFF`), not dark. Separated from the Featured section by `border-b border-border`.
-- **No colored card or section backgrounds** — cards are always white; sections step through `site-bg` → `section-alt` → `footer-bg`.
-- **Shadows**: `rgba(15,23,42,0.06)` only, on hover, never static.
-- **Header**: `position: fixed`, transparent over the light hero with dark text (no color flip needed on scroll — just adds white background + border). Transition controlled via JS `.is-scrolled` class and CSS custom properties (`--hdr-*`) to avoid Tailwind purge issues.
-- **Post prose**: styled via `.post-body` selectors in `global.css`, not via `@tailwindcss/typography`. Post headings use `--color-hero-text` (`#0F172A`), not `--color-text-primary`.
-
-### Internationalisation
-
-English is the default at `/`. The header includes a placeholder `FR` link to `/fr/` for a future French version. Full i18n is not yet implemented.
+- Accent is for interactions only — never a section background.
+- Accent-soft is decorative only — never interactive.
+- Cards always white; sections step `site-bg` → `section-alt` → `footer-bg`. No colored section backgrounds.
+- Shadows: `rgba(15,23,42,0.06)` on hover only, never static.
+- Post headings use `--color-hero-text` (`#0F172A`), not `--color-text-primary`.
+- Fonts: `font-heading` (Manrope variable) for `h1`–`h3`; `font-sans` (Inter variable) for everything else.
 
 ### Assets
 
-Portrait: `src/assets/home/hero-portrait-v2.jpg`  
-Favicon: `public/favicon.svg`.  
-Brand SVG: `src/assets/brand/dg-primary.svg`  
-Post images: co-located with the post in `src/content/posts/<slug>/` — place images alongside `index.mdx` and reference them with relative paths (e.g. `import img from "./featured.webp"`) or via the `featuredImage` frontmatter field.
+- Portrait: `src/assets/home/hero-portrait-v2.jpg`
+- Brand SVG: `src/assets/brand/dg-primary.svg`
+- Favicon: `public/favicon.svg`
+- Post images: co-located in `src/content/posts/<slug>/`, referenced by relative path or `featuredImage` frontmatter
+
+### Internationalisation
+
+English default at `/`. Header has placeholder `FR` link to `/fr/` — full i18n not yet implemented.

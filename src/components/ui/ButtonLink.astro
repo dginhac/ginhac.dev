@@ -1,0 +1,57 @@
+---
+interface Props {
+    href: string;
+    variant?: "primary" | "secondary" | "ghost";
+    size?: "sm" | "md";
+    external?: boolean;
+    download?: boolean;
+    class?: string;
+}
+
+const {
+    href,
+    variant = "secondary",
+    size = "md",
+    external: externalProp,
+    download,
+    class: className,
+} = Astro.props;
+
+const isMailto = href.startsWith("mailto:");
+const isExternal =
+    externalProp !== undefined
+        ? externalProp
+        : href.startsWith("http://") || href.startsWith("https://");
+
+const safeAttrs =
+    isExternal && !isMailto
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {};
+
+const baseClasses =
+    "inline-flex items-center justify-center rounded-full font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
+
+const sizeClasses = {
+    sm: "px-4 py-2 text-sm",
+    md: "px-5 py-2.5 text-sm",
+};
+
+const variantClasses = {
+    primary: "bg-accent text-white hover:opacity-90",
+    secondary: "border border-border bg-white text-text-primary hover:bg-section-alt",
+    ghost: "text-text-secondary hover:text-text-primary hover:bg-section-alt",
+};
+
+const classes = [baseClasses, sizeClasses[size], variantClasses[variant], className]
+    .filter(Boolean)
+    .join(" ");
+---
+
+<a
+    href={href}
+    class={classes}
+    {...safeAttrs}
+    {...(download ? { download: true } : {})}
+>
+    <slot />
+</a>

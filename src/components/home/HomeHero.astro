@@ -1,6 +1,7 @@
 ---
 import type { homeContent } from "../../config/content/home";
 import { Image } from "astro:assets";
+import ButtonLink from "../ui/ButtonLink.astro";
 
 interface Props {
     hero: typeof homeContent.hero;
@@ -47,26 +48,19 @@ const { hero } = Astro.props;
                     {hero.subtitle}
                 </p>
 
-                <!-- CTAs: first is primary button, rest are text links -->
-                {hero.ctas.length > 0 && (
-                    <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
-                        {hero.ctas.map((cta, i) =>
-                            i === 0 ? (
-                                <a
-                                    href={cta.href}
-                                    class="inline-flex items-center px-5 py-2.5 bg-accent text-white text-sm font-medium rounded-md hover:opacity-90 transition-opacity"
-                                >
-                                    {cta.label}
-                                </a>
-                            ) : (
-                                <a
-                                    href={cta.href}
-                                    class="text-sm font-medium text-hero-muted hover:text-hero-text transition-colors underline-offset-4 hover:underline"
-                                >
-                                    {cta.label}
-                                </a>
-                            )
-                        )}
+                <!-- CTAs -->
+                {hero.links.length > 0 && (
+                    <div class="flex flex-wrap items-center gap-3">
+                        {hero.links.map((link) => (
+                            <ButtonLink
+                                href={link.href}
+                                variant={link.variant}
+                                external={link.external}
+                                download={link.download}
+                            >
+                                {link.label}
+                            </ButtonLink>
+                        ))}
                     </div>
                 )}
             </div>

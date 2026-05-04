@@ -85,11 +85,18 @@ const externalLinks = [
         >
             <p>
                 &copy; 2026 {site.name} · Built with{" "}
-                <Link href="https://astro.build"> Astro </Link>
+                <Link href="https://astro.build" arrow="none"> Astro </Link>
                 {", "}
-                <Link href="https://claude.com"> Claude Code </Link>
+                <Link href="https://claude.com" arrow="none">
+                    Claude Code
+                </Link>
                 {" and a lot of "}
                 <Coffee size={16} class="inline-block align-middle" />
+                . Source code on <Link
+                    href="https://github.com/dginhac/ginhac.dev"
+                >
+                    GitHub
+                </Link>
             </p>
             <p>
                 <Link href="/legal" class="text-text-secondary font-medium"

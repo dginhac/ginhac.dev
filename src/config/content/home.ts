@@ -1,5 +1,4 @@
 import portrait from "../../assets/home/hero-portrait-v2.jpg";
-import { links } from "../links";
 
 export type FeaturedItemType =
   | "RESEARCH"
@@ -17,6 +16,14 @@ export interface FeaturedItem {
   featuredImageAlt?: string;
 }
 
+export interface ButtonLinkItem {
+  label: string;
+  href: string;
+  variant?: "primary" | "secondary" | "ghost";
+  external?: boolean;
+  download?: boolean;
+}
+
 export const homeContent = {
   meta: {
     title:
@@ -32,11 +39,11 @@ export const homeContent = {
       "Professor in Computer Science, I work at the intersection of artificial intelligence, computer vision, and imaging systems, with a particular interest in low-level vision, computational imaging, and efficient IA-based software/hardware architectures.",
     portrait,
     portraitAlt: "Portrait of Dominique Ginhac",
-    ctas: [
-      { label: "Publications", href: "/publications" },
-      { label: "Research", href: "/research" },
-      { label: "Teaching", href: "/teaching" },
-    ],
+    links: [
+      { label: "Publications", href: "/publications", variant: "primary" },
+      { label: "Research", href: "/research", variant: "secondary" },
+      { label: "Teaching", href: "/teaching", variant: "secondary" },
+    ] satisfies ButtonLinkItem[],
   },
 
   featured: {
@@ -53,7 +60,20 @@ export const homeContent = {
     eyebrow: "About",
     title: "Profile",
     text: "I am a Full Professor in Computer Science at [Université Bourgogne Europe](https://www.ube.fr/en/home), affiliated with the [ICB laboratory](https://icb.cnrs.fr/en/icb-home/). My [work](/posts) spans computer vision, artificial intelligence, digital imaging systems, and engineering education, with a focus on the links between fundamental research, applications, and teaching.",
-    links: [links.scholar, links.cv],
+    links: [
+      {
+        label: "Google Scholar",
+        href: "https://scholar.google.com/citations?user=fkdCT5kAAAAJ",
+        variant: "secondary",
+        external: true,
+      },
+      {
+        label: "CV (PDF)",
+        href: "/cv.pdf",
+        variant: "secondary",
+        download: true,
+      },
+    ] satisfies ButtonLinkItem[],
     currentIntro:
       "Currently, my work is structured around several research and teaching directions.",
     currentTitle: "Currently",

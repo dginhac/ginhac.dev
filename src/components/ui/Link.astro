@@ -31,30 +31,37 @@ const arrowSymbol = !shouldShowArrow
           ? "↗"
           : "→";
 
+const baseClasses =
+    "underline-offset-4 transition-opacity hover:opacity-60 hover:underline";
+
+// gap lives on the inner span so the <a> stays plain inline,
+// preserving text-align utilities (e.g. sm:text-right) on the caller
+const innerClasses = `inline-flex items-center${arrow !== "none" ? " gap-1" : ""}`;
+
+const classes = [baseClasses, className].filter(Boolean).join(" ");
+
 const safeAttrs =
     isExternal && !isMailto
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {};
 ---
 
-<a
-    href={href}
-    class={`gap-1 transition-colors hover:opacity-60 hover:underline hover:underline-offset-[3px]${className ? ` ${className}` : ""}`}
-    {...safeAttrs}
->
-    {
-        arrow === "back" && arrowSymbol && (
-            <span aria-hidden="true" class="shrink-0 opacity-70 text-[0.7em]">
-                {arrowSymbol}
-            </span>
-        )
-    }
-    <slot />
-    {
-        arrow !== "back" && arrowSymbol && (
-            <span aria-hidden="true" class="shrink-0 opacity-70 text-[0.7em]">
-                {arrowSymbol}
-            </span>
-        )
-    }
+<a href={href} class={classes} {...safeAttrs}>
+    <span class={innerClasses}>
+        {
+            arrow === "back" && arrowSymbol && (
+                <span aria-hidden="true" class="shrink-0 opacity-70 text-[0.7em]">
+                    {arrowSymbol}
+                </span>
+            )
+        }
+        <slot />
+        {
+            arrow !== "back" && arrowSymbol && (
+                <span aria-hidden="true" class="shrink-0 opacity-70 text-[0.7em]">
+                    {arrowSymbol}
+                </span>
+            )
+        }
+    </span>
 </a>

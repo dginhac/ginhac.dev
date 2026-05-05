@@ -9,6 +9,7 @@ import RelatedPosts from "../components/post/RelatedPosts.astro";
 import ResourceList from "../components/post/ResourceList.astro";
 import Link from "../components/ui/Link.astro";
 import type { CollectionEntry } from "astro:content";
+import { getCategoryStyles } from "../config/styles/categoryStyles";
 
 interface Props {
     title: string;
@@ -65,6 +66,7 @@ const formattedUpdated = showUpdated ? formatPostDate(updated) : null;
 const isoUpdated = showUpdated ? updated.toISOString().split("T")[0] : null;
 
 const typeLabel = type?.toUpperCase();
+const typeStyles = getCategoryStyles(typeLabel);
 
 // When TOC is shown, use the same outer container as the body so the left edge
 // aligns with the article column, while the header still spans the full width.
@@ -76,7 +78,9 @@ const headerInnerClass = showToc
 <BaseLayout title={title} description={description}>
     <article id="top">
         <!-- Full-width editorial header -->
-        <div class="pt-28 pb-14 md:pt-32 md:pb-12 px-6 bg-section-alt">
+        <div
+            class={`pt-28 pb-14 md:pt-32 md:pb-12 px-6 ${typeStyles.headerGradient}`}
+        >
             <div class={headerInnerClass}>
                 <!-- Back link -->
                 <Link
@@ -112,7 +116,7 @@ const headerInnerClass = showToc
                 <h1
                     class="font-heading text-3xl md:text-[2.5rem] font-bold tracking-[-0.02em] leading-[1.2] mb-6 text-hero-text"
                 >
-                    <span class="text-accent-soft font-extrabold">/</span>
+                    <span class={`${typeStyles.titleAccent} font-extrabold`}>/</span>
                     {title}
                 </h1>
 

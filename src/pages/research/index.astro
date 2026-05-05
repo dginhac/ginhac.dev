@@ -23,7 +23,9 @@ const previousProjects = projects.filter((p) => p.status === "previous");
 
 <BaseLayout title={meta.title} description={meta.description}>
     <!-- Page header -->
-    <div class="w-full bg-section-alt border-b border-border">
+    <div
+        class="w-full border-b border-border bg-linear-to-b from-section-alt via-section-alt to-blue-50"
+    >
         <div class="max-w-5xl mx-auto px-6 py-12 sm:py-16">
             <p
                 class="text-xs font-medium tracking-[0.08em] uppercase text-text-secondary mt-8 mb-3"
@@ -45,9 +47,7 @@ const previousProjects = projects.filter((p) => p.status === "previous");
                 {intro}
             </p>
             <div class="mt-6 flex flex-wrap gap-2">
-                {pills.map((pill) => (
-                    <Pill label={pill} category="RESEARCH" />
-                ))}
+                {pills.map((pill) => <Pill label={pill} category="RESEARCH" />)}
             </div>
         </div>
     </div>
@@ -148,7 +148,9 @@ const previousProjects = projects.filter((p) => p.status === "previous");
             <p class="text-text-secondary text-sm">
                 {contact.text}
                 {" "}
-                <Link href={contact.href} class="link" arrow="none">{contact.linkLabel}</Link>.
+                <Link href={contact.href} class="link" arrow="none"
+                    >{contact.linkLabel}</Link
+                >.
             </p>
         </div>
     </div>

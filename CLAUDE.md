@@ -32,7 +32,7 @@ All site content lives in `src/config/`:
 | `content/posts.ts` | Posts index: meta, filters, empty state |
 | `content/research.ts` | `/research` page content |
 | `content/teaching.ts` | `/teaching` page content |
-| `styles/categoryStyles.ts` | Shared type/category color palette (badge + pill variants) |
+| `styles/categoryStyles.ts` | Shared type/category color palette (badge variants) |
 | `navigation.ts` | Main nav links |
 | `links.ts` | External profile URLs and email |
 
@@ -97,7 +97,7 @@ resources:
 - `Link.astro` — text link with configurable arrow (`arrow?: "auto" | "forward" | "back" | "none"`, default `"auto"`). Auto: `→` internal, `↗` external, none for mailto. Back arrow renders before slot, others after. `arrow="none"` automatically applies `text-accent` and `inline` display — use it for inline text links inside prose. Arrow variants use `inline-flex items-center gap-1` and inherit contextual color. Callers can override either via the `class` prop (appended last). `group-hover:underline` is on the inner slot span (not the `<a>`) so arrows are never underlined. External http/https get `target="_blank" rel="noopener noreferrer"` automatically.
 - `ButtonLink.astro` — CTA/button-style link. Props: `variant?: "primary" | "secondary" | "ghost"` (default `"secondary"`), `size?: "sm" | "md"` (default `"md"`), `external?`, `download?`. Uses design tokens: primary = `bg-accent text-white`, secondary = `border border-border bg-white text-text-primary hover:bg-section-alt`, ghost = `text-text-secondary hover:bg-section-alt`. Pill-shaped (`rounded-full`). External and mailto safety attrs handled same as Link.
 - `TypeBadge.astro` — type badge (small, rectangular); reads from `categoryStyles.ts`. Accepts optional `href?: string`; renders as `<a>` with hover opacity/shadow when provided, plain `<span>` otherwise. PostLayout passes `href="/posts?type=<TYPE>"` so the badge links to the filtered archive.
-- `Pill.astro` — pill variant of TypeBadge (larger, `rounded-full`); used in /research and /teaching headers
+- `Tag.astro` — neutral thematic keyword label (`rounded-full`, slate palette); accepts `label` and optional `href` (renders `<a>` when clickable, `<span>` when not); used in post headers and /research and /teaching page headers
 
 **Home components** (`components/home/`)
 - `HomeHero.astro` — two-column hero (text + portrait); renders `hero.links` via `ButtonLink`
@@ -157,7 +157,7 @@ Max-width container: `max-w-5xl mx-auto px-6`. Post prose: `.post-body` selector
 | HOWTO | `border-amber-200 bg-amber-50 text-amber-700` |
 | DEFAULT | `border-slate-200 bg-slate-50 text-slate-600` |
 
-Pill classes use same hue with slightly darker text. Do not replicate this logic outside `TypeBadge.astro` and `Pill.astro`.
+Badge classes use same hue with slightly darker text. Do not replicate this logic outside `TypeBadge.astro`.
 
 #### Design rules
 

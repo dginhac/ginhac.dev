@@ -82,14 +82,40 @@ const headerInnerClass = showToc
             class={`pt-28 pb-14 md:pt-32 md:pb-12 px-6 ${typeStyles.headerGradient}`}
         >
             <div class={headerInnerClass}>
-                <!-- Back link -->
-                <Link
-                    href="/posts"
-                    arrow="back"
-                    class="text-text-secondary text-sm mb-8 transition-opacity hover:opacity-60"
-                >
-                    All content
-                </Link>
+                <!-- Breadcrumb -->
+                <nav aria-label="Breadcrumb" class="mb-8">
+                    <ol
+                        class="flex flex-wrap items-center gap-1.5 text-sm text-text-secondary"
+                    >
+                        <li>
+                            <Link
+                                href="/posts"
+                                arrow="none"
+                                class="text-text-secondary hover:text-text-primary transition-colors"
+                            >
+                                All content
+                            </Link>
+                        </li>
+                        {
+                            typeLabel && (
+                                <>
+                                    <li aria-hidden="true" class="opacity-40">
+                                        &gt;
+                                    </li>
+                                    <li>
+                                        <Link
+                                            href={`/posts?type=${typeLabel}`}
+                                            arrow="none"
+                                            class="font-medium uppercase tracking-wide text-text-secondary hover:text-text-primary transition-colors"
+                                        >
+                                            {typeLabel}
+                                        </Link>
+                                    </li>
+                                </>
+                            )
+                        }
+                    </ol>
+                </nav>
 
                 <!-- Type label -->
                 {

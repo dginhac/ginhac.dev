@@ -90,7 +90,11 @@ export const homeContent = {
     currentItems: [
       {
         parts: [
-          { label: "LUMEN project", href: "/posts/lumen" },
+          {
+            label: "LUMEN project",
+            href: "/posts/lumen",
+            external: false,
+          },
           " — learning luminance representations for HDR imaging.",
         ],
       },
@@ -100,6 +104,7 @@ export const homeContent = {
           {
             label: "C++ programming",
             href: "/posts/cpp-object-oriented-programming",
+            external: false,
           },
           " resources with Git and software engineering practices.",
         ],

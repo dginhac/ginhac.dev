@@ -2,6 +2,7 @@
 import type { homeContent } from "../../config/content/home";
 import { Image } from "astro:assets";
 import ButtonLink from "../ui/ButtonLink.astro";
+import Eyebrow from "../ui/Eyebrow.astro";
 
 interface Props {
     hero: typeof homeContent.hero;
@@ -23,12 +24,8 @@ const { hero } = Astro.props;
         >
             <!-- Text column -->
             <div class="order-2 md:order-1 md:col-span-2">
-                <!-- Eyebrow: Inter 14px / medium / 0.08em -->
-                <p
-                    class="text-xs font-medium tracking-[0.08em] uppercase text-text-secondary mb-3"
-                >
-                    {hero.eyebrow}
-                </p>
+                <!-- Eyebrow -->
+                <Eyebrow class="mb-2">{hero.eyebrow}</Eyebrow>
 
                 <!--
                   Manrope heading. Base weight is font-light.
@@ -49,20 +46,22 @@ const { hero } = Astro.props;
                 </p>
 
                 <!-- CTAs -->
-                {hero.links.length > 0 && (
-                    <div class="flex flex-wrap items-center gap-3">
-                        {hero.links.map((link) => (
-                            <ButtonLink
-                                href={link.href}
-                                variant={link.variant}
-                                external={link.external}
-                                download={link.download}
-                            >
-                                {link.label}
-                            </ButtonLink>
-                        ))}
-                    </div>
-                )}
+                {
+                    hero.links.length > 0 && (
+                        <div class="flex flex-wrap items-center gap-3">
+                            {hero.links.map((link) => (
+                                <ButtonLink
+                                    href={link.href}
+                                    variant={link.variant}
+                                    external={link.external}
+                                    download={link.download}
+                                >
+                                    {link.label}
+                                </ButtonLink>
+                            ))}
+                        </div>
+                    )
+                }
             </div>
 
             <!-- Portrait column -->

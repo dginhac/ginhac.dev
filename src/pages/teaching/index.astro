@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import AcademicCard from "../../components/cards/AcademicCard.astro";
 import Tag from "../../components/ui/Tag.astro";
 import Link from "../../components/ui/Link.astro";
+import Eyebrow from "../../components/ui/Eyebrow.astro";
 import { teachingConfig } from "../../config/content/teaching";
 import { getPageStyles } from "../../config/styles/categoryStyles";
 
@@ -26,15 +27,11 @@ const previousCourses = courses.filter((c) => c.status === "previous");
 
 <BaseLayout title={meta.title} description={meta.description}>
     <!-- Page header -->
-    <div
-        class={`w-full border-b border-border ${styles.headerGradient}`}
-    >
+    <div class={`w-full border-b border-border ${styles.headerGradient}`}>
         <div class="max-w-5xl mx-auto px-6 py-12 sm:py-16">
-            <p
-                class="text-xs font-medium tracking-[0.08em] uppercase text-text-secondary mt-8 mb-3"
-            >
-                {eyebrow}
-            </p>
+            <!-- Eyebrow -->
+            <Eyebrow class="mt-8 mb-2">{eyebrow}</Eyebrow>
+
             <h1
                 class="font-heading text-3xl md:text-[2.5rem] font-bold text-hero-text tracking-[-0.02em] leading-[1.2] mb-4"
             >

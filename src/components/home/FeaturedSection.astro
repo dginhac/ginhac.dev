@@ -2,9 +2,11 @@
 import type { FeaturedItem } from "../../config/content/home";
 import FeaturedCard from "../cards/FeaturedCard.astro";
 import Link from "../ui/Link.astro";
+import Eyebrow from "../ui/Eyebrow.astro";
 
 interface Props {
     featured: {
+        eyebrow: string;
         title: string;
         description: string;
         articlesLinkLabel: string;
@@ -25,11 +27,9 @@ const { featured } = Astro.props;
         <!-- Section header -->
         <div class="flex flex-col sm:flex-row sm:items-end gap-3 mb-10">
             <div class="sm:w-3/4">
-                <p
-                    class="text-xs font-medium tracking-[0.08em] uppercase text-text-secondary mb-3"
-                >
-                    {featured.eyebrow}
-                </p>
+                <!-- Eyebrow -->
+                <Eyebrow class="mb-2">{featured.eyebrow}</Eyebrow>
+
                 <!-- Manrope 24/30px / bold / UPPERCASE / -0.02em -->
                 <h2
                     id="featured-heading"

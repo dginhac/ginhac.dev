@@ -1,41 +1,45 @@
 ---
+import Eyebrow from "../ui/Eyebrow.astro";
+
 interface Props {
-  title?: string;
+    title?: string;
 }
 const { title } = Astro.props;
 ---
 
 <aside
-  class="my-10 rounded-r-lg pl-5 pr-6 py-5"
-  style="
+    class="my-10 rounded-r-lg pl-5 pr-6 py-5"
+    style="
     background-color: #EEF3F8;
     border: 1px solid #D6E6F2;
     border-left: 4px solid #7BAFD4;
   "
 >
-  <!-- Eyebrow label -->
-  <p
-    class={`text-[11px] font-semibold tracking-[0.08em] uppercase ${title ? 'mb-2' : 'mb-3'}`}
-    style="color: #7BAFD4;"
-  >
-    Key point
-  </p>
-
-  <!-- Title (optional) -->
-  {title && (
+    <!-- Eyebrow -->
     <p
-      class="font-heading text-[1.1875rem] font-bold leading-[1.25] mb-3"
-      style="color: var(--color-hero-text);"
+        class={`text-[11px] font-semibold tracking-[0.08em] uppercase ${title ? "mb-2" : "mb-3"}`}
+        style="color: #7BAFD4;"
     >
-      {title}
+        Key point
     </p>
-  )}
 
-  <!-- Body -->
-  <div
-    class="text-[1.0625rem] font-medium leading-[1.62]"
-    style="color: var(--color-text-primary);"
-  >
-    <slot />
-  </div>
+    <!-- Title (optional) -->
+    {
+        title && (
+            <p
+                class="font-heading text-[1.1875rem] font-bold leading-[1.25] mb-3"
+                style="color: var(--color-hero-text);"
+            >
+                {title}
+            </p>
+        )
+    }
+
+    <!-- Body -->
+    <div
+        class="text-[1.0625rem] font-medium leading-[1.62]"
+        style="color: var(--color-text-primary);"
+    >
+        <slot />
+    </div>
 </aside>

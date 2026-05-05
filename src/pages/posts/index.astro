@@ -4,6 +4,7 @@ import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import TypeBadge from "../../components/ui/TypeBadge.astro";
+import Eyebrow from "../../components/ui/Eyebrow.astro";
 import { postsContent } from "../../config/content/posts";
 import {
     formatPostDate,
@@ -55,15 +56,11 @@ const posts = await Promise.all(
 
 <BaseLayout title={meta.title} description={meta.description}>
     <!-- Editorial page header -->
-    <div
-        class={`w-full border-b border-border ${pageStyle.headerGradient}`}
-    >
+    <div class={`w-full border-b border-border ${pageStyle.headerGradient}`}>
         <div class="max-w-5xl mx-auto px-6 py-12 sm:py-16">
-            <p
-                class="text-xs font-medium tracking-[0.08em] uppercase text-text-secondary mt-8 mb-3"
-            >
-                {header.eyebrow}
-            </p>
+            <!-- Eyebrow -->
+            <Eyebrow class="mt-8 mb-2">{header.eyebrow}</Eyebrow>
+
             <h1
                 class="font-heading text-3xl md:text-[2.5rem] font-bold text-hero-text tracking-[-0.02em] leading-[1.2] mb-4"
             >

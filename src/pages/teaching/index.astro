@@ -4,6 +4,9 @@ import AcademicCard from "../../components/cards/AcademicCard.astro";
 import Pill from "../../components/ui/Pill.astro";
 import Link from "../../components/ui/Link.astro";
 import { teachingConfig } from "../../config/content/teaching";
+import { getPageStyles } from "../../config/styles/categoryStyles";
+
+const styles = getPageStyles("teaching");
 
 const {
     meta,
@@ -24,7 +27,7 @@ const previousCourses = courses.filter((c) => c.status === "previous");
 <BaseLayout title={meta.title} description={meta.description}>
     <!-- Page header -->
     <div
-        class="w-full border-b border-border bg-linear-to-b from-section-alt via-section-alt to-green-50"
+        class={`w-full border-b border-border ${styles.headerGradient}`}
     >
         <div class="max-w-5xl mx-auto px-6 py-12 sm:py-16">
             <p
@@ -35,7 +38,7 @@ const previousCourses = courses.filter((c) => c.status === "previous");
             <h1
                 class="font-heading text-3xl md:text-[2.5rem] font-bold text-hero-text tracking-[-0.02em] leading-[1.2] mb-4"
             >
-                <span class="text-accent-soft font-extrabold">/</span>
+                <span class={`${styles.titleAccent} font-extrabold`}>/</span>
                 {title}
             </h1>
             <p
@@ -47,7 +50,7 @@ const previousCourses = courses.filter((c) => c.status === "previous");
                 {intro}
             </p>
             <div class="mt-6 flex flex-wrap gap-2">
-                {pills.map((pill) => <Pill label={pill} category="TEACHING" />)}
+                {pills.map((pill) => <Pill label={pill} />)}
             </div>
         </div>
     </div>

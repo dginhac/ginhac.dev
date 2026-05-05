@@ -1,25 +1,13 @@
 ---
-import {
-  categoryStyles,
-  fallbackCategoryStyles,
-} from "../../config/styles/categoryStyles";
-import type { CategoryType } from "../../config/styles/categoryStyles";
-
 interface Props {
   label: string;
-  category?: CategoryType;
 }
 
-const { label, category } = Astro.props;
-
-const colorClasses =
-  category && category in categoryStyles
-    ? categoryStyles[category].pill
-    : fallbackCategoryStyles.pill;
+const { label } = Astro.props;
 ---
 
 <span
-  class={`inline-flex items-center rounded-full border px-3.5 py-1.5 text-sm font-medium leading-none ${colorClasses}`}
+  class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-sm font-medium leading-none text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
 >
   {label}
 </span>

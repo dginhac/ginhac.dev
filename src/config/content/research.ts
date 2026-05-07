@@ -47,7 +47,7 @@ export const researchConfig: ResearchConfig = {
   sections: {
     current: {
       title: "Current projects",
-      description: "Selected projects currently shaping my research agenda.",
+      description: "Active projects that define the current directions of my research in computational imaging and embedded visual AI.",
     },
     previous: {
       title: "Previous projects",

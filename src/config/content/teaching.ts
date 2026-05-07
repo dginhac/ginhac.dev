@@ -48,8 +48,7 @@ export const teachingConfig: TeachingConfig = {
   sections: {
     current: {
       title: "Current modules",
-      description:
-        "Courses and modules currently taught in engineering curricula.",
+      description: "Modules currently taught, centered on software engineering practice, systems thinking, and modern programming methodology.",
     },
     previous: {
       title: "Previous modules",

@@ -24,6 +24,8 @@ const posts = defineCollection({
     featuredImage: z.string().optional(),
     featuredImageAlt: z.string().optional(),
     showFeaturedImage: z.boolean().optional(),
+    kind: z.enum(['project', 'course']).optional(),
+    status: z.enum(['current', 'past']).optional(),
     relatedPosts: z.array(z.string()).optional(),
     eyebrow: z.string().optional(),
     bibliography: z.string().optional(),

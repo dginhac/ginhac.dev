@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import AcademicCard from "../../components/cards/AcademicCard.astro";
 import Tag from "../../components/ui/Tag.astro";
@@ -6,23 +7,26 @@ import Link from "../../components/ui/Link.astro";
 import Eyebrow from "../../components/ui/Eyebrow.astro";
 import { researchConfig } from "../../config/content/research";
 import { getPageStyles } from "../../config/styles/categoryStyles";
+import { getPostSlug } from "../../utils/posts/slugUtils";
+import { getEffectivePostDate } from "../../utils/posts/dateUtils";
 
 const styles = getPageStyles("research");
 
-const {
-    meta,
-    eyebrow,
-    title,
-    description,
-    intro,
-    tags,
-    sections,
-    projects,
-    contact,
-} = researchConfig;
+const { meta, eyebrow, title, description, intro, tags, sections, contact } =
+    researchConfig;
 
-const currentProjects = projects.filter((p) => p.status === "current");
-const previousProjects = projects.filter((p) => p.status === "previous");
+const allPosts = await getCollection("posts", (post) => !post.data.draft);
+
+const researchProjects = allPosts
+    .filter(
+        (post) => post.data.type === "research" && post.data.kind === "project",
+    )
+    .sort((a, b) => getEffectivePostDate(b).getTime() - getEffectivePostDate(a).getTime());
+
+const currentProjects = researchProjects.filter(
+    (p) => p.data.status === "current",
+);
+const pastProjects = researchProjects.filter((p) => p.data.status === "past");
 ---
 
 <BaseLayout title={meta.title} description={meta.description}>
@@ -81,14 +85,12 @@ const previousProjects = projects.filter((p) => p.status === "previous");
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {
-                currentProjects.map((p) => (
+                currentProjects.map((post) => (
                     <AcademicCard
-                        title={p.title}
-                        description={p.description}
-                        href={p.href}
-                        period={p.period}
-                        role={p.role}
-                        tags={p.tags}
+                        title={post.data.title}
+                        description={post.data.description}
+                        href={`/posts/${getPostSlug(post.id)}`}
+                        tags={post.data.tags}
                         linkLabel="View project →"
                     />
                 ))
@@ -98,7 +100,7 @@ const previousProjects = projects.filter((p) => p.status === "previous");
 
     <!-- Previous projects -->
     {
-        previousProjects.length > 0 && (
+        pastProjects.length > 0 && (
             <section
                 class="bg-section-alt border-t border-border"
                 aria-labelledby="previous-heading"
@@ -125,14 +127,12 @@ const previousProjects = projects.filter((p) => p.status === "previous");
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {previousProjects.map((p) => (
+                        {pastProjects.map((post) => (
                             <AcademicCard
-                                title={p.title}
-                                description={p.description}
-                                href={p.href}
-                                period={p.period}
-                                role={p.role}
-                                tags={p.tags}
+                                title={post.data.title}
+                                description={post.data.description}
+                                href={`/posts/${getPostSlug(post.id)}`}
+                                tags={post.data.tags}
                                 linkLabel="View project →"
                             />
                         ))}

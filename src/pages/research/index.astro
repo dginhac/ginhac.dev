@@ -4,15 +4,11 @@ import type { ImageMetadata } from "astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import AcademicCard from "../../components/cards/AcademicCard.astro";
 import CompactAcademicCard from "../../components/cards/CompactAcademicCard.astro";
-import Tag from "../../components/ui/Tag.astro";
 import Link from "../../components/ui/Link.astro";
-import Eyebrow from "../../components/ui/Eyebrow.astro";
+import PageHeader from "../../components/sections/PageHeader.astro";
 import { researchConfig } from "../../config/content/research";
-import { getPageStyles } from "../../config/styles/categoryStyles";
 import { getPostSlug } from "../../utils/posts/slugUtils";
 import { getEffectivePostDate } from "../../utils/posts/dateUtils";
-
-const styles = getPageStyles("research");
 
 const { meta, eyebrow, title, description, intro, tags, sections, contact } =
     researchConfig;
@@ -48,31 +44,14 @@ const pastProjects = researchProjects.filter((p) => p.data.status === "past");
 ---
 
 <BaseLayout title={meta.title} description={meta.description}>
-    <!-- Page header -->
-    <div class={`w-full border-b border-border ${styles.headerGradient}`}>
-        <div class="max-w-5xl mx-auto px-6 py-12 sm:py-16">
-            <!-- Eyebrow -->
-            <Eyebrow class="mt-8 mb-2">{eyebrow}</Eyebrow>
-
-            <h1
-                class="font-heading text-3xl md:text-[2.5rem] font-bold text-hero-text tracking-[-0.02em] leading-[1.2] mb-4"
-            >
-                <span class={`${styles.titleAccent} font-extrabold`}>/</span>
-                {title}
-            </h1>
-            <p
-                class="text-text-secondary text-base sm:text-lg leading-relaxed mb-3"
-            >
-                {description}
-            </p>
-            <p class="text-text-secondary text-base leading-relaxed">
-                {intro}
-            </p>
-            <div class="mt-6 flex flex-wrap gap-2">
-                {tags.map((tag) => <Tag label={tag} />)}
-            </div>
-        </div>
-    </div>
+    <PageHeader
+        eyebrow={eyebrow}
+        title={title}
+        description={description}
+        intro={intro}
+        tags={tags}
+        variant="research"
+    />
 
     <!-- Current projects -->
     <section

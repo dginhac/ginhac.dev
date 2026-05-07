@@ -260,9 +260,9 @@
       "captured_at": null,
       "author": "Dominique Ginhac",
       "contributor": null,
-      "id": "readme_ginhac_dev_site",
       "community": 3,
-      "norm_label": "ginhac.dev \u2014 academic personal website"
+      "norm_label": "ginhac.dev \u2014 academic personal website",
+      "id": "readme_ginhac_dev_site"
     },
     {
       "label": "Dominique Ginhac",
@@ -273,9 +273,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "readme_dominique_ginhac",
       "community": 1,
-      "norm_label": "dominique ginhac"
+      "norm_label": "dominique ginhac",
+      "id": "readme_dominique_ginhac"
     },
     {
       "label": "Astro (web framework)",
@@ -286,9 +286,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "readme_astro_framework",
       "community": 3,
-      "norm_label": "astro (web framework)"
+      "norm_label": "astro (web framework)",
+      "id": "readme_astro_framework"
     },
     {
       "label": "MDX Content Format",
@@ -299,9 +299,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "readme_mdx_format",
       "community": 3,
-      "norm_label": "mdx content format"
+      "norm_label": "mdx content format",
+      "id": "readme_mdx_format"
     },
     {
       "label": "Tailwind CSS",
@@ -312,9 +312,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "readme_tailwind_css",
       "community": 3,
-      "norm_label": "tailwind css"
+      "norm_label": "tailwind css",
+      "id": "readme_tailwind_css"
     },
     {
       "label": "Posts Content Collection",
@@ -325,9 +325,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "readme_posts_collection",
       "community": 1,
-      "norm_label": "posts content collection"
+      "norm_label": "posts content collection",
+      "id": "readme_posts_collection"
     },
     {
       "label": "Configuration-Driven Content Architecture",
@@ -339,9 +339,9 @@
       "author": null,
       "contributor": null,
       "rationale": "All site content lives in src/config/ so content changes require no component edits \u2014 separation of data from presentation.",
-      "id": "claude_config_driven_content",
       "community": 3,
-      "norm_label": "configuration-driven content architecture"
+      "norm_label": "configuration-driven content architecture",
+      "id": "claude_config_driven_content"
     },
     {
       "label": "BaseLayout.astro",
@@ -352,9 +352,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "claude_baselayout",
       "community": 15,
-      "norm_label": "baselayout.astro"
+      "norm_label": "baselayout.astro",
+      "id": "claude_baselayout"
     },
     {
       "label": "PostLayout.astro",
@@ -365,9 +365,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "claude_postlayout",
       "community": 15,
-      "norm_label": "postlayout.astro"
+      "norm_label": "postlayout.astro",
+      "id": "claude_postlayout"
     },
     {
       "label": "Link.astro UI Component",
@@ -379,9 +379,9 @@
       "author": null,
       "contributor": null,
       "rationale": "arrow=none auto-applies text-accent and inline display for inline prose links; group-hover:underline on inner span only so arrows never underline.",
-      "id": "claude_link_component",
       "community": 32,
-      "norm_label": "link.astro ui component"
+      "norm_label": "link.astro ui component",
+      "id": "claude_link_component"
     },
     {
       "label": "ButtonLink.astro UI Component",
@@ -392,9 +392,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "claude_buttonlink_component",
       "community": 33,
-      "norm_label": "buttonlink.astro ui component"
+      "norm_label": "buttonlink.astro ui component",
+      "id": "claude_buttonlink_component"
     },
     {
       "label": "TypeBadge.astro UI Component",
@@ -405,9 +405,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "claude_typebadge_component",
       "community": 16,
-      "norm_label": "typebadge.astro ui component"
+      "norm_label": "typebadge.astro ui component",
+      "id": "claude_typebadge_component"
     },
     {
       "label": "categoryStyles.ts \u2014 Type Color Palette",
@@ -418,9 +418,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "claude_category_styles",
       "community": 16,
-      "norm_label": "categorystyles.ts \u2014 type color palette"
+      "norm_label": "categorystyles.ts \u2014 type color palette",
+      "id": "claude_category_styles"
     },
     {
       "label": "renderMarkdown Utility",
@@ -431,9 +431,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "claude_render_markdown",
       "community": 34,
-      "norm_label": "rendermarkdown utility"
+      "norm_label": "rendermarkdown utility",
+      "id": "claude_render_markdown"
     },
     {
       "label": "global.css \u2014 Theme & Tokens",
@@ -444,9 +444,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "claude_global_css",
       "community": 3,
-      "norm_label": "global.css \u2014 theme & tokens"
+      "norm_label": "global.css \u2014 theme & tokens",
+      "id": "claude_global_css"
     },
     {
       "label": "LUMEN Research Project",
@@ -457,9 +457,9 @@
       "captured_at": null,
       "author": "Dominique Ginhac",
       "contributor": null,
-      "id": "lumen_project",
       "community": 0,
-      "norm_label": "lumen research project"
+      "norm_label": "lumen research project",
+      "id": "lumen_project"
     },
     {
       "label": "HDR Vision",
@@ -470,9 +470,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "lumen_hdr_vision",
       "community": 0,
-      "norm_label": "hdr vision"
+      "norm_label": "hdr vision",
+      "id": "lumen_hdr_vision"
     },
     {
       "label": "Luminance Representation Learning",
@@ -483,9 +483,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "lumen_luminance_representation",
       "community": 0,
-      "norm_label": "luminance representation learning"
+      "norm_label": "luminance representation learning",
+      "id": "lumen_luminance_representation"
     },
     {
       "label": "Multi-Exposure Sequences as Self-Supervised Signal",
@@ -496,9 +496,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "lumen_multi_exposure",
       "community": 0,
-      "norm_label": "multi-exposure sequences as self-supervised signal"
+      "norm_label": "multi-exposure sequences as self-supervised signal",
+      "id": "lumen_multi_exposure"
     },
     {
       "label": "Contrastive Exposure-Invariant Training Objective",
@@ -509,9 +509,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "lumen_exposure_contrastive",
       "community": 0,
-      "norm_label": "contrastive exposure-invariant training objective"
+      "norm_label": "contrastive exposure-invariant training objective",
+      "id": "lumen_exposure_contrastive"
     },
     {
       "label": "SimCLR \u2014 A Simple Framework for Contrastive Learning (Chen et al. 2020)",
@@ -522,9 +522,9 @@
       "captured_at": null,
       "author": "Chen, T.; Kornblith, S.; Norouzi, M.; Hinton, G.",
       "contributor": null,
-      "id": "lumen_ref_simclr",
       "community": 0,
-      "norm_label": "simclr \u2014 a simple framework for contrastive learning (chen et al. 2020)"
+      "norm_label": "simclr \u2014 a simple framework for contrastive learning (chen et al. 2020)",
+      "id": "lumen_ref_simclr"
     },
     {
       "label": "Masked Autoencoders Are Scalable Vision Learners (He et al. 2022)",
@@ -535,9 +535,9 @@
       "captured_at": null,
       "author": "He, K.; Chen, X.; Xie, S.; Li, Y.; Doll\u00e1r, P.; Girshick, R.",
       "contributor": null,
-      "id": "lumen_ref_mae",
       "community": 0,
-      "norm_label": "masked autoencoders are scalable vision learners (he et al. 2022)"
+      "norm_label": "masked autoencoders are scalable vision learners (he et al. 2022)",
+      "id": "lumen_ref_mae"
     },
     {
       "label": "Recovering HDR Radiance Maps from Photographs (Debevec & Malik 1997)",
@@ -548,9 +548,9 @@
       "captured_at": null,
       "author": "Debevec, P. E.; Malik, J.",
       "contributor": null,
-      "id": "lumen_ref_debevec",
       "community": 0,
-      "norm_label": "recovering hdr radiance maps from photographs (debevec & malik 1997)"
+      "norm_label": "recovering hdr radiance maps from photographs (debevec & malik 1997)",
+      "id": "lumen_ref_debevec"
     },
     {
       "label": "C++ Programming Course (Undergraduate)",
@@ -561,9 +561,9 @@
       "captured_at": null,
       "author": "Dominique Ginhac",
       "contributor": null,
-      "id": "cpp_course",
       "community": 1,
-      "norm_label": "c++ programming course (undergraduate)"
+      "norm_label": "c++ programming course (undergraduate)",
+      "id": "cpp_course"
     },
     {
       "label": "Object-Oriented Programming Concepts",
@@ -574,9 +574,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "cpp_oop_concepts",
       "community": 1,
-      "norm_label": "object-oriented programming concepts"
+      "norm_label": "object-oriented programming concepts",
+      "id": "cpp_oop_concepts"
     },
     {
       "label": "C++ Memory Management (RAII, Smart Pointers)",
@@ -587,9 +587,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "cpp_memory_management",
       "community": 1,
-      "norm_label": "c++ memory management (raii, smart pointers)"
+      "norm_label": "c++ memory management (raii, smart pointers)",
+      "id": "cpp_memory_management"
     },
     {
       "label": "Git as Learning & Submission Tool",
@@ -600,9 +600,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "cpp_git_workflow",
       "community": 1,
-      "norm_label": "git as learning & submission tool"
+      "norm_label": "git as learning & submission tool",
+      "id": "cpp_git_workflow"
     },
     {
       "label": "C++ Core Guidelines",
@@ -613,9 +613,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "cpp_ref_core_guidelines",
       "community": 1,
-      "norm_label": "c++ core guidelines"
+      "norm_label": "c++ core guidelines",
+      "id": "cpp_ref_core_guidelines"
     },
     {
       "label": "Efficient Architectures for Embedded Vision Systems",
@@ -626,9 +626,9 @@
       "captured_at": null,
       "author": "Dominique Ginhac",
       "contributor": null,
-      "id": "embedded_vision_post",
       "community": 1,
-      "norm_label": "efficient architectures for embedded vision systems"
+      "norm_label": "efficient architectures for embedded vision systems",
+      "id": "embedded_vision_post"
     },
     {
       "label": "Embedded Platform Constraint Space (Memory, Compute, Power, Latency)",
@@ -639,9 +639,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "embedded_constraint_space",
       "community": 1,
-      "norm_label": "embedded platform constraint space (memory, compute, power, latency)"
+      "norm_label": "embedded platform constraint space (memory, compute, power, latency)",
+      "id": "embedded_constraint_space"
     },
     {
       "label": "Depthwise Separable Convolutions",
@@ -652,9 +652,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "embedded_depthwise_conv",
       "community": 1,
-      "norm_label": "depthwise separable convolutions"
+      "norm_label": "depthwise separable convolutions",
+      "id": "embedded_depthwise_conv"
     },
     {
       "label": "Post-Training Quantization (8-bit)",
@@ -665,9 +665,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "embedded_quantization",
       "community": 1,
-      "norm_label": "post-training quantization (8-bit)"
+      "norm_label": "post-training quantization (8-bit)",
+      "id": "embedded_quantization"
     },
     {
       "label": "Structured Pruning",
@@ -678,9 +678,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "embedded_pruning",
       "community": 1,
-      "norm_label": "structured pruning"
+      "norm_label": "structured pruning",
+      "id": "embedded_pruning"
     },
     {
       "label": "Knowledge Distillation",
@@ -691,9 +691,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "embedded_knowledge_distillation",
       "community": 1,
-      "norm_label": "knowledge distillation"
+      "norm_label": "knowledge distillation",
+      "id": "embedded_knowledge_distillation"
     },
     {
       "label": "Embedded Deployment Toolchains (TFLite, ONNX Runtime, TVM)",
@@ -704,9 +704,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "embedded_deployment_toolchains",
       "community": 1,
-      "norm_label": "embedded deployment toolchains (tflite, onnx runtime, tvm)"
+      "norm_label": "embedded deployment toolchains (tflite, onnx runtime, tvm)",
+      "id": "embedded_deployment_toolchains"
     },
     {
       "label": "Real-Time Object Detection on Resource-Constrained Platforms [Sample]",
@@ -717,9 +717,9 @@
       "captured_at": null,
       "author": "Dominique Ginhac",
       "contributor": null,
-      "id": "pub_realtime_detection",
       "community": 1,
-      "norm_label": "real-time object detection on resource-constrained platforms [sample]"
+      "norm_label": "real-time object detection on resource-constrained platforms [sample]",
+      "id": "pub_realtime_detection"
     },
     {
       "label": "MobileNets: Efficient CNNs for Mobile Vision (Howard et al. 2017)",
@@ -730,9 +730,9 @@
       "captured_at": null,
       "author": "Howard, A. et al.",
       "contributor": null,
-      "id": "pub_realtime_ref_mobilenets",
       "community": 1,
-      "norm_label": "mobilenets: efficient cnns for mobile vision (howard et al. 2017)"
+      "norm_label": "mobilenets: efficient cnns for mobile vision (howard et al. 2017)",
+      "id": "pub_realtime_ref_mobilenets"
     },
     {
       "label": "YOLOv3: An Incremental Improvement (Redmon & Farhadi 2018)",
@@ -743,9 +743,9 @@
       "captured_at": null,
       "author": "Redmon, J.; Farhadi, A.",
       "contributor": null,
-      "id": "pub_realtime_ref_yolov3",
       "community": 1,
-      "norm_label": "yolov3: an incremental improvement (redmon & farhadi 2018)"
+      "norm_label": "yolov3: an incremental improvement (redmon & farhadi 2018)",
+      "id": "pub_realtime_ref_yolov3"
     },
     {
       "label": "Toward Foundation Models for HDR Imaging [Sample]",
@@ -756,9 +756,9 @@
       "captured_at": null,
       "author": "Dominique Ginhac",
       "contributor": null,
-      "id": "pub_hdr_foundation",
       "community": 0,
-      "norm_label": "toward foundation models for hdr imaging [sample]"
+      "norm_label": "toward foundation models for hdr imaging [sample]",
+      "id": "pub_hdr_foundation"
     },
     {
       "label": "Exposure-Contrastive Pre-training Strategy",
@@ -769,9 +769,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "pub_hdr_exposure_contrastive_pretrain",
       "community": 0,
-      "norm_label": "exposure-contrastive pre-training strategy"
+      "norm_label": "exposure-contrastive pre-training strategy",
+      "id": "pub_hdr_exposure_contrastive_pretrain"
     },
     {
       "label": "Learning Transferable Visual Models From Natural Language Supervision \u2014 CLIP (Radford et al. 2021)",
@@ -782,9 +782,9 @@
       "captured_at": null,
       "author": "Radford, A. et al.",
       "contributor": null,
-      "id": "pub_hdr_ref_clip",
       "community": 0,
-      "norm_label": "learning transferable visual models from natural language supervision \u2014 clip (radford et al. 2021)"
+      "norm_label": "learning transferable visual models from natural language supervision \u2014 clip (radford et al. 2021)",
+      "id": "pub_hdr_ref_clip"
     },
     {
       "label": "DINOv2: Learning Robust Visual Features without Supervision (Oquab et al. 2024)",
@@ -795,9 +795,9 @@
       "captured_at": null,
       "author": "Oquab, M. et al.",
       "contributor": null,
-      "id": "pub_hdr_ref_dinov2",
       "community": 0,
-      "norm_label": "dinov2: learning robust visual features without supervision (oquab et al. 2024)"
+      "norm_label": "dinov2: learning robust visual features without supervision (oquab et al. 2024)",
+      "id": "pub_hdr_ref_dinov2"
     },
     {
       "label": "Notes on Visual Representations in Computer Vision",
@@ -808,9 +808,9 @@
       "captured_at": null,
       "author": "Dominique Ginhac",
       "contributor": null,
-      "id": "notes_cv_representations",
       "community": 0,
-      "norm_label": "notes on visual representations in computer vision"
+      "norm_label": "notes on visual representations in computer vision",
+      "id": "notes_cv_representations"
     },
     {
       "label": "Hand-Crafted Visual Features (SIFT, HoG, edge detectors)",
@@ -821,9 +821,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "notes_handcrafted_features",
       "community": 0,
-      "norm_label": "hand-crafted visual features (sift, hog, edge detectors)"
+      "norm_label": "hand-crafted visual features (sift, hog, edge detectors)",
+      "id": "notes_handcrafted_features"
     },
     {
       "label": "Learned Visual Representations (Deep Learning)",
@@ -834,9 +834,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "notes_learned_representations",
       "community": 0,
-      "norm_label": "learned visual representations (deep learning)"
+      "norm_label": "learned visual representations (deep learning)",
+      "id": "notes_learned_representations"
     },
     {
       "label": "Self-Supervised Representation Learning",
@@ -847,9 +847,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "notes_self_supervised_learning",
       "community": 0,
-      "norm_label": "self-supervised representation learning"
+      "norm_label": "self-supervised representation learning",
+      "id": "notes_self_supervised_learning"
     },
     {
       "label": "Foundation Models in Vision",
@@ -860,9 +860,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "notes_foundation_models_vision",
       "community": 0,
-      "norm_label": "foundation models in vision"
+      "norm_label": "foundation models in vision",
+      "id": "notes_foundation_models_vision"
     },
     {
       "label": "Desirable Representation Properties (Invariance, Equivariance, Compactness, Transferability)",
@@ -873,9 +873,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "notes_representation_properties",
       "community": 0,
-      "norm_label": "desirable representation properties (invariance, equivariance, compactness, transferability)"
+      "norm_label": "desirable representation properties (invariance, equivariance, compactness, transferability)",
+      "id": "notes_representation_properties"
     },
     {
       "label": "Understanding HDR Imaging",
@@ -886,9 +886,9 @@
       "captured_at": null,
       "author": "Dominique Ginhac",
       "contributor": null,
-      "id": "hdr_post",
       "community": 0,
-      "norm_label": "understanding hdr imaging"
+      "norm_label": "understanding hdr imaging",
+      "id": "hdr_post"
     },
     {
       "label": "Camera Dynamic Range Limitation",
@@ -899,9 +899,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_dynamic_range",
       "community": 0,
-      "norm_label": "camera dynamic range limitation"
+      "norm_label": "camera dynamic range limitation",
+      "id": "hdr_dynamic_range"
     },
     {
       "label": "Multi-Exposure HDR Reconstruction",
@@ -912,9 +912,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_multi_exposure_reconstruction",
       "community": 0,
-      "norm_label": "multi-exposure hdr reconstruction"
+      "norm_label": "multi-exposure hdr reconstruction",
+      "id": "hdr_multi_exposure_reconstruction"
     },
     {
       "label": "Exposure Fusion (Heuristic Merging)",
@@ -925,9 +925,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_exposure_fusion",
       "community": 0,
-      "norm_label": "exposure fusion (heuristic merging)"
+      "norm_label": "exposure fusion (heuristic merging)",
+      "id": "hdr_exposure_fusion"
     },
     {
       "label": "Learning-Based HDR Imaging (Deep Networks)",
@@ -938,9 +938,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_learning_based",
       "community": 0,
-      "norm_label": "learning-based hdr imaging (deep networks)"
+      "norm_label": "learning-based hdr imaging (deep networks)",
+      "id": "hdr_learning_based"
     },
     {
       "label": "Luminance Representation Learning (Beyond Reconstruction)",
@@ -951,9 +951,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_luminance_repr_learning",
       "community": 0,
-      "norm_label": "luminance representation learning (beyond reconstruction)"
+      "norm_label": "luminance representation learning (beyond reconstruction)",
+      "id": "hdr_luminance_repr_learning"
     },
     {
       "label": "Recovering HDR Radiance Maps from Photographs (Debevec & Malik, SIGGRAPH 1997)",
@@ -964,9 +964,9 @@
       "captured_at": null,
       "author": "Debevec, P. E.; Malik, J.",
       "contributor": null,
-      "id": "hdr_ref_debevec",
       "community": 0,
-      "norm_label": "recovering hdr radiance maps from photographs (debevec & malik, siggraph 1997)"
+      "norm_label": "recovering hdr radiance maps from photographs (debevec & malik, siggraph 1997)",
+      "id": "hdr_ref_debevec"
     },
     {
       "label": "Exposure Fusion (Mertens, Kautz, Van Reeth, Pacific Graphics 2007)",
@@ -977,9 +977,9 @@
       "captured_at": null,
       "author": "Mertens, T.; Kautz, J.; Van Reeth, F.",
       "contributor": null,
-      "id": "hdr_ref_mertens",
       "community": 0,
-      "norm_label": "exposure fusion (mertens, kautz, van reeth, pacific graphics 2007)"
+      "norm_label": "exposure fusion (mertens, kautz, van reeth, pacific graphics 2007)",
+      "id": "hdr_ref_mertens"
     },
     {
       "label": "Computer Architecture Course (Undergraduate)",
@@ -990,9 +990,9 @@
       "captured_at": null,
       "author": "Dominique Ginhac",
       "contributor": null,
-      "id": "comparch_course",
       "community": 1,
-      "norm_label": "computer architecture course (undergraduate)"
+      "norm_label": "computer architecture course (undergraduate)",
+      "id": "comparch_course"
     },
     {
       "label": "Bottom-Up Pedagogy for Computer Architecture",
@@ -1004,9 +1004,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Starting from transistors/gates rather than ISA builds intuition for hardware trade-offs.",
-      "id": "comparch_bottom_up",
       "community": 1,
-      "norm_label": "bottom-up pedagogy for computer architecture"
+      "norm_label": "bottom-up pedagogy for computer architecture",
+      "id": "comparch_bottom_up"
     },
     {
       "label": "Processor Pipelining (Five-Stage, Hazards, Forwarding)",
@@ -1017,9 +1017,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "comparch_pipelining",
       "community": 1,
-      "norm_label": "processor pipelining (five-stage, hazards, forwarding)"
+      "norm_label": "processor pipelining (five-stage, hazards, forwarding)",
+      "id": "comparch_pipelining"
     },
     {
       "label": "Memory Hierarchy (Caches, Replacement Policies)",
@@ -1030,9 +1030,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "comparch_memory_hierarchy",
       "community": 1,
-      "norm_label": "memory hierarchy (caches, replacement policies)"
+      "norm_label": "memory hierarchy (caches, replacement policies)",
+      "id": "comparch_memory_hierarchy"
     },
     {
       "label": "FPGA Lab Work (VHDL/Verilog)",
@@ -1043,9 +1043,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "comparch_fpga_labs",
       "community": 1,
-      "norm_label": "fpga lab work (vhdl/verilog)"
+      "norm_label": "fpga lab work (vhdl/verilog)",
+      "id": "comparch_fpga_labs"
     },
     {
       "label": "Web App Manifest Icon 192x192",
@@ -1056,9 +1056,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "web_app_manifest_192x192_app_icon",
       "community": 17,
-      "norm_label": "web app manifest icon 192x192"
+      "norm_label": "web app manifest icon 192x192",
+      "id": "web_app_manifest_192x192_app_icon"
     },
     {
       "label": "DG Monogram Logo",
@@ -1069,9 +1069,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "web_app_manifest_192x192_brand_logo",
       "community": 17,
-      "norm_label": "dg monogram logo"
+      "norm_label": "dg monogram logo",
+      "id": "web_app_manifest_192x192_brand_logo"
     },
     {
       "label": "Apple Touch Icon",
@@ -1082,9 +1082,9 @@
       "captured_at": null,
       "author": "d0m G",
       "contributor": null,
-      "id": "apple_touch_icon_app_icon",
       "community": 18,
-      "norm_label": "apple touch icon"
+      "norm_label": "apple touch icon",
+      "id": "apple_touch_icon_app_icon"
     },
     {
       "label": "DG Monogram Brand Mark",
@@ -1095,9 +1095,9 @@
       "captured_at": null,
       "author": "d0m G",
       "contributor": null,
-      "id": "apple_touch_icon_dg_monogram",
       "community": 18,
-      "norm_label": "dg monogram brand mark"
+      "norm_label": "dg monogram brand mark",
+      "id": "apple_touch_icon_dg_monogram"
     },
     {
       "label": "DG Brand App Icon (512x512 PWA Manifest Icon)",
@@ -1109,9 +1109,9 @@
       "author": "Dom Ginhac",
       "contributor": null,
       "description": "512x512 PNG web app manifest icon for the ginhac.dev personal academic website. Displays the 'DG' monogram logo: a large dark navy-blue letter D overlapping with a light steel-blue letter G rendered in an open circular stroke style. The two letterforms partially overlap, with the G's circular arc intersecting the D. Background is white/transparent. The D contains a small bracket-like mark (suggesting code or academic motif) inside its counter. Minimal, modern, typographic mark.",
-      "id": "web_app_manifest_512x512_app_icon",
       "community": 21,
-      "norm_label": "dg brand app icon (512x512 pwa manifest icon)"
+      "norm_label": "dg brand app icon (512x512 pwa manifest icon)",
+      "id": "web_app_manifest_512x512_app_icon"
     },
     {
       "label": "Site Favicon 96x96 \u2014 DG Monogram Logo",
@@ -1123,9 +1123,9 @@
       "author": "d0m G",
       "contributor": null,
       "description": "96\u00d796px PNG favicon for the ginhac.dev website. Displays a two-letter monogram 'DG' on a dark near-black square background. The 'D' is rendered in white and the 'G' in a muted steel-blue (accent-soft tone), forming a compact, modern wordmark. The letters are set in a clean geometric sans-serif typeface with a slight overlap between the two glyphs. The mark matches the brand SVG (dg-primary.svg) adapted for favicon use. Style is minimal, flat, and typographic \u2014 no gradients, no icons, no ornamentation.",
-      "id": "favicon_96x96_favicon",
       "community": 22,
-      "norm_label": "site favicon 96x96 \u2014 dg monogram logo"
+      "norm_label": "site favicon 96x96 \u2014 dg monogram logo",
+      "id": "favicon_96x96_favicon"
     },
     {
       "label": "Site Favicon \u2014 DG Monogram SVG",
@@ -1136,9 +1136,9 @@
       "captured_at": null,
       "author": "RealFaviconGenerator (https://realfavicongenerator.net)",
       "contributor": null,
-      "id": "favicon_favicon",
       "community": 9,
-      "norm_label": "site favicon \u2014 dg monogram svg"
+      "norm_label": "site favicon \u2014 dg monogram svg",
+      "id": "favicon_favicon"
     },
     {
       "label": "D Letterform \u2014 dark navy filled shape",
@@ -1149,9 +1149,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "favicon_d_letterform",
       "community": 9,
-      "norm_label": "d letterform \u2014 dark navy filled shape"
+      "norm_label": "d letterform \u2014 dark navy filled shape",
+      "id": "favicon_d_letterform"
     },
     {
       "label": "G Letterform \u2014 light blue arc/stroke shape",
@@ -1162,9 +1162,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "favicon_g_letterform",
       "community": 9,
-      "norm_label": "g letterform \u2014 light blue arc/stroke shape"
+      "norm_label": "g letterform \u2014 light blue arc/stroke shape",
+      "id": "favicon_g_letterform"
     },
     {
       "label": "DG Monogram \u2014 personal initials brand mark",
@@ -1175,9 +1175,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "favicon_dg_monogram",
       "community": 9,
-      "norm_label": "dg monogram \u2014 personal initials brand mark"
+      "norm_label": "dg monogram \u2014 personal initials brand mark",
+      "id": "favicon_dg_monogram"
     },
     {
       "label": "Office Workspace Photo",
@@ -1188,9 +1188,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_lumen_office_workspace",
       "community": 19,
-      "norm_label": "office workspace photo"
+      "norm_label": "office workspace photo",
+      "id": "featured_lumen_office_workspace"
     },
     {
       "label": "Lumen: Luminance Representation Learning Post",
@@ -1201,9 +1201,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_lumen_lumen_post",
       "community": 19,
-      "norm_label": "lumen: luminance representation learning post"
+      "norm_label": "lumen: luminance representation learning post",
+      "id": "featured_lumen_lumen_post"
     },
     {
       "label": "Featured Programming Image",
@@ -1214,9 +1214,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_prog_image",
       "community": 6,
-      "norm_label": "featured programming image"
+      "norm_label": "featured programming image",
+      "id": "featured_prog_image"
     },
     {
       "label": "Programming Environment",
@@ -1227,9 +1227,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_prog_programming_environment",
       "community": 6,
-      "norm_label": "programming environment"
+      "norm_label": "programming environment",
+      "id": "featured_prog_programming_environment"
     },
     {
       "label": "C Programming Code",
@@ -1240,9 +1240,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_prog_c_code",
       "community": 6,
-      "norm_label": "c programming code"
+      "norm_label": "c programming code",
+      "id": "featured_prog_c_code"
     },
     {
       "label": "Developer Workspace",
@@ -1253,9 +1253,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_prog_developer_workspace",
       "community": 6,
-      "norm_label": "developer workspace"
+      "norm_label": "developer workspace",
+      "id": "featured_prog_developer_workspace"
     },
     {
       "label": "Teaching C++ Programming Post",
@@ -1266,9 +1266,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_prog_teaching_cpp",
       "community": 6,
-      "norm_label": "teaching c++ programming post"
+      "norm_label": "teaching c++ programming post",
+      "id": "featured_prog_teaching_cpp"
     },
     {
       "label": "Computer Vision Representations Hero Image",
@@ -1279,9 +1279,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_visual_hero_image",
       "community": 4,
-      "norm_label": "computer vision representations hero image"
+      "norm_label": "computer vision representations hero image",
+      "id": "featured_visual_hero_image"
     },
     {
       "label": "Human Eye Close-up",
@@ -1292,9 +1292,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_visual_human_eye",
       "community": 4,
-      "norm_label": "human eye close-up"
+      "norm_label": "human eye close-up",
+      "id": "featured_visual_human_eye"
     },
     {
       "label": "Radar / Spider Chart Visualization",
@@ -1305,9 +1305,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_visual_radar_chart",
       "community": 4,
-      "norm_label": "radar / spider chart visualization"
+      "norm_label": "radar / spider chart visualization",
+      "id": "featured_visual_radar_chart"
     },
     {
       "label": "HUD / Futuristic Scanner Overlay",
@@ -1318,9 +1318,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_visual_hud_overlay",
       "community": 4,
-      "norm_label": "hud / futuristic scanner overlay"
+      "norm_label": "hud / futuristic scanner overlay",
+      "id": "featured_visual_hud_overlay"
     },
     {
       "label": "Circular Progress Gauge UI Element",
@@ -1331,9 +1331,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_visual_circular_gauge",
       "community": 4,
-      "norm_label": "circular progress gauge ui element"
+      "norm_label": "circular progress gauge ui element",
+      "id": "featured_visual_circular_gauge"
     },
     {
       "label": "Notes on Computer Vision Representations (Post)",
@@ -1344,9 +1344,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "notes_on_computer_vision_representations_post",
       "community": 4,
-      "norm_label": "notes on computer vision representations (post)"
+      "norm_label": "notes on computer vision representations (post)",
+      "id": "notes_on_computer_vision_representations_post"
     },
     {
       "label": "HDR Imaging Pipeline",
@@ -1357,9 +1357,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_pipeline_hdr_pipeline",
       "community": 2,
-      "norm_label": "hdr imaging pipeline"
+      "norm_label": "hdr imaging pipeline",
+      "id": "hdr_pipeline_hdr_pipeline"
     },
     {
       "label": "Input LDR Images (L1, L2, L3)",
@@ -1370,9 +1370,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_pipeline_input_ldr_images",
       "community": 2,
-      "norm_label": "input ldr images (l1, l2, l3)"
+      "norm_label": "input ldr images (l1, l2, l3)",
+      "id": "hdr_pipeline_input_ldr_images"
     },
     {
       "label": "Encoder (x3 parallel branches)",
@@ -1383,9 +1383,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_pipeline_encoder",
       "community": 2,
-      "norm_label": "encoder (x3 parallel branches)"
+      "norm_label": "encoder (x3 parallel branches)",
+      "id": "hdr_pipeline_encoder"
     },
     {
       "label": "Attention Module",
@@ -1396,9 +1396,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_pipeline_attention_module",
       "community": 2,
-      "norm_label": "attention module"
+      "norm_label": "attention module",
+      "id": "hdr_pipeline_attention_module"
     },
     {
       "label": "Element-wise Product",
@@ -1409,9 +1409,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_pipeline_element_wise_product",
       "community": 2,
-      "norm_label": "element-wise product"
+      "norm_label": "element-wise product",
+      "id": "hdr_pipeline_element_wise_product"
     },
     {
       "label": "Convolution Layers",
@@ -1422,9 +1422,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_pipeline_convolution",
       "community": 2,
-      "norm_label": "convolution layers"
+      "norm_label": "convolution layers",
+      "id": "hdr_pipeline_convolution"
     },
     {
       "label": "Concatenation (M_non-ref)",
@@ -1435,9 +1435,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_pipeline_concatenation",
       "community": 2,
-      "norm_label": "concatenation (m_non-ref)"
+      "norm_label": "concatenation (m_non-ref)",
+      "id": "hdr_pipeline_concatenation"
     },
     {
       "label": "PixelShuffle Upsampling",
@@ -1448,9 +1448,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_pipeline_pixelshuffle",
       "community": 2,
-      "norm_label": "pixelshuffle upsampling"
+      "norm_label": "pixelshuffle upsampling",
+      "id": "hdr_pipeline_pixelshuffle"
     },
     {
       "label": "Sum / Residual Addition",
@@ -1461,9 +1461,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_pipeline_sum",
       "community": 2,
-      "norm_label": "sum / residual addition"
+      "norm_label": "sum / residual addition",
+      "id": "hdr_pipeline_sum"
     },
     {
       "label": "HDR Output Image",
@@ -1474,9 +1474,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_pipeline_hdr_output",
       "community": 2,
-      "norm_label": "hdr output image"
+      "norm_label": "hdr output image",
+      "id": "hdr_pipeline_hdr_output"
     },
     {
       "label": "Reference Branch (L2, middle exposure)",
@@ -1487,9 +1487,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_pipeline_reference_branch",
       "community": 2,
-      "norm_label": "reference branch (l2, middle exposure)"
+      "norm_label": "reference branch (l2, middle exposure)",
+      "id": "hdr_pipeline_reference_branch"
     },
     {
       "label": "Non-Reference Branches (L1, L3)",
@@ -1500,9 +1500,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hdr_pipeline_non_reference_branches",
       "community": 2,
-      "norm_label": "non-reference branches (l1, l3)"
+      "norm_label": "non-reference branches (l1, l3)",
+      "id": "hdr_pipeline_non_reference_branches"
     },
     {
       "label": "LDR Exposure Comparison - St. Louis Arch Night Scene",
@@ -1513,9 +1513,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "ldr_images_ldr_comparison",
       "community": 7,
-      "norm_label": "ldr exposure comparison - st. louis arch night scene"
+      "norm_label": "ldr exposure comparison - st. louis arch night scene",
+      "id": "ldr_images_ldr_comparison"
     },
     {
       "label": "Underexposed LDR Frame - Gateway Arch Night",
@@ -1526,9 +1526,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "ldr_images_underexposed_shot",
       "community": 7,
-      "norm_label": "underexposed ldr frame - gateway arch night"
+      "norm_label": "underexposed ldr frame - gateway arch night",
+      "id": "ldr_images_underexposed_shot"
     },
     {
       "label": "Overexposed LDR Frame - Gateway Arch Night",
@@ -1539,9 +1539,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "ldr_images_overexposed_shot",
       "community": 7,
-      "norm_label": "overexposed ldr frame - gateway arch night"
+      "norm_label": "overexposed ldr frame - gateway arch night",
+      "id": "ldr_images_overexposed_shot"
     },
     {
       "label": "Understanding HDR Imaging - Blog Post",
@@ -1552,9 +1552,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "ldr_images_hdr_imaging_post",
       "community": 7,
-      "norm_label": "understanding hdr imaging - blog post"
+      "norm_label": "understanding hdr imaging - blog post",
+      "id": "ldr_images_hdr_imaging_post"
     },
     {
       "label": "Dynamic Range Limitation of LDR Cameras",
@@ -1565,9 +1565,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "ldr_images_dynamic_range_problem",
       "community": 7,
-      "norm_label": "dynamic range limitation of ldr cameras"
+      "norm_label": "dynamic range limitation of ldr cameras",
+      "id": "ldr_images_dynamic_range_problem"
     },
     {
       "label": "HDR vs Standard Photography Comparison Image",
@@ -1578,9 +1578,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_hdr_hdr_comparison_image",
       "community": 5,
-      "norm_label": "hdr vs standard photography comparison image"
+      "norm_label": "hdr vs standard photography comparison image",
+      "id": "featured_hdr_hdr_comparison_image"
     },
     {
       "label": "Dutch Rural Landscape with Canal and Windmill",
@@ -1591,9 +1591,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_hdr_dutch_landscape",
       "community": 5,
-      "norm_label": "dutch rural landscape with canal and windmill"
+      "norm_label": "dutch rural landscape with canal and windmill",
+      "id": "featured_hdr_dutch_landscape"
     },
     {
       "label": "HDR Tone Mapping and Processing Effect",
@@ -1604,9 +1604,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_hdr_hdr_processing",
       "community": 5,
-      "norm_label": "hdr tone mapping and processing effect"
+      "norm_label": "hdr tone mapping and processing effect",
+      "id": "featured_hdr_hdr_processing"
     },
     {
       "label": "Standard Dynamic Range Photography",
@@ -1617,9 +1617,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_hdr_standard_photography",
       "community": 5,
-      "norm_label": "standard dynamic range photography"
+      "norm_label": "standard dynamic range photography",
+      "id": "featured_hdr_standard_photography"
     },
     {
       "label": "Zaanse Schans Village Scene",
@@ -1630,9 +1630,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "featured_hdr_zaanse_schans",
       "community": 5,
-      "norm_label": "zaanse schans village scene"
+      "norm_label": "zaanse schans village scene",
+      "id": "featured_hdr_zaanse_schans"
     },
     {
       "label": "Understanding HDR Imaging Blog Post",
@@ -1643,9 +1643,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "understanding_hdr_imaging_post",
       "community": 5,
-      "norm_label": "understanding hdr imaging blog post"
+      "norm_label": "understanding hdr imaging blog post",
+      "id": "understanding_hdr_imaging_post"
     },
     {
       "label": "D. Ginhac Author Portrait (Previous Version)",
@@ -1656,9 +1656,9 @@
       "captured_at": null,
       "author": "D. Ginhac",
       "contributor": null,
-      "id": "hero_portrait_author_portrait",
       "community": 20,
-      "norm_label": "d. ginhac author portrait (previous version)"
+      "norm_label": "d. ginhac author portrait (previous version)",
+      "id": "hero_portrait_author_portrait"
     },
     {
       "label": "D. Ginhac",
@@ -1669,9 +1669,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hero_portrait_subject",
       "community": 20,
-      "norm_label": "d. ginhac"
+      "norm_label": "d. ginhac",
+      "id": "hero_portrait_subject"
     },
     {
       "label": "Author Portrait \u2013 Homepage Hero (v2)",
@@ -1682,9 +1682,9 @@
       "captured_at": null,
       "author": "Dom Ginhac",
       "contributor": null,
-      "id": "hero_portrait_v2_author_portrait",
       "community": 10,
-      "norm_label": "author portrait \u2013 homepage hero (v2)"
+      "norm_label": "author portrait \u2013 homepage hero (v2)",
+      "id": "hero_portrait_v2_author_portrait"
     },
     {
       "label": "Male Academic / Researcher \u2013 Middle-aged, short hair, stubble, black t-shirt, gold chain necklace",
@@ -1695,9 +1695,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hero_portrait_v2_subject",
       "community": 10,
-      "norm_label": "male academic / researcher \u2013 middle-aged, short hair, stubble, black t-shirt, gold chain necklace"
+      "norm_label": "male academic / researcher \u2013 middle-aged, short hair, stubble, black t-shirt, gold chain necklace",
+      "id": "hero_portrait_v2_subject"
     },
     {
       "label": "Graphic Overlay \u2013 Blue bracket / face-detection frame with label 'RESEARCHER 98.7%'",
@@ -1708,9 +1708,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hero_portrait_v2_overlay",
       "community": 10,
-      "norm_label": "graphic overlay \u2013 blue bracket / face-detection frame with label 'researcher 98.7%'"
+      "norm_label": "graphic overlay \u2013 blue bracket / face-detection frame with label 'researcher 98.7%'",
+      "id": "hero_portrait_v2_overlay"
     },
     {
       "label": "Photo Setting \u2013 Plain white / light background, studio-style headshot",
@@ -1721,9 +1721,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "hero_portrait_v2_setting",
       "community": 10,
-      "norm_label": "photo setting \u2013 plain white / light background, studio-style headshot"
+      "norm_label": "photo setting \u2013 plain white / light background, studio-style headshot",
+      "id": "hero_portrait_v2_setting"
     },
     {
       "label": "DG Primary Logo",
@@ -1734,9 +1734,9 @@
       "captured_at": null,
       "author": "d0m G",
       "contributor": null,
-      "id": "dg_primary_dg_logo",
       "community": 35,
-      "norm_label": "dg primary logo"
+      "norm_label": "dg primary logo",
+      "id": "dg_primary_dg_logo"
     },
     {
       "label": "Stylized Letter D Mark",
@@ -1747,9 +1747,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dg_primary_letter_d",
       "community": 36,
-      "norm_label": "stylized letter d mark"
+      "norm_label": "stylized letter d mark",
+      "id": "dg_primary_letter_d"
     },
     {
       "label": "Stylized Letter G Mark",
@@ -1760,9 +1760,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dg_primary_letter_g",
       "community": 37,
-      "norm_label": "stylized letter g mark"
+      "norm_label": "stylized letter g mark",
+      "id": "dg_primary_letter_g"
     },
     {
       "label": "Dark Navy Color #0F172A",
@@ -1773,9 +1773,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dg_primary_color_dark",
       "community": 38,
-      "norm_label": "dark navy color #0f172a"
+      "norm_label": "dark navy color #0f172a",
+      "id": "dg_primary_color_dark"
     },
     {
       "label": "Accent Soft Blue Color #7BAFD4",
@@ -1786,9 +1786,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dg_primary_color_accent_soft",
       "community": 39,
-      "norm_label": "accent soft blue color #7bafd4"
+      "norm_label": "accent soft blue color #7bafd4",
+      "id": "dg_primary_color_accent_soft"
     }
   ],
   "links": [
@@ -1798,9 +1798,9 @@
       "source_file": "src/config/styles/categoryStyles.ts",
       "source_location": "L36",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_config_styles_categorystyles_ts",
-      "target": "styles_categorystyles_getcategorystyles",
-      "confidence_score": 1.0
+      "target": "styles_categorystyles_getcategorystyles"
     },
     {
       "relation": "contains",
@@ -1808,9 +1808,9 @@
       "source_file": "src/config/styles/categoryStyles.ts",
       "source_location": "L79",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_config_styles_categorystyles_ts",
-      "target": "styles_categorystyles_getpagestyles",
-      "confidence_score": 1.0
+      "target": "styles_categorystyles_getpagestyles"
     },
     {
       "relation": "contains",
@@ -1818,9 +1818,9 @@
       "source_file": "src/utils/markdown.ts",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_utils_markdown_ts",
-      "target": "utils_markdown_rendermarkdown",
-      "confidence_score": 1.0
+      "target": "utils_markdown_rendermarkdown"
     },
     {
       "relation": "contains",
@@ -1828,9 +1828,9 @@
       "source_file": "src/utils/posts/relatedPosts.ts",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_utils_posts_relatedposts_ts",
-      "target": "posts_relatedposts_getrelatedposts",
-      "confidence_score": 1.0
+      "target": "posts_relatedposts_getrelatedposts"
     },
     {
       "relation": "contains",
@@ -1838,9 +1838,9 @@
       "source_file": "src/utils/posts/dateUtils.ts",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_utils_posts_dateutils_ts",
-      "target": "posts_dateutils_formatpostdate",
-      "confidence_score": 1.0
+      "target": "posts_dateutils_formatpostdate"
     },
     {
       "relation": "contains",
@@ -1848,9 +1848,9 @@
       "source_file": "src/utils/posts/dateUtils.ts",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_utils_posts_dateutils_ts",
-      "target": "posts_dateutils_geteffectivepostdate",
-      "confidence_score": 1.0
+      "target": "posts_dateutils_geteffectivepostdate"
     },
     {
       "relation": "contains",
@@ -1858,9 +1858,9 @@
       "source_file": "src/utils/posts/dateUtils.ts",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_utils_posts_dateutils_ts",
-      "target": "posts_dateutils_hasupdateddate",
-      "confidence_score": 1.0
+      "target": "posts_dateutils_hasupdateddate"
     },
     {
       "relation": "contains",
@@ -1868,9 +1868,9 @@
       "source_file": "src/utils/posts/slugUtils.ts",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_utils_posts_slugutils_ts",
-      "target": "posts_slugutils_getpostslug",
-      "confidence_score": 1.0
+      "target": "posts_slugutils_getpostslug"
     },
     {
       "relation": "authored_by",
@@ -3314,5 +3314,5 @@
       "confidence_score": 0.9
     }
   ],
-  "built_at_commit": "2b4ea33ca089394b69539075b1489672312591bd"
+  "built_at_commit": "eff50b359b56432dba7c8b04a9906262f55705cb"
 }

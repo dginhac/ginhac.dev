@@ -1,13 +1,18 @@
-# Graph Report - .  (2026-05-05)
+# Graph Report - ginhac.dev  (2026-05-07)
 
 ## Corpus Check
-- 38 files · ~65,251 words
+- 14 files · ~65,364 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
 - 140 nodes · 148 edges · 40 communities (24 shown, 16 thin omitted)
 - Extraction: 81% EXTRACTED · 19% INFERRED · 0% AMBIGUOUS · INFERRED: 28 edges (avg confidence: 0.91)
-- Token cost: 26,650 input · 9,154 output
+- Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `eff50b35`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - [[_COMMUNITY_HDR Imaging Research|HDR Imaging Research]]

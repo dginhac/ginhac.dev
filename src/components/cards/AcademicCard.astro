@@ -8,6 +8,7 @@ interface Props {
   href: string;
   image?: ImageMetadata;
   period?: string;
+  funding?: string;
   role?: string;
   level?: string;
   institution?: string;
@@ -22,6 +23,7 @@ const {
   href,
   image,
   period,
+  funding,
   role,
   level,
   institution,
@@ -30,9 +32,17 @@ const {
   linkLabel = "View →",
 } = Astro.props;
 
-const researchLine = [period, role].filter(Boolean).join(" · ");
-const teachingLine2 = [institution, volume].filter(Boolean).join(" · ");
-const hasMetadata = !!(researchLine || level || teachingLine2);
+const join = (items: Array<string | undefined>) =>
+  items.filter(Boolean).join(" · ");
+
+// Line 1: period + funding (research) or period + level (teaching)
+const line1 = join([period, funding ?? level]);
+// Line 2: institution + volume (teaching only)
+const line2 = join([institution, volume]);
+// Line 3: role
+const line3 = role;
+
+const hasMetadata = !!(line1 || line2 || line3);
 ---
 
 <a
@@ -63,13 +73,9 @@ const hasMetadata = !!(researchLine || level || teachingLine2);
     {
       hasMetadata && (
         <div class="mb-3 space-y-0.5">
-          {researchLine && (
-            <p class="text-xs text-text-secondary">{researchLine}</p>
-          )}
-          {level && <p class="text-xs text-text-secondary">{level}</p>}
-          {teachingLine2 && (
-            <p class="text-xs text-text-secondary">{teachingLine2}</p>
-          )}
+          {line1 && <p class="text-xs text-text-secondary">{line1}</p>}
+          {line2 && <p class="text-xs text-text-secondary">{line2}</p>}
+          {line3 && <p class="text-xs text-text-secondary">{line3}</p>}
         </div>
       )
     }

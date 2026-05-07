@@ -109,6 +109,9 @@ const pastProjects = researchProjects.filter((p) => p.data.status === "past");
                         description={post.data.description}
                         href={`/posts/${getPostSlug(post.id)}`}
                         image={image}
+                        period={post.data.period}
+                        funding={post.data.funding}
+                        role={post.data.role}
                         tags={post.data.tags}
                         linkLabel="View project →"
                     />
@@ -151,6 +154,9 @@ const pastProjects = researchProjects.filter((p) => p.data.status === "past");
                                 title={post.data.title}
                                 description={post.data.description}
                                 href={`/posts/${getPostSlug(post.id)}`}
+                                period={post.data.period}
+                                funding={post.data.funding}
+                                role={post.data.role}
                                 tags={post.data.tags}
                                 linkLabel="View project →"
                             />

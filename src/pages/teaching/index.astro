@@ -109,6 +109,11 @@ const pastCourses = teachingCourses.filter((c) => c.data.status === "past");
                         description={post.data.description}
                         href={`/posts/${getPostSlug(post.id)}`}
                         image={image}
+                        period={post.data.period}
+                        level={post.data.level}
+                        institution={post.data.institution}
+                        volume={post.data.volume}
+                        role={post.data.role}
                         tags={post.data.tags}
                         linkLabel="View course →"
                     />
@@ -151,6 +156,11 @@ const pastCourses = teachingCourses.filter((c) => c.data.status === "past");
                                 title={post.data.title}
                                 description={post.data.description}
                                 href={`/posts/${getPostSlug(post.id)}`}
+                                period={post.data.period}
+                                level={post.data.level}
+                                institution={post.data.institution}
+                                volume={post.data.volume}
+                                role={post.data.role}
                                 tags={post.data.tags}
                                 linkLabel="View course →"
                             />

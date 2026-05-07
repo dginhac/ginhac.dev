@@ -3,6 +3,12 @@ interface Props {
   title: string;
   description?: string;
   href: string;
+  period?: string;
+  funding?: string;
+  role?: string;
+  level?: string;
+  institution?: string;
+  volume?: string;
   tags?: string[];
   linkLabel?: string;
 }
@@ -11,9 +17,24 @@ const {
   title,
   description,
   href,
+  period,
+  funding,
+  role,
+  level,
+  institution,
+  volume,
   tags = [],
   linkLabel = "View →",
 } = Astro.props;
+
+const join = (items: Array<string | undefined>) =>
+  items.filter(Boolean).join(" · ");
+
+const line1 = join([period, funding ?? level]);
+const line2 = join([institution, volume]);
+const line3 = role;
+
+const hasMetadata = !!(line1 || line2 || line3);
 ---
 
 <a
@@ -25,6 +46,16 @@ const {
   >
     {title}
   </h3>
+
+  {
+    hasMetadata && (
+      <div class="mb-2 space-y-0.5">
+        {line1 && <p class="text-xs text-text-secondary">{line1}</p>}
+        {line2 && <p class="text-xs text-text-secondary">{line2}</p>}
+        {line3 && <p class="text-xs text-text-secondary">{line3}</p>}
+      </div>
+    )
+  }
 
   {
     description && (

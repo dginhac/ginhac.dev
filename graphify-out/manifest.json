@@ -1,0 +1,154 @@
+{
+  "/Users/d0m/Documents/dev/web/ginhac.dev/astro.config.mjs": {
+    "mtime": 1777444740.0717723,
+    "hash": "5042785cdeaba142eeefaf613c942176"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/content.config.ts": {
+    "mtime": 1777674077.5577383,
+    "hash": "f8ad5d790303a2c8121919a4ae52b1bf"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/config/navigation.ts": {
+    "mtime": 1777268047.7427905,
+    "hash": "74b2a3e7554f828af155dd82edc2e8be"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/config/links.ts": {
+    "mtime": 1777558632.9789677,
+    "hash": "78d924700f11509e7322e2791b9ad420"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/config/content/site.ts": {
+    "mtime": 1777910331.1014423,
+    "hash": "6ad5c1cbd2c664f5e6b22d03fe708aa4"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/config/content/posts.ts": {
+    "mtime": 1777912898.5877085,
+    "hash": "a2073e9fb6a67840fd07a088f86fc3a4"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/config/content/research.ts": {
+    "mtime": 1777879768.5745983,
+    "hash": "132829ccd2a756d5bdc6012a05595640"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/config/content/home.ts": {
+    "mtime": 1777928602.36231,
+    "hash": "73f0aa9746a9ee0d72915b891bd33fa6"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/config/content/teaching.ts": {
+    "mtime": 1777879826.7204177,
+    "hash": "a77c7a090e7bc6b554959e2880c70c9f"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/config/styles/categoryStyles.ts": {
+    "mtime": 1777960502.8915937,
+    "hash": "9b3445ebf08cf9055d38c2c129393f0b"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/utils/markdown.ts": {
+    "mtime": 1777444740.0850186,
+    "hash": "da987cb62c9efa9b74421df0361f8b21"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/utils/posts/relatedPosts.ts": {
+    "mtime": 1777558632.9803674,
+    "hash": "05d97c966a1d1d5d0a0db3e1dbd8f7cb"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/utils/posts/dateUtils.ts": {
+    "mtime": 1777674098.1224897,
+    "hash": "e7f30c7e6723d8b1617477ca85a96d15"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/utils/posts/slugUtils.ts": {
+    "mtime": 1777587664.722684,
+    "hash": "12c5cbc42908e8cf6333e5368097c591"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/README.md": {
+    "mtime": 1777474215.5042837,
+    "hash": "2cae2ba3f44d538909de2f8a14405a02"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/CLAUDE.md": {
+    "mtime": 1777984035.5172691,
+    "hash": "5a25eb82504679808bbf6cb2df8399bb"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/content/posts/lumen-luminance-representation-learning/index.mdx": {
+    "mtime": 1777587738.7919405,
+    "hash": "607c262496e6a308836afc3a5a37daf5"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/content/posts/teaching-cpp-programming/index.mdx": {
+    "mtime": 1777675096.5345206,
+    "hash": "badeb0ee97b269d356ecaf13d6f4e2e1"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/content/posts/embedded-vision-systems/index.mdx": {
+    "mtime": 1777587738.8036172,
+    "hash": "9e4d60a2f0e02177b7f95ff786a0aa93"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/content/posts/publication-real-time-vision-systems/index.mdx": {
+    "mtime": 1777674088.2707548,
+    "hash": "c3de9554eb91b8c6655c12707811c7b7"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/content/posts/publication-hdr-foundation-models/index.mdx": {
+    "mtime": 1777587738.8014047,
+    "hash": "8f2cc2ed424ce38e0f18326e402a172e"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/content/posts/notes-on-computer-vision-representations/index.mdx": {
+    "mtime": 1777675340.2087882,
+    "hash": "cc0f7954c641086342b7463734bed69c"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/content/posts/understanding-hdr-imaging/index.mdx": {
+    "mtime": 1777674467.5382774,
+    "hash": "ff57d27c8a19819034f6b5bf823bb416"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/content/posts/teaching-computer-architecture/index.mdx": {
+    "mtime": 1777587738.8058827,
+    "hash": "613672d91760f8aa997548c4a0442510"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/public/web-app-manifest-192x192.png": {
+    "mtime": 1777474215.5055368,
+    "hash": "878e7566e86e65d70bc73494f4df31d2"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/public/apple-touch-icon.png": {
+    "mtime": 1777474215.504456,
+    "hash": "ee5687cf1d280c39f2960d22bd56edef"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/public/web-app-manifest-512x512.png": {
+    "mtime": 1777474215.50575,
+    "hash": "d4a390c45d511eabcd1a11de4b2e2946"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/public/favicon-96x96.png": {
+    "mtime": 1777474215.5046422,
+    "hash": "45df99341c861fba2931bf7283ec2fd2"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/public/favicon.svg": {
+    "mtime": 1777474215.505117,
+    "hash": "125986730f23ac3f4878b6dba2caf745"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/content/posts/lumen-luminance-representation-learning/featured-lumen.webp": {
+    "mtime": 1777444740.0737984,
+    "hash": "f1cc48edcc93cb40ccadd99cffac7b83"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/content/posts/teaching-cpp-programming/featured-prog.webp": {
+    "mtime": 1777444740.0754204,
+    "hash": "bc40ca7ef26d58e4e904a5801342c67b"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/content/posts/notes-on-computer-vision-representations/featured-visual.webp": {
+    "mtime": 1777444740.0746906,
+    "hash": "d39aabd42a9cf8937386761e3ffae170"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/content/posts/understanding-hdr-imaging/hdr-pipeline.jpg": {
+    "mtime": 1777444740.078201,
+    "hash": "0701c20d4bcba7f37fb0fe3e41bcb942"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/content/posts/understanding-hdr-imaging/LDR-images.png": {
+    "mtime": 1777444740.076316,
+    "hash": "d6f0c1a095301b58c4f4f80885d62611"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/content/posts/understanding-hdr-imaging/featured-hdr.webp": {
+    "mtime": 1777444740.076783,
+    "hash": "c5743e90a261d1af4c5c63ccd3d60c71"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/assets/home/hero-portrait.jpg": {
+    "mtime": 1777292731.2935336,
+    "hash": "7256f3d603392675523fad3bb50510ea"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/assets/home/hero-portrait-v2.jpg": {
+    "mtime": 1777496794.1363044,
+    "hash": "af86369cfd2b79cd17ed70940349875f"
+  },
+  "/Users/d0m/Documents/dev/web/ginhac.dev/src/assets/brand/dg-primary.svg": {
+    "mtime": 1777474215.5058818,
+    "hash": "015fd0084b66a67b0b8196edd0a8b642"
+  }
+}

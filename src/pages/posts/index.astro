@@ -103,19 +103,15 @@ const posts = await Promise.all(
                 </nav>
             </div>
 
-            <!-- Tag filter indicator (populated by JS when ?tag= is active) -->
+            <!-- Active filter indicator (populated by JS when type or tag filter is active) -->
             <div
-                id="tag-filter-indicator"
+                id="filter-indicator"
                 class="hidden mt-4 flex items-center gap-2 text-sm text-text-secondary"
             >
-                <span
-                    >Posts tagged "<strong
-                        id="tag-filter-name"
-                        class="font-medium text-text-primary"></strong>"</span
-                >
+                <span id="filter-indicator-text"></span>
                 <span aria-hidden="true" class="opacity-40">·</span>
                 <a
-                    id="clear-tag-link"
+                    id="clear-filter-link"
                     href="/posts"
                     class="underline underline-offset-4 hover:text-text-primary transition-colors"
                     >Clear filter</a
@@ -226,9 +222,9 @@ const posts = await Promise.all(
     const countLabelEl = document.getElementById("post-count-label");
     const emptyState = document.getElementById("empty-state");
     const postList = document.getElementById("post-list");
-    const tagIndicator = document.getElementById("tag-filter-indicator");
-    const tagNameEl = document.getElementById("tag-filter-name");
-    const clearTagLink = document.getElementById("clear-tag-link");
+    const filterIndicator = document.getElementById("filter-indicator");
+    const filterIndicatorText = document.getElementById("filter-indicator-text");
+    const clearFilterLink = document.getElementById("clear-filter-link");
 
     let visible = 0;
 
@@ -264,12 +260,36 @@ const posts = await Promise.all(
         }
     });
 
-    // Show tag filter indicator
-    if (selectedTag && tagIndicator && tagNameEl && clearTagLink) {
-        tagIndicator.classList.remove("hidden");
-        tagNameEl.textContent = selectedTag;
-        const clearUrl =
-            activeType !== "ALL" ? `/posts?type=${activeType}` : "/posts";
-        clearTagLink.setAttribute("href", clearUrl);
+    // Show active filter indicator
+    const hasTypeFilter = activeType !== "ALL";
+    const hasTagFilter = !!selectedTag;
+    if (
+        (hasTypeFilter || hasTagFilter) &&
+        filterIndicator &&
+        filterIndicatorText &&
+        clearFilterLink
+    ) {
+        filterIndicator.classList.remove("hidden");
+        clearFilterLink.setAttribute("href", "/posts");
+        filterIndicatorText.textContent = "";
+        if (hasTypeFilter) {
+            const typeStrong = document.createElement("strong");
+            typeStrong.className = "font-medium text-text-primary uppercase";
+            typeStrong.textContent = activeType;
+            filterIndicatorText.appendChild(typeStrong);
+            filterIndicatorText.appendChild(document.createTextNode(" posts"));
+        }
+        if (hasTagFilter) {
+            filterIndicatorText.appendChild(
+                document.createTextNode(
+                    hasTypeFilter ? ' tagged "' : 'Posts tagged "',
+                ),
+            );
+            const tagStrong = document.createElement("strong");
+            tagStrong.className = "font-medium text-text-primary";
+            tagStrong.textContent = selectedTag;
+            filterIndicatorText.appendChild(tagStrong);
+            filterIndicatorText.appendChild(document.createTextNode('"'));
+        }
     }
 </script>

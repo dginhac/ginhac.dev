@@ -1,0 +1,40 @@
+---
+import Link from "./Link.astro";
+
+interface BreadcrumbItem {
+    label: string;
+    href?: string;
+}
+
+interface Props {
+    items: BreadcrumbItem[];
+    class?: string;
+}
+
+const { items, class: className } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class:list={["text-sm text-text-secondary", className]}>
+    <ol class="flex flex-wrap items-center gap-1.5">
+        {items.map((item, index) => (
+            <>
+                {index > 0 && (
+                    <li aria-hidden="true" class="opacity-40">/</li>
+                )}
+                <li>
+                    {item.href ? (
+                        <Link
+                            href={item.href}
+                            arrow="none"
+                            class="text-text-secondary hover:text-text-primary transition-colors"
+                        >
+                            {item.label}
+                        </Link>
+                    ) : (
+                        <span class="font-medium">{item.label}</span>
+                    )}
+                </li>
+            </>
+        ))}
+    </ol>
+</nav>

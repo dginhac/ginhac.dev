@@ -8,6 +8,7 @@ import TableOfContents from "../components/post/TableOfContents.astro";
 import RelatedPosts from "../components/post/RelatedPosts.astro";
 import ResourceList from "../components/post/ResourceList.astro";
 import Link from "../components/ui/Link.astro";
+import Breadcrumb from "../components/ui/Breadcrumb.astro";
 import Tag from "../components/ui/Tag.astro";
 import Eyebrow from "../components/ui/Eyebrow.astro";
 import type { CollectionEntry } from "astro:content";
@@ -85,39 +86,15 @@ const headerInnerClass = showToc
         >
             <div class={headerInnerClass}>
                 <!-- Breadcrumb -->
-                <nav aria-label="Breadcrumb" class="mb-8">
-                    <ol
-                        class="flex flex-wrap items-center gap-1.5 text-sm text-text-secondary"
-                    >
-                        <li>
-                            <Link
-                                href="/posts"
-                                arrow="none"
-                                class="text-text-secondary hover:text-text-primary transition-colors"
-                            >
-                                All content
-                            </Link>
-                        </li>
-                        {
-                            typeLabel && (
-                                <>
-                                    <li aria-hidden="true" class="opacity-40">
-                                        &gt;
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={`/posts?type=${typeLabel}`}
-                                            arrow="none"
-                                            class="font-medium uppercase tracking-wide text-text-secondary hover:text-text-primary transition-colors"
-                                        >
-                                            {typeLabel}
-                                        </Link>
-                                    </li>
-                                </>
-                            )
-                        }
-                    </ol>
-                </nav>
+                <Breadcrumb
+                    items={[
+                        { label: "All content", href: "/posts" },
+                        ...(typeLabel
+                            ? [{ label: typeLabel, href: `/posts?type=${typeLabel}` }]
+                            : []),
+                    ]}
+                    class="mb-8"
+                />
 
                 <!-- Eyebrow -->
                 {eyebrow && <Eyebrow class="mt-8 mb-2">{eyebrow}</Eyebrow>}

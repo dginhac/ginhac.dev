@@ -10,7 +10,7 @@ import { researchConfig } from "../../config/content/research";
 import { getPostSlug } from "../../utils/posts/slugUtils";
 import { getEffectivePostDate } from "../../utils/posts/dateUtils";
 
-const { meta, eyebrow, title, description, intro, tags, sections, contact } =
+const { meta, eyebrow, title, description, intro, sections, contact } =
     researchConfig;
 
 const postImages = import.meta.glob<{ default: ImageMetadata }>(
@@ -23,7 +23,11 @@ const researchProjects = allPosts
     .filter(
         (post) => post.data.type === "research" && post.data.kind === "project",
     )
-    .sort((a, b) => getEffectivePostDate(b).getTime() - getEffectivePostDate(a).getTime());
+    .sort(
+        (a, b) =>
+            getEffectivePostDate(b).getTime() -
+            getEffectivePostDate(a).getTime(),
+    );
 
 const currentProjects = await Promise.all(
     researchProjects
@@ -49,7 +53,6 @@ const pastProjects = researchProjects.filter((p) => p.data.status === "past");
         title={title}
         description={description}
         intro={intro}
-        tags={tags}
         variant="research"
     />
 

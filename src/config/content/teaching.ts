@@ -18,7 +18,6 @@ export interface TeachingConfig {
   title: string;
   description: string;
   intro: string;
-  tags: string[];
   sections: {
     current: { title: string; description: string };
     previous: { title: string; description: string };
@@ -39,16 +38,11 @@ export const teachingConfig: TeachingConfig = {
     "My teaching focuses on computer science fundamentals, software engineering practices, computer architecture, and visual computing.",
   intro:
     "I teach computer science through progressive, practice-oriented modules that connect conceptual understanding, software design, tool usage, and engineering methodology.",
-  tags: [
-    "Modern C++",
-    "Computer architecture",
-    "Software engineering",
-    "Project-based learning",
-  ],
   sections: {
     current: {
       title: "Current modules",
-      description: "Modules currently taught, centered on software engineering practice, systems thinking, and modern programming methodology.",
+      description:
+        "Modules currently taught, centered on software engineering practice, systems thinking, and modern programming methodology.",
     },
     previous: {
       title: "Previous modules",

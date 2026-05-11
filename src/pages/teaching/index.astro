@@ -10,7 +10,7 @@ import { teachingConfig } from "../../config/content/teaching";
 import { getPostSlug } from "../../utils/posts/slugUtils";
 import { getEffectivePostDate } from "../../utils/posts/dateUtils";
 
-const { meta, eyebrow, title, description, intro, tags, sections, contact } =
+const { meta, eyebrow, title, description, intro, sections, contact } =
     teachingConfig;
 
 const postImages = import.meta.glob<{ default: ImageMetadata }>(
@@ -23,7 +23,11 @@ const teachingCourses = allPosts
     .filter(
         (post) => post.data.type === "teaching" && post.data.kind === "course",
     )
-    .sort((a, b) => getEffectivePostDate(b).getTime() - getEffectivePostDate(a).getTime());
+    .sort(
+        (a, b) =>
+            getEffectivePostDate(b).getTime() -
+            getEffectivePostDate(a).getTime(),
+    );
 
 const currentCourses = await Promise.all(
     teachingCourses
@@ -49,7 +53,6 @@ const pastCourses = teachingCourses.filter((c) => c.data.status === "past");
         title={title}
         description={description}
         intro={intro}
-        tags={tags}
         variant="teaching"
     />
 

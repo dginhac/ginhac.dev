@@ -17,7 +17,6 @@ export interface ResearchConfig {
   title: string;
   description: string;
   intro: string;
-  tags: string[];
   sections: {
     current: { title: string; description: string };
     previous: { title: string; description: string };
@@ -38,16 +37,11 @@ export const researchConfig: ResearchConfig = {
     "My research focuses on computer vision, artificial intelligence, digital imaging systems, and embedded visual perception.",
   intro:
     "I explore how visual information can be acquired, represented, processed, and interpreted by computational systems, with a particular interest in efficient AI-based imaging and perception systems.",
-  tags: [
-    "Computational imaging",
-    "Computer vision",
-    "Efficient AI",
-    "Embedded vision",
-  ],
   sections: {
     current: {
       title: "Current projects",
-      description: "Active projects that define the current directions of my research in computational imaging and embedded visual AI.",
+      description:
+        "Active projects that define the current directions of my research in computational imaging and embedded visual AI.",
     },
     previous: {
       title: "Previous projects",

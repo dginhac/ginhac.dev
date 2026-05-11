@@ -14,27 +14,34 @@ interface Props {
 const { items, class: className } = Astro.props;
 ---
 
-<nav aria-label="Breadcrumb" class:list={["text-sm text-text-secondary", className]}>
+<nav
+    aria-label="Breadcrumb"
+    class:list={["text-sm text-text-secondary mb-8", className]}
+>
     <ol class="flex flex-wrap items-center gap-1.5">
-        {items.map((item, index) => (
-            <>
-                {index > 0 && (
-                    <li aria-hidden="true" class="opacity-40">/</li>
-                )}
-                <li>
-                    {item.href ? (
-                        <Link
-                            href={item.href}
-                            arrow="none"
-                            class="text-text-secondary hover:text-text-primary transition-colors"
-                        >
-                            {item.label}
-                        </Link>
-                    ) : (
-                        <span class="font-medium">{item.label}</span>
+        {
+            items.map((item, index) => (
+                <>
+                    {index > 0 && (
+                        <li aria-hidden="true" class="opacity-40">
+                            /
+                        </li>
                     )}
-                </li>
-            </>
-        ))}
+                    <li>
+                        {item.href ? (
+                            <Link
+                                href={item.href}
+                                arrow="none"
+                                class="text-text-secondary hover:text-text-primary transition-colors"
+                            >
+                                {item.label}
+                            </Link>
+                        ) : (
+                            <span class="font-medium">{item.label}</span>
+                        )}
+                    </li>
+                </>
+            ))
+        }
     </ol>
 </nav>

@@ -9,6 +9,8 @@ import RelatedPosts from "../components/post/RelatedPosts.astro";
 import ResourceList from "../components/post/ResourceList.astro";
 import Link from "../components/ui/Link.astro";
 import Breadcrumb from "../components/ui/Breadcrumb.astro";
+import Title from "../components/ui/Title.astro";
+import Description from "../components/ui/Description.astro";
 import Tag from "../components/ui/Tag.astro";
 import Eyebrow from "../components/ui/Eyebrow.astro";
 import type { CollectionEntry } from "astro:content";
@@ -100,21 +102,18 @@ const headerInnerClass = showToc
                 {eyebrow && <Eyebrow class="mt-8 mb-2">{eyebrow}</Eyebrow>}
 
                 <!-- Title -->
-                <h1
-                    class="font-heading text-3xl md:text-[2.5rem] font-bold tracking-[-0.02em] leading-[1.2] mb-6 text-hero-text"
-                >
-                    <span class={`${typeStyles.titleAccent} font-extrabold`}
-                        >/</span
-                    >
+                <Title accentClass={typeStyles.titleAccent} class="mb-6">
                     {title}
-                </h1>
+                </Title>
 
                 <!-- Description -->
-                <p
-                    class="text-[1.0625rem] md:text-lg leading-[1.7] mb-4 text-text-primary"
-                >
-                    {description}
-                </p>
+                {
+                    description && (
+                        <Description class="text-[1.0625rem] md:text-lg leading-[1.7] mb-4 text-text-primary">
+                            {description}
+                        </Description>
+                    )
+                }
 
                 <!-- Meta: date then reading time -->
                 <p class="text-sm text-slate-500 mb-8">

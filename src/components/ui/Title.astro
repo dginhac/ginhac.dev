@@ -1,0 +1,20 @@
+---
+interface Props {
+    accentClass?: string;
+    showSlash?: boolean;
+    class?: string;
+}
+
+const {
+    accentClass = "text-slate-300",
+    showSlash = true,
+    class: className = "",
+} = Astro.props;
+---
+
+<h1
+    class={`font-heading text-3xl md:text-[2.5rem] font-bold text-hero-text tracking-[-0.02em] leading-[1.2] ${className}`}
+>
+    {showSlash && <span class={`${accentClass} font-extrabold`}>/</span>}
+    <slot />
+</h1>

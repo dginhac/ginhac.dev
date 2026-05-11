@@ -1,6 +1,8 @@
 ---
 import Tag from "../ui/Tag.astro";
 import Eyebrow from "../ui/Eyebrow.astro";
+import Title from "../ui/Title.astro";
+import Description from "../ui/Description.astro";
 import { getPageStyles } from "../../config/styles/categoryStyles";
 
 interface Props {
@@ -47,18 +49,9 @@ const rgb =
     <div class="relative max-w-5xl mx-auto px-6 py-12 sm:py-16">
         <Eyebrow class="mb-2">{eyebrow}</Eyebrow>
 
-        <h1
-            class="font-heading text-3xl md:text-[2.5rem] font-bold text-hero-text tracking-[-0.02em] leading-[1.2] mb-4"
-        >
-            <span class={`${styles.titleAccent} font-extrabold`}>/</span>
-            {title}
-        </h1>
+        <Title accentClass={styles.titleAccent} class="mb-4">{title}</Title>
 
-        <p
-            class="text-text-secondary text-base sm:text-lg leading-relaxed mb-3"
-        >
-            {description}
-        </p>
+        {description && <Description class="mb-3">{description}</Description>}
 
         {
             intro && (

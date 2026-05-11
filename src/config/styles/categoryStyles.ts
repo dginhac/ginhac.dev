@@ -4,30 +4,35 @@ export const categoryStyles = {
     headerGradient:
       "bg-gradient-to-b from-section-alt via-section-alt to-orange-100",
     titleAccent: "text-orange-300",
+    gridRgb: "234, 88, 12",
   },
   RESEARCH: {
     badge: "border-blue-200 bg-blue-50 text-blue-600",
     headerGradient:
       "bg-gradient-to-b from-section-alt via-section-alt to-blue-100",
     titleAccent: "text-blue-300",
+    gridRgb: "37, 99, 235",
   },
   TEACHING: {
     badge: "border-emerald-200 bg-emerald-50 text-emerald-600",
     headerGradient:
       "bg-gradient-to-b from-section-alt via-section-alt to-emerald-100",
     titleAccent: "text-emerald-300",
+    gridRgb: "5, 150, 105",
   },
   PUBLICATION: {
     badge: "border-violet-200 bg-violet-50 text-violet-600",
     headerGradient:
       "bg-gradient-to-b from-section-alt via-section-alt to-violet-100",
     titleAccent: "text-violet-300",
+    gridRgb: "124, 58, 237",
   },
   HOWTO: {
     badge: "border-amber-200 bg-amber-50 text-amber-700",
     headerGradient:
       "bg-gradient-to-b from-section-alt via-section-alt to-amber-100",
     titleAccent: "text-amber-300",
+    gridRgb: "217, 119, 6",
   },
 } as const;
 
@@ -42,6 +47,7 @@ export const fallbackCategoryStyles = {
   headerGradient:
     "bg-gradient-to-b from-section-alt via-section-alt to-slate-50",
   titleAccent: "text-slate-300",
+  gridRgb: "37, 99, 235",
 } as const;
 
 // Page-level styles for generic/top-level pages.
@@ -51,26 +57,31 @@ export const pageStyles = {
     headerGradient:
       "bg-gradient-to-b from-section-alt via-section-alt to-slate-100",
     titleAccent: "text-slate-300",
+    gridRgb: "37, 99, 235",
   },
   posts: {
     headerGradient:
       "bg-gradient-to-b from-section-alt via-section-alt to-slate-100",
     titleAccent: "text-slate-300",
+    gridRgb: "37, 99, 235",
   },
   research: {
     headerGradient:
       "bg-gradient-to-b from-section-alt via-section-alt to-blue-100",
     titleAccent: "text-blue-300",
+    gridRgb: "37, 99, 235",
   },
   teaching: {
     headerGradient:
       "bg-gradient-to-b from-section-alt via-section-alt to-emerald-100",
     titleAccent: "text-emerald-300",
+    gridRgb: "5, 150, 105",
   },
   publications: {
     headerGradient:
       "bg-gradient-to-b from-section-alt via-section-alt to-slate-100",
     titleAccent: "text-slate-300",
+    gridRgb: "71, 85, 105",
   },
 } as const;
 

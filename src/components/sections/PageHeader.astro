@@ -3,15 +3,22 @@ import Tag from "../ui/Tag.astro";
 import Eyebrow from "../ui/Eyebrow.astro";
 import Title from "../ui/Title.astro";
 import Description from "../ui/Description.astro";
-import { getPageStyles } from "../../config/styles/categoryStyles";
+import {
+    getPageStyles,
+    type PageStyleType,
+} from "../../config/styles/categoryStyles";
 
 interface Props {
-    eyebrow: string;
+    eyebrow?: string;
     title: string;
-    description: string;
+    description?: string;
     intro?: string;
     tags?: string[];
-    variant?: "default" | "research" | "teaching";
+    variant?: PageStyleType;
+    headerGradient?: string;
+    titleAccent?: string;
+    gridRgb?: string;
+    innerClass?: string;
 }
 
 const {
@@ -21,27 +28,29 @@ const {
     intro,
     tags = [],
     variant = "default",
+    headerGradient,
+    titleAccent,
+    gridRgb,
+    innerClass = "max-w-5xl mx-auto px-6 py-12 sm:py-16",
 } = Astro.props;
 
-const styles = getPageStyles(variant);
-
-const rgb =
-    variant === "teaching"
-        ? "5, 150, 105" // emerald-600
-        : "37, 99, 235"; // blue-600 (research / default)
+const pageStyle = getPageStyles(variant);
+const resolvedGradient = headerGradient ?? pageStyle.headerGradient;
+const resolvedAccent = titleAccent ?? pageStyle.titleAccent;
+const resolvedRgb = gridRgb ?? pageStyle.gridRgb;
 ---
 
 <!-- Full-width editorial header -->
 <div
-    class={`w-full pt-28 pb-14 md:pt-32 md:pb-12 px-6 border-b border-border ${styles.headerGradient} relative`}
+    class={`w-full pt-28 pb-14 md:pt-32 md:pb-12 px-6 border-b border-border ${resolvedGradient} relative`}
 >
     <!-- Grid pattern overlay: sits on top of the gradient, below the text -->
     <div
         class="absolute inset-0 pointer-events-none select-none"
         aria-hidden="true"
         style={`background-image:
-      linear-gradient(rgba(${rgb}, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(${rgb}, 0.1) 1px, transparent 1px);
+      linear-gradient(rgba(${resolvedRgb}, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(${resolvedRgb}, 0.1) 1px, transparent 1px);
     background-size: 28px 28px;
     mask-image: linear-gradient(
       to bottom,
@@ -60,10 +69,12 @@ const rgb =
     >
     </div>
 
-    <div class="relative max-w-5xl mx-auto px-6 py-12 sm:py-16">
-        <Eyebrow>{eyebrow}</Eyebrow>
+    <div class={`relative ${innerClass}`}>
+        <slot name="breadcrumb" />
 
-        <Title accentClass={styles.titleAccent} class="mb-4">{title}</Title>
+        {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+
+        <Title accentClass={resolvedAccent} class="mb-4">{title}</Title>
 
         {description && <Description class="mb-3">{description}</Description>}
 
@@ -75,14 +86,20 @@ const rgb =
             )
         }
 
-        {
-            tags.length > 0 && (
-                <div class="mt-6 flex flex-wrap gap-2">
-                    {tags.map((tag) => (
-                        <Tag label={tag} />
-                    ))}
-                </div>
-            )
-        }
+        <slot name="meta" />
+
+        <slot name="tags">
+            {
+                tags.length > 0 && (
+                    <div class="mt-6 flex flex-wrap gap-2">
+                        {tags.map((tag) => (
+                            <Tag label={tag} />
+                        ))}
+                    </div>
+                )
+            }
+        </slot>
+
+        <slot name="after" />
     </div>
 </div>

@@ -59,7 +59,7 @@ const posts = await Promise.all(
     <div class={`w-full border-b border-border ${pageStyle.headerGradient}`}>
         <div class="max-w-5xl mx-auto px-6 py-12 sm:py-16">
             <!-- Eyebrow -->
-            <Eyebrow class="mt-8 mb-2">{header.eyebrow}</Eyebrow>
+            <Eyebrow>{header.eyebrow}</Eyebrow>
 
             <h1
                 class="font-heading text-3xl md:text-[2.5rem] font-bold text-hero-text tracking-[-0.02em] leading-[1.2] mb-4"
@@ -223,7 +223,9 @@ const posts = await Promise.all(
     const emptyState = document.getElementById("empty-state");
     const postList = document.getElementById("post-list");
     const filterIndicator = document.getElementById("filter-indicator");
-    const filterIndicatorText = document.getElementById("filter-indicator-text");
+    const filterIndicatorText = document.getElementById(
+        "filter-indicator-text",
+    );
     const clearFilterLink = document.getElementById("clear-filter-link");
 
     let visible = 0;

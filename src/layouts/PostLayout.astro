@@ -92,14 +92,19 @@ const headerInnerClass = showToc
                     items={[
                         { label: "All content", href: "/posts" },
                         ...(typeLabel
-                            ? [{ label: typeLabel, href: `/posts?type=${typeLabel}` }]
+                            ? [
+                                  {
+                                      label: typeLabel,
+                                      href: `/posts?type=${typeLabel}`,
+                                  },
+                              ]
                             : []),
                     ]}
                     class="mb-8"
                 />
 
                 <!-- Eyebrow -->
-                {eyebrow && <Eyebrow class="mt-8 mb-2">{eyebrow}</Eyebrow>}
+                {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
 
                 <!-- Title -->
                 <Title accentClass={typeStyles.titleAccent} class="mb-6">

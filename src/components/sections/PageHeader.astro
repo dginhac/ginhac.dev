@@ -4,70 +4,78 @@ import Eyebrow from "../ui/Eyebrow.astro";
 import { getPageStyles } from "../../config/styles/categoryStyles";
 
 interface Props {
-  eyebrow: string;
-  title: string;
-  description: string;
-  intro?: string;
-  tags?: string[];
-  variant?: "default" | "research" | "teaching";
+    eyebrow: string;
+    title: string;
+    description: string;
+    intro?: string;
+    tags?: string[];
+    variant?: "default" | "research" | "teaching";
 }
 
 const {
-  eyebrow,
-  title,
-  description,
-  intro,
-  tags = [],
-  variant = "default",
+    eyebrow,
+    title,
+    description,
+    intro,
+    tags = [],
+    variant = "default",
 } = Astro.props;
 
 const styles = getPageStyles(variant);
 
 const rgb =
-  variant === "teaching"
-    ? "5, 150, 105"  // emerald-600
-    : "37, 99, 235"; // blue-600 (research / default)
+    variant === "teaching"
+        ? "5, 150, 105" // emerald-600
+        : "37, 99, 235"; // blue-600 (research / default)
 ---
 
-<div class={`w-full border-b border-border ${styles.headerGradient} relative`}>
-  <!-- Grid pattern overlay: sits on top of the gradient, below the text -->
-  <div
-    class="absolute inset-0 pointer-events-none select-none"
-    aria-hidden="true"
-    style={`background-image:
+<!-- Full-width editorial header -->
+<div
+    class={`w-full pt-28 pb-14 md:pt-32 md:pb-12 px-6 border-b border-border ${styles.headerGradient} relative`}
+>
+    <!-- Grid pattern overlay: sits on top of the gradient, below the text -->
+    <div
+        class="absolute inset-0 pointer-events-none select-none"
+        aria-hidden="true"
+        style={`background-image:
       linear-gradient(rgba(${rgb}, 0.03) 1px, transparent 1px),
       linear-gradient(90deg, rgba(${rgb}, 0.03) 1px, transparent 1px);
     background-size: 28px 28px;`}
-  />
-
-  <div class="relative max-w-5xl mx-auto px-6 py-12 sm:py-16">
-    <Eyebrow class="mb-2">{eyebrow}</Eyebrow>
-
-    <h1
-      class="font-heading text-3xl md:text-[2.5rem] font-bold text-hero-text tracking-[-0.02em] leading-[1.2] mb-4"
     >
-      <span class={`${styles.titleAccent} font-extrabold`}>/</span>
-      {title}
-    </h1>
+    </div>
 
-    <p class="text-text-secondary text-base sm:text-lg leading-relaxed mb-3">
-      {description}
-    </p>
+    <div class="relative max-w-5xl mx-auto px-6 py-12 sm:py-16">
+        <Eyebrow class="mb-2">{eyebrow}</Eyebrow>
 
-    {
-      intro && (
-        <p class="text-text-secondary text-base leading-relaxed">{intro}</p>
-      )
-    }
+        <h1
+            class="font-heading text-3xl md:text-[2.5rem] font-bold text-hero-text tracking-[-0.02em] leading-[1.2] mb-4"
+        >
+            <span class={`${styles.titleAccent} font-extrabold`}>/</span>
+            {title}
+        </h1>
 
-    {
-      tags.length > 0 && (
-        <div class="mt-6 flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <Tag label={tag} />
-          ))}
-        </div>
-      )
-    }
-  </div>
+        <p
+            class="text-text-secondary text-base sm:text-lg leading-relaxed mb-3"
+        >
+            {description}
+        </p>
+
+        {
+            intro && (
+                <p class="text-text-secondary text-base leading-relaxed">
+                    {intro}
+                </p>
+            )
+        }
+
+        {
+            tags.length > 0 && (
+                <div class="mt-6 flex flex-wrap gap-2">
+                    {tags.map((tag) => (
+                        <Tag label={tag} />
+                    ))}
+                </div>
+            )
+        }
+    </div>
 </div>

@@ -40,9 +40,23 @@ const rgb =
         class="absolute inset-0 pointer-events-none select-none"
         aria-hidden="true"
         style={`background-image:
-      linear-gradient(rgba(${rgb}, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(${rgb}, 0.03) 1px, transparent 1px);
-    background-size: 28px 28px;`}
+      linear-gradient(rgba(${rgb}, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(${rgb}, 0.1) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 20%,
+      rgba(0, 0, 0, 0.35) 65%,
+      black 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 20%,
+      rgba(0, 0, 0, 0.35) 65%,
+      black 100%
+    );`}
     >
     </div>
 

@@ -2,31 +2,31 @@ export const categoryStyles = {
   INSIGHT: {
     badge: "border-orange-200 bg-orange-50 text-orange-600",
     headerGradient:
-      "bg-gradient-to-b from-section-alt via-section-alt to-orange-50",
+      "bg-gradient-to-b from-section-alt via-section-alt to-orange-100",
     titleAccent: "text-orange-300",
   },
   RESEARCH: {
     badge: "border-blue-200 bg-blue-50 text-blue-600",
     headerGradient:
-      "bg-gradient-to-b from-section-alt via-section-alt to-blue-50",
+      "bg-gradient-to-b from-section-alt via-section-alt to-blue-100",
     titleAccent: "text-blue-300",
   },
   TEACHING: {
     badge: "border-emerald-200 bg-emerald-50 text-emerald-600",
     headerGradient:
-      "bg-gradient-to-b from-section-alt via-section-alt to-emerald-50",
+      "bg-gradient-to-b from-section-alt via-section-alt to-emerald-100",
     titleAccent: "text-emerald-300",
   },
   PUBLICATION: {
     badge: "border-violet-200 bg-violet-50 text-violet-600",
     headerGradient:
-      "bg-gradient-to-b from-section-alt via-section-alt to-violet-50",
+      "bg-gradient-to-b from-section-alt via-section-alt to-violet-100",
     titleAccent: "text-violet-300",
   },
   HOWTO: {
     badge: "border-amber-200 bg-amber-50 text-amber-700",
     headerGradient:
-      "bg-gradient-to-b from-section-alt via-section-alt to-amber-50",
+      "bg-gradient-to-b from-section-alt via-section-alt to-amber-100",
     titleAccent: "text-amber-300",
   },
 } as const;
@@ -49,7 +49,7 @@ export const fallbackCategoryStyles = {
 export const pageStyles = {
   default: {
     headerGradient:
-      "bg-gradient-to-b from-section-alt via-section-alt to-slate-50",
+      "bg-gradient-to-b from-section-alt via-section-alt to-slate-100",
     titleAccent: "text-slate-300",
   },
   posts: {
@@ -59,17 +59,17 @@ export const pageStyles = {
   },
   research: {
     headerGradient:
-      "bg-gradient-to-b from-section-alt via-section-alt to-blue-50",
+      "bg-gradient-to-b from-section-alt via-section-alt to-blue-100",
     titleAccent: "text-blue-300",
   },
   teaching: {
     headerGradient:
-      "bg-gradient-to-b from-section-alt via-section-alt to-emerald-50",
+      "bg-gradient-to-b from-section-alt via-section-alt to-emerald-100",
     titleAccent: "text-emerald-300",
   },
   publications: {
     headerGradient:
-      "bg-gradient-to-b from-section-alt via-section-alt to-slate-50",
+      "bg-gradient-to-b from-section-alt via-section-alt to-slate-100",
     titleAccent: "text-slate-300",
   },
 } as const;

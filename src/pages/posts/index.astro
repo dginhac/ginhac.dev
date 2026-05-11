@@ -4,7 +4,7 @@ import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import TypeBadge from "../../components/ui/TypeBadge.astro";
-import Eyebrow from "../../components/ui/Eyebrow.astro";
+import PageHeader from "../../components/sections/PageHeader.astro";
 import { postsContent } from "../../config/content/posts";
 import {
     formatPostDate,
@@ -55,25 +55,16 @@ const posts = await Promise.all(
 ---
 
 <BaseLayout title={meta.title} description={meta.description}>
-    <!-- Editorial page header -->
-    <div class={`w-full border-b border-border ${pageStyle.headerGradient}`}>
-        <div class="max-w-5xl mx-auto px-6 py-12 sm:py-16">
-            <!-- Eyebrow -->
-            <Eyebrow>{header.eyebrow}</Eyebrow>
-
-            <h1
-                class="font-heading text-3xl md:text-[2.5rem] font-bold text-hero-text tracking-[-0.02em] leading-[1.2] mb-4"
-            >
-                <span class={`${pageStyle.titleAccent} font-extrabold`}>/</span>
-                {header.title}
-            </h1>
-            {
-                header.description.map((para) => (
-                    <p class="text-text-secondary text-base sm:text-lg leading-relaxed mb-3 last:mb-6">
-                        {para}
-                    </p>
-                ))
-            }
+    <PageHeader
+        eyebrow={header.eyebrow}
+        title={header.title}
+        description={header.description[0]}
+        headerGradient={pageStyle.headerGradient}
+        titleAccent={pageStyle.titleAccent}
+        gridRgb={pageStyle.gridRgb}
+    >
+        <div slot="after" class="mt-3">
+            <!-- Post count -->
             <p class="text-sm text-text-secondary mb-8">
                 <span id="post-count">{posts.length}</span>
                 <span id="post-count-label"
@@ -118,7 +109,7 @@ const posts = await Promise.all(
                 >
             </div>
         </div>
-    </div>
+    </PageHeader>
 
     <!-- Posts list -->
     <div class="max-w-5xl mx-auto px-6 py-12">

@@ -1,3 +1,6 @@
+// Post category styles.
+// Keys match the `type` values used in post frontmatter.
+
 export const categoryStyles = {
   INSIGHT: {
     badge: "border-orange-200 bg-orange-50 text-orange-600",
@@ -36,12 +39,7 @@ export const categoryStyles = {
   },
 } as const;
 
-export type CategoryType = keyof typeof categoryStyles;
-
-export function getCategoryStyles(type?: string) {
-  return categoryStyles[type as CategoryType] ?? fallbackCategoryStyles;
-}
-
+// Fallback style for missing or unknown post types.
 export const fallbackCategoryStyles = {
   badge: "border-slate-200 bg-slate-50 text-slate-600",
   headerGradient:
@@ -50,15 +48,15 @@ export const fallbackCategoryStyles = {
   gridRgb: "37, 99, 235",
 } as const;
 
-// Page-level styles for generic/top-level pages.
-// categoryStyles is for post types; pageStyles is for section index pages.
+export type CategoryType = keyof typeof categoryStyles;
+
+export function getCategoryStyles(type?: string) {
+  return categoryStyles[type as CategoryType] ?? fallbackCategoryStyles;
+}
+
+// Page-level styles.
+// Keys match top-level route names, not post type values.
 export const pageStyles = {
-  default: {
-    headerGradient:
-      "bg-gradient-to-b from-section-alt via-section-alt to-slate-100",
-    titleAccent: "text-slate-300",
-    gridRgb: "37, 99, 235",
-  },
   posts: {
     headerGradient:
       "bg-gradient-to-b from-section-alt via-section-alt to-slate-100",
@@ -85,8 +83,15 @@ export const pageStyles = {
   },
 } as const;
 
+export const defaultPageStyles = {
+  headerGradient:
+    "bg-gradient-to-b from-section-alt via-section-alt to-slate-100",
+  titleAccent: "text-slate-300",
+  gridRgb: "37, 99, 235",
+} as const;
+
 export type PageStyleType = keyof typeof pageStyles;
 
 export function getPageStyles(page?: string) {
-  return pageStyles[page as PageStyleType] ?? pageStyles.default;
+  return pageStyles[page as PageStyleType] ?? defaultPageStyles;
 }

@@ -60,19 +60,25 @@ body {
 }
 
 /* Content links — shared style for all non-nav/footer links */
-/*
-.link, p a, .link-external, .link-internal {
+
+.link,
+p a,
+.link-external,
+.link-internal {
     color: var(--color-accent);
     text-decoration: none;
     transition: opacity 0.15s;
+    font-weight: 500;
 }
 
-.link:hover, p a:hover, .link-external:hover, .link-internal:hover {
+.link:hover,
+p a:hover,
+.link-external:hover,
+.link-internal:hover {
     text-decoration: underline;
-    text-underline-offset: 3px;
-    opacity: 0.75;
+    text-underline-offset: 4px;
+    opacity: 0.6;
 }
-*/
 
 /* ── Post prose ─────────────────────────────────────── */
 .post-body {
@@ -119,15 +125,15 @@ body {
 }
 
 .post-body p {
-    margin-bottom: 1.5rem;
-    line-height: 1.75;
+    margin-bottom: 1rem;
+    line-height: 1.5;
     color: var(--color-text-primary);
 }
 
 .post-body ul,
 .post-body ol {
     padding-left: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .post-body ul {

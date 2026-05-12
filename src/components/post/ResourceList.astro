@@ -1,5 +1,43 @@
 ---
-import { icons } from "@lucide/astro";
+import { Github, Google, Orcid, Zenodo, Arxiv } from "simple-icons-astro";
+
+import {
+    Database,
+    FileText,
+    Download,
+    Link,
+    ExternalLink,
+    FileCode,
+    BookOpen,
+    FlaskConical,
+    GraduationCap,
+} from "@lucide/astro";
+
+const iconMap = {
+    github: Github,
+    google: Google,
+    orcid: Orcid,
+    zenodo: Zenodo,
+    arxiv: Arxiv,
+
+    database: Database,
+    file: FileText,
+    download: Download,
+    link: Link,
+    external_link: ExternalLink,
+    code: FileCode,
+    publication: BookOpen,
+    research: FlaskConical,
+    teaching: GraduationCap,
+};
+
+const getIcon = (icon?: string) => {
+    return icon && icon in iconMap
+        ? iconMap[icon as keyof typeof iconMap]
+        : Link;
+};
+
+const ExternalLinkIcon = getIcon("external_link");
 
 interface ResourceItem {
     label: string;
@@ -17,25 +55,6 @@ const { items } = Astro.props;
 function isExternal(href: string) {
     return href.startsWith("http://") || href.startsWith("https://");
 }
-
-const iconMap: Record<string, keyof typeof icons> = {
-    github: "GitBranch",
-    database: "Database",
-    file: "FileText",
-    paper: "FileText",
-    code: "Code",
-    video: "Video",
-    slides: "Presentation",
-    download: "Download",
-    link: "Link",
-};
-
-function getIconName(name?: string): keyof typeof icons {
-    if (!name || !(name in iconMap)) return "Link";
-    return iconMap[name];
-}
-
-const ExternalLinkIcon = icons["ExternalLink"];
 ---
 
 {
@@ -47,11 +66,12 @@ const ExternalLinkIcon = icons["ExternalLink"];
             <ul class="list-none p-0 m-0 rounded-lg border border-border overflow-hidden">
                 {items.map((item) => {
                     const external = isExternal(item.href);
-                    const Icon = icons[getIconName(item.icon)];
+                    const Icon = getIcon(item.icon);
                     return (
-                        <li class="flex items-start gap-3 px-4 py-2 bg-white transition-colors hover:bg-section-alt  border-border last:border-b-0">
+                        <li class="flex items-start gap-3 px-4 py-2 bg-white transition-colors hover:bg-section-alt border-b border-border last:border-b-0">
                             <Icon
                                 size={15}
+                                fill="currentColor"
                                 aria-hidden="true"
                                 class="flex-shrink-0 mt-1 text-text-secondary opacity-50"
                             />

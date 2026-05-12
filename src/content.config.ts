@@ -39,6 +39,7 @@ const posts = defineCollection({
       label: z.string(),
       href: z.string(),
       description: z.string().optional(),
+      icon: z.string().optional(),
     })).optional(),
   }),
 });
